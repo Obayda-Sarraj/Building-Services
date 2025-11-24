@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمات المباني - الصيانة والتنظيف الاحترافية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/base.css">
+</head>
+<body class="rtl">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-building" style="font-size: 2rem; color: var(--accent-light);"></i>
+                <span class="logo-text">بناء كير</span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/index-ar.html">الرئيسية</a></li>
+                    <li><a href="cleaning-services-ar.html">خدمات التنظيف</a></li>
+                    <li><a href="maintenance-services-ar.html">خدمات الصيانة</a></li>
+                    <li><a href="gallery-ar.html">معرض الأعمال</a></li>
+                    <li><a href="about-ar.html">من نحن</a></li>
+                    <li><a href="contact-ar.html">اتصل بنا</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle">AR</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>خدمات تنظيف وصيانة موثوقة يمكنك الاعتماد عليها</h1>
+            <p>خدمات صيانة وتنظيف المباني الاحترافية للمجمعات السكنية والمدارس والمؤسسات مع مزودي خدمات موثوقين</p>
+            <a href="contact-ar.html" class="cta-button">احجز خدمة الآن</a>
+            
+            <!-- Quick Booking Widget -->
+            <div class="quick-booking">
+                <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary-dark);">الحجز السريع</h3>
+                <form class="booking-form">
+                    <div class="form-group">
+                        <label for="service-type">نوع الخدمة</label>
+                        <select id="service-type">
+                            <option value="">اختر خدمة</option>
+                            <option value="cleaning">خدمات التنظيف</option>
+                            <option value="maintenance">خدمات الصيانة</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-category">فئة الخدمة</label>
+                        <select id="service-category">
+                            <option value="">اختر الفئة</option>
+                            <option value="home-cleaning">تنظيف المنازل</option>
+                            <option value="common-area">تنظيف المناطق المشتركة</option>
+                            <option value="electrical">الصيانة الكهربائية</option>
+                            <option value="plumbing">خدمات السباكة</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-date">التاريخ المفضل</label>
+                        <input type="date" id="booking-date">
+                    </div>
+                    <button type="submit" class="booking-submit">احصل على تقدير</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدماتنا</h2>
+                <p>حلول تنظيف وصيانة شاملة لجميع أنواع المباني والمرافق</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Cleaning Services -->
+                <div class="service-card">
+                    <div class="service-img">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>خدمات التنظيف</h3>
+                        <p>تنظيف احترافي للمنازل والمناطق المشتركة والأثاث والمفروشات والنوافذ والحدائق وخزانات المياه</p>
+                        <a href="cleaning-services-ar.html" class="service-btn">عرض التفاصيل</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>خدمات الصيانة</h3>
+                        <p>الصيانة الكهربائية والسباكة والغاز والمصاعد والأعمال المعدنية بواسطة فنيين معتمدين</p>
+                        <a href="maintenance-services-ar.html" class="service-btn">عرض التفاصيل</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>مكافحة الآفات</h3>
+                        <p>حلول فعالة لمكافحة الحشرات والقوارض للحفاظ على مبناك آمناً ونظيفاً</p>
+                        <a href="#" class="service-btn">عرض التفاصيل</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>معرض أعمالنا</h2>
+                <p>شاهد جودة خدماتنا من خلال مشاريعنا المكتملة</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="تنظيف المباني">
+                    <div class="gallery-overlay">
+                        <h3>تنظيف المناطق المشتركة في المباني</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="تنظيف النوافذ">
+                    <div class="gallery-overlay">
+                        <h3>تنظيف النوافذ الاحترافي</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="الصيانة الكهربائية">
+                    <div class="gallery-overlay">
+                        <h3>صيانة الأنظمة الكهربائية</h3>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="خدمات السباكة">
+                    <div class="gallery-overlay">
+                        <h3>إصلاح أنظمة السباكة</h3>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="gallery-ar.html" class="cta-button">عرض المعرض الكامل</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>موثوق من قبل</h2>
+                <p>نحن نتعاون مع شركات ومزودي خدمات موثوقين</p>
+            </div>
+            
+            <div class="trust-logos">
+                <div class="trust-logo">الشركة 1</div>
+                <div class="trust-logo">الشركة 2</div>
+                <div class="trust-logo">الشركة 3</div>
+                <div class="trust-logo">الشركة 4</div>
+                <div class="trust-logo">الشركة 5</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>ماذا يقول عملاؤنا</h2>
+                <p>تعليقات حقيقية من عملائنا الراضين</p>
+            </div>
+            
+            <div class="testimonials-slider">
+                <div class="testimonials-container" id="testimonials-container">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            "كان فريق التنظيف محترفاً للغاية ودقيقاً. لم تكن المناطق المشتركة في مبنانا أفضل من قبل. موصى به بشدة!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">أس</div>
+                            <div class="author-info">
+                                <h4>أحمد سامي</h4>
+                                <p>مدير مجمع سكني</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            "استجابة سريعة لمشكلة السباكة الطارئة. وصل الفني خلال ساعة وقام بإصلاح المشكلة بكفاءة."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">م ج</div>
+                            <div class="author-info">
+                                <h4>مريم جابر</h4>
+                                <p>مديرة مدرسة</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            "خدمة الصيانة المنتظمة للمصاعد كانت لا تشوبها شائبة. الفريق دائمًا في الموعد ومحترف."
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">خ م</div>
+                            <div class="author-info">
+                                <h4>خالد المنصوري</h4>
+                                <p>مالك مبنى تجاري</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="slider-nav">
+                    <div class="slider-dot active" data-index="0"></div>
+                    <div class="slider-dot" data-index="1"></div>
+                    <div class="slider-dot" data-index="2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>بناء كير</h3>
+                    <p>خدمات صيانة وتنظيف المباني الاحترافية مع مزودي خدمات موثوقين</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="/index-ar.html">الرئيسية</a></li>
+                        <li><a href="cleaning-services-ar.html">خدمات التنظيف</a></li>
+                        <li><a href="maintenance-services-ar.html">خدمات الصيانة</a></li>
+                        <li><a href="gallery-ar.html">معرض الأعمال</a></li>
+                        <li><a href="about-ar.html">من نحن</a></li>
+                        <li><a href="contact-ar.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>الخدمات</h3>
+                    <ul class="footer-links">
+                        <li><a href="cleaning-services-ar.html">خدمات التنظيف</a></li>
+                        <li><a href="maintenance-services-ar.html">خدمات الصيانة</a></li>
+                        <li><a href="#">مكافحة الآفات</a></li>
+                        <li><a href="#">خدمات الطوارئ</a></li>
+                        <li><a href="#">الاستشارات</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>اتصل بنا</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 منطقة الأعمال، المدينة</li>
+                        <li><i class="fas fa-phone"></i> +123 456 7890</li>
+                        <li><i class="fas fa-envelope"></i> info@buildingcare.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 بناء كير. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Bubble -->
+    <div class="chat-bubble">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/lang.js"></script>
+</body>
+</html>
