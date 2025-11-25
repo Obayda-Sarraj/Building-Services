@@ -1,0 +1,270 @@
+/* Auth Pages Styles */
+.login-container {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 0 50px;
+}
+
+.login-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--gray-light);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h2 {
+    color: var(--primary-dark);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.login-tabs {
+    display: flex;
+    background: var(--gray-light);
+    border-radius: 12px;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+
+.login-tab {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.login-tab.active {
+    background: white;
+    color: var(--primary-medium);
+    box-shadow: var(--shadow-sm);
+}
+
+.login-form {
+    display: none;
+}
+
+.login-form.active {
+    display: block;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+}
+
+.form-control {
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    padding: 12px 15px;
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(142, 182, 155, 0.1);
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.forgot-password a {
+    color: var(--primary-medium);
+    text-decoration: none;
+}
+
+.forgot-password a:hover {
+    color: var(--primary-dark);
+}
+
+.social-login {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid var(--gray-light);
+}
+
+.social-login p {
+    color: var(--gray-medium);
+    margin-bottom: 20px;
+}
+
+.social-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    background: white;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.social-btn:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+.social-btn i {
+    font-size: 18px;
+}
+
+/* Role Selection Styles */
+.role-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    border: 2px solid var(--gray-light);
+    transition: var(--transition);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.role-card:hover {
+    border-color: var(--primary-light);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.role-card.selected {
+    border-color: var(--primary-medium);
+    background: var(--accent-light);
+}
+
+.role-card h3 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+.role-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.role-card ul li {
+    padding: 8px 0;
+    color: var(--gray-medium);
+    position: relative;
+    padding-left: 20px;
+}
+
+.role-card ul li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-light);
+    font-weight: bold;
+}
+
+/* Registration Form Styles */
+.profile-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-light);
+}
+
+.working-hours {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid var(--gray-light);
+}
+
+.day-schedule {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--gray-light);
+    gap: 20px;
+}
+
+.day-schedule:last-child {
+    border-bottom: none;
+}
+
+.day-checkbox {
+    display: flex;
+    align-items: center;
+}
+
+.time-selectors {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-left: auto;
+}
+
+.time-selectors .form-select {
+    min-width: 140px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .login-card {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .login-tabs {
+        flex-direction: column;
+    }
+    
+    .social-buttons {
+        flex-direction: column;
+    }
+    
+    .role-card {
+        padding: 30px 20px;
+    }
+    
+    .profile-card {
+        padding: 30px 20px;
+    }
+    
+    .time-selectors {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .day-schedule {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
