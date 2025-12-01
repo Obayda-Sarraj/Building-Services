@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Provider Registration - BuildingCare</title>
+
+    <!-- Icons & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme + Base styles (ألونك الأصلية) -->
+    <link rel="stylesheet" href="../../assets/css/theme-variables.css">
     <link rel="stylesheet" href="../../assets/css/base.css">
+
+    <!-- Wizard CSS الخاص بصفحة الريجستريشن -->
+    <link rel="stylesheet" href="provider-registration.css">
 </head>
 <body>
     <!-- Header -->
@@ -39,199 +49,427 @@
     </header>
 
     <!-- Page Hero -->
-    <section class="hero" style="padding: 150px 0 80px;">
+    <section class="hero" style="padding: 150px 0 60px;">
         <div class="container">
             <h1>Service Provider Registration</h1>
-            <p>Join our network of verified service professionals</p>
+            <p>Join our network of trusted cleaning &amp; maintenance professionals</p>
         </div>
     </section>
 
-    <!-- Registration Form -->
+    <!-- Registration Wizard -->
     <section class="section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="profile-card">
-                        <h2 class="mb-4">Create Your Provider Account</h2>
-                        
+                <div class="col-lg-9">
+                    <div class="wizard-wrapper">
+                        <div class="wizard-header">
+                            <div>
+                                <div class="wizard-step-label" id="wizard-step-label">Step 1 of 6</div>
+                                <h2 class="wizard-title">Register as a service provider</h2>
+                            </div>
+                            <div class="text-end">
+                                <div class="wizard-step-label">Completion</div>
+                                <div class="fw-semibold" id="wizard-progress-percent">0%</div>
+                            </div>
+                        </div>
+
+                        <div class="wizard-progress-container">
+                            <div class="wizard-progress-bar">
+                                <div class="wizard-progress-bar-inner" id="wizard-progress-bar-inner"></div>
+                            </div>
+                            <div class="wizard-progress-meta">
+                                <span id="wizard-current-step-text">Provider type</span>
+                                <span id="wizard-next-step-text">Next: Basic information</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Form (كل الخطوات داخل نفس الفورم) -->
                         <form id="provider-registration-form">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="first-name" class="form-label">First Name</label>
-                                    <input type="text" class="form-control" id="first-name" required>
+                            <!-- قيم مخفية مهمة للفirebase -->
+                            <input type="hidden" id="provider-type" name="providerType" value="individual">
+                            <input type="hidden" id="service-type" name="primaryServiceType" value="cleaning">
+
+                            <div class="wizard-steps">
+                                <!-- STEP 1 -->
+                                <div class="wizard-step active" data-step="1">
+                                    <h3 class="mb-3">Choose your provider type</h3>
+                                    <p class="text-muted mb-4">Tell us if you’re registering as an individual professional or a registered company.</p>
+
+                                    <div class="provider-type-grid">
+                                        <div class="provider-type-card selected" data-type="individual">
+                                            <div class="provider-type-check">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                            <div class="type-icon">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <h3>Individual provider</h3>
+                                            <p>I’m an independent professional offering services on my own.</p>
+                                            <div class="provider-type-tags">
+                                                <span class="provider-type-tag">Cleaning worker</span>
+                                                <span class="provider-type-tag">Maintenance technician</span>
+                                                <span class="provider-type-tag">Electrician</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="provider-type-card" data-type="company">
+                                            <div class="provider-type-check">
+                                                <i class="fas fa-check"></i>
+                                            </div>
+                                            <div class="type-icon">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                            <h3>Company / Organization</h3>
+                                            <p>I represent a registered company with a team of members.</p>
+                                            <div class="provider-type-tags">
+                                                <span class="provider-type-tag">Cleaning company</span>
+                                                <span class="provider-type-tag">Maintenance company</span>
+                                                <span class="provider-type-tag">Security services</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p class="provider-note">
+                                        <i class="fas fa-info-circle mt-1"></i>
+                                        <span>You can update this information later from your profile settings if your business grows or your structure changes.</span>
+                                    </p>
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="last-name" class="form-label">Last Name</label>
-                                    <input type="text" class="form-control" id="last-name" required>
+
+                                <!-- STEP 2 -->
+                                <div class="wizard-step" data-step="2">
+                                    <h3 class="mb-3">Basic information</h3>
+                                    <p class="text-muted mb-4">We’ll use these details to build your public profile and contact you.</p>
+
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">First name</label>
+                                            <input type="text" class="form-control" id="first-name" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Last name</label>
+                                            <input type="text" class="form-control" id="last-name" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Business / company name (optional)</label>
+                                            <input type="text" class="form-control" id="company-name">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Phone number</label>
+                                            <div class="input-group">
+                                                <input type="tel" class="form-control" id="phone" required>
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label">Main location</label>
+                                            <div class="input-group mb-2">
+                                                <input type="text" class="form-control" id="user-address" placeholder="City, area, building" required>
+                                                <button type="button" class="btn btn-outline-secondary" id="detect-location">
+                                                    <i class="fas fa-location-arrow"></i> Detect
+                                                </button>
+                                            </div>
+                                            <label class="form-label small mb-1">Service areas (cities / neighborhoods)</label>
+                                            <div class="chip-input-wrapper" id="service-areas-wrapper">
+                                                <input type="text" id="service-areas-input" placeholder="Type an area name and press Enter">
+                                            </div>
+                                            <input type="hidden" id="service-areas" name="serviceAreas">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label class="form-label">Short description about your services</label>
+                                            <textarea class="form-control" id="provider-description" rows="3" placeholder="Describe your services, style and what makes you unique..." required></textarea>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Years of experience</label>
+                                            <input type="number" min="0" class="form-control" id="experience-years" value="0">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Email address</label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="password" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Confirm password</label>
+                                            <input type="password" class="form-control" id="confirm-password" required>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="phone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="company-name" class="form-label">Company Name (Optional)</label>
-                                <input type="text" class="form-control" id="company-name">
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="service-type" class="form-label">Service Type</label>
-                                <select class="form-select" id="service-type" required>
-                                    <option value="">Select your service type</option>
-                                    <option value="cleaning">Cleaning Services</option>
-                                    <option value="electrical">Electrical Maintenance</option>
-                                    <option value="plumbing">Plumbing Services</option>
-                                    <option value="pest-control">Pest Control</option>
-                                    <option value="elevator">Elevator Maintenance</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="experience" class="form-label">Years of Experience</label>
-                                <select class="form-select" id="experience" required>
-                                    <option value="">Select years of experience</option>
-                                    <option value="0-2">0-2 years</option>
-                                    <option value="2-5">2-5 years</option>
-                                    <option value="5-10">5-10 years</option>
-                                    <option value="10+">10+ years</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="user-address" class="form-label">Business Address</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="user-address" required>
-                                    <button type="button" class="btn btn-outline-secondary" id="detect-location">
-                                        <i class="fas fa-location-arrow"></i> Detect
+
+                                <!-- STEP 3 -->
+                                <div class="wizard-step" data-step="3">
+                                    <h3 class="mb-3">Your services</h3>
+                                    <p class="text-muted mb-3">Add the services you offer so customers can see them while booking.</p>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Main category</label>
+                                        <select class="form-select" id="primary-service-select">
+                                            <option value="cleaning">Cleaning services</option>
+                                            <option value="maintenance">Maintenance services</option>
+                                            <option value="electrical">Electrical</option>
+                                            <option value="plumbing">Plumbing</option>
+                                            <option value="pest-control">Pest control</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                        <div class="small text-muted mt-1">This value is saved as your main service type.</div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-outline-primary btn-sm" id="btn-open-add-service">
+                                        <i class="fas fa-plus"></i> Add service
                                     </button>
+
+                                    <div class="services-list" id="services-list"></div>
+
+                                    <!-- Inline add-service panel -->
+                                    <div class="inline-modal d-none" id="add-service-panel">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <h5 class="mb-0">Add service</h5>
+                                            <button type="button" class="btn btn-link btn-sm text-muted" id="btn-close-add-service">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="row g-2">
+                                            <div class="col-12">
+                                                <label class="form-label">Service title</label>
+                                                <input type="text" class="form-control" id="service-title-input" placeholder="Example: AC repair, stairwell cleaning...">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Category</label>
+                                                <input type="text" class="form-control" id="service-category-input" placeholder="Cleaning, maintenance, electrical...">
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label">Service description</label>
+                                                <textarea class="form-control" id="service-description-input" rows="2" placeholder="Describe what is included in this service..."></textarea>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label">Pricing type</label>
+                                                <select class="form-select" id="service-pricing-type-input">
+                                                    <option value="fixed">Fixed price</option>
+                                                    <option value="hourly">Price per hour</option>
+                                                    <option value="custom">Custom quote</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">Price ($)</label>
+                                                <input type="number" min="0" step="0.5" class="form-control" id="service-price-input">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="form-label">Duration (hours)</label>
+                                                <input type="number" min="0" step="0.5" class="form-control" id="service-duration-input">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-3 d-flex justify-content-end gap-2">
+                                            <button type="button" class="btn btn-light btn-sm" id="btn-cancel-service">Cancel</button>
+                                            <button type="button" class="btn btn-success btn-sm" id="btn-save-service">Save service</button>
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" id="services-json" name="servicesJson">
                                 </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="certifications" class="form-label">Certifications (Optional)</label>
-                                <textarea class="form-control" id="certifications" rows="3" placeholder="List any relevant certifications or licenses"></textarea>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="confirm-password" class="form-label">Confirm Password</label>
-                                <input type="password" class="form-control" id="confirm-password" required>
-                            </div>
-                            
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="terms" required>
-                                <label class="form-check-label" for="terms">
-                                    I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                                </label>
-                            </div>
-                            
-                            <div class="alert alert-info mb-4">
-                                <i class="fas fa-info-circle"></i> After registration, your account will need to be approved by our admin team. You will receive an email notification once your account is approved.
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">Create Account</button>
-                            
-                            <div class="text-center">
-                                <p>Already have an account? <a href="login.html">Log in here</a></p>
+
+                                <!-- STEP 4 -->
+                                <div class="wizard-step" data-step="4">
+                                    <h3 class="mb-3">Weekly availability</h3>
+                                    <p class="text-muted mb-3">
+                                        Select the time slots when you’re available to accept bookings. You can also mark full days off.
+                                    </p>
+
+                                    <div class="availability-grid">
+                                        <table class="availability-table" id="availability-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Time</th>
+                                                    <th>Mon</th>
+                                                    <th>Tue</th>
+                                                    <th>Wed</th>
+                                                    <th>Thu</th>
+                                                    <th>Fri</th>
+                                                    <th>Sat</th>
+                                                    <th>Sun</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- rows generated by JS -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <label class="form-label">Days off</label>
+                                        <div class="day-off-toggle" id="day-off-toggle">
+                                            <button type="button" data-day="Fri">Friday</button>
+                                            <button type="button" data-day="Sat">Saturday</button>
+                                            <button type="button" data-day="Sun">Sunday</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3 row g-3">
+                                        <div class="col-md-6">
+                                            <label class="form-label">Maximum bookings per day</label>
+                                            <input type="number" min="1" value="3" class="form-control" id="max-bookings-per-day">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">Notes about your schedule (optional)</label>
+                                            <input type="text" class="form-control" id="availability-notes" placeholder="Example: Not available on holidays...">
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" id="availability-json" name="availabilityJson">
+                                </div>
+
+                                <!-- STEP 5 -->
+                                <div class="wizard-step" data-step="5">
+                                    <h3 class="mb-3">Additional information</h3>
+                                    <p class="text-muted mb-3">These details help customers trust you more when booking.</p>
+
+                                    <div class="mb-3">
+                                        <div class="info-block-label">
+                                            <i class="fas fa-file-shield"></i>
+                                            <span>Certificates, CV &amp; qualifications</span>
+                                        </div>
+                                        <div class="small-hint mb-1">
+                                            Upload any relevant certificates, licenses, or a brief CV about your experience.
+                                        </div>
+                                        <div class="file-input-wrapper">
+                                            <input type="file" class="form-control" id="provider-certificates" multiple>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="info-block-label">
+                                            <i class="fas fa-shield-alt"></i>
+                                            <span>Insurance information (optional)</span>
+                                        </div>
+                                        <textarea class="form-control" id="insurance-info" rows="2" placeholder="Describe your insurance coverage, if applicable..."></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="info-block-label">
+                                            <i class="fas fa-ban"></i>
+                                            <span>Cancellation policy (optional)</span>
+                                        </div>
+                                        <textarea class="form-control" id="cancellation-policy" rows="2" placeholder="Explain your cancellation terms..."></textarea>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="info-block-label">
+                                            <i class="fas fa-badge-check"></i>
+                                            <span>Service guarantee (optional)</span>
+                                        </div>
+                                        <textarea class="form-control" id="service-guarantee" rows="2" placeholder="Describe your guarantee conditions..."></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- STEP 6 -->
+                                <div class="wizard-step" data-step="6">
+                                    <h3 class="mb-3">Review &amp; submit</h3>
+                                    <p class="text-muted mb-3">Please review all details before submitting your registration.</p>
+
+                                    <div class="summary-group">
+                                        <h4>Provider type</h4>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Type</span>
+                                            <span class="summary-value" id="summary-provider-type"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="summary-group">
+                                        <h4>Basic information</h4>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Name</span>
+                                            <span class="summary-value" id="summary-name"></span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Email</span>
+                                            <span class="summary-value" id="summary-email"></span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Phone</span>
+                                            <span class="summary-value" id="summary-phone"></span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Address</span>
+                                            <span class="summary-value" id="summary-address"></span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Service areas</span>
+                                            <span class="summary-value" id="summary-areas"></span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Experience</span>
+                                            <span class="summary-value" id="summary-experience"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="summary-group">
+                                        <h4>Services</h4>
+                                        <div id="summary-services" class="small"></div>
+                                    </div>
+
+                                    <div class="summary-group">
+                                        <h4>Additional info</h4>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Insurance</span>
+                                            <span class="summary-value" id="summary-insurance"></span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Cancellation</span>
+                                            <span class="summary-value" id="summary-cancellation"></span>
+                                        </div>
+                                        <div class="summary-row">
+                                            <span class="summary-label">Guarantee</span>
+                                            <span class="summary-value" id="summary-guarantee"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="terms" required>
+                                        <label class="form-check-label" for="terms">
+                                            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+                                        </label>
+                                    </div>
+
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-info-circle"></i>
+                                        After submission, our team will review your application. You’ll receive an email once your account is approved.
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 mt-2">
+                                        Submit application
+                                    </button>
+
+                                    <div class="text-center mt-3">
+                                        <p>Already have an account? <a href="login.html">Log in here</a></p>
+                                    </div>
+                                </div>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Working Hours Section -->
-    <section class="section" style="background-color: var(--gray-light);">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="profile-card">
-                        <h2 class="mb-4">Set Your Working Hours</h2>
-                        <p class="mb-4">Define your availability for each day of the week</p>
-                        
-                        <form id="working-hours-form">
-                            <div class="working-hours">
-                                <div class="day-schedule" data-day="monday">
-                                    <div class="day-checkbox">
-                                        <input type="checkbox" id="monday-check" class="form-check-input">
-                                    </div>
-                                    <label for="monday-check" class="form-label">Monday</label>
-                                    <div class="time-selectors" style="display: none;">
-                                        <select class="form-select start-time">
-                                            <option value="">Start Time</option>
-                                            <option value="08:00">8:00 AM</option>
-                                            <option value="09:00">9:00 AM</option>
-                                            <option value="10:00">10:00 AM</option>
-                                            <option value="11:00">11:00 AM</option>
-                                            <option value="12:00">12:00 PM</option>
-                                        </select>
-                                        <span>to</span>
-                                        <select class="form-select end-time">
-                                            <option value="">End Time</option>
-                                            <option value="16:00">4:00 PM</option>
-                                            <option value="17:00">5:00 PM</option>
-                                            <option value="18:00">6:00 PM</option>
-                                            <option value="19:00">7:00 PM</option>
-                                            <option value="20:00">8:00 PM</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <!-- Repeat for other days (Tuesday to Sunday) -->
-                                <div class="day-schedule" data-day="tuesday">
-                                    <div class="day-checkbox">
-                                        <input type="checkbox" id="tuesday-check" class="form-check-input">
-                                    </div>
-                                    <label for="tuesday-check" class="form-label">Tuesday</label>
-                                    <div class="time-selectors" style="display: none;">
-                                        <select class="form-select start-time">
-                                            <option value="">Start Time</option>
-                                            <option value="08:00">8:00 AM</option>
-                                            <option value="09:00">9:00 AM</option>
-                                            <option value="10:00">10:00 AM</option>
-                                            <option value="11:00">11:00 AM</option>
-                                            <option value="12:00">12:00 PM</option>
-                                        </select>
-                                        <span>to</span>
-                                        <select class="form-select end-time">
-                                            <option value="">End Time</option>
-                                            <option value="16:00">4:00 PM</option>
-                                            <option value="17:00">5:00 PM</option>
-                                            <option value="18:00">6:00 PM</option>
-                                            <option value="19:00">7:00 PM</option>
-                                            <option value="20:00">8:00 PM</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                
-                                <!-- Add Wednesday, Thursday, Friday, Saturday, Sunday with similar structure -->
-                                
-                            </div>
-                            
-                            <button type="button" class="btn btn-success mt-3" onclick="saveWorkingHours()">
-                                <i class="fas fa-save"></i> Save Working Hours
+                        <div class="wizard-nav">
+                            <button type="button" class="btn btn-outline-secondary" id="btn-prev-step">
+                                <i class="fas fa-arrow-left"></i> Back
                             </button>
-                        </form>
+                            <button type="button" class="btn btn-success" id="btn-next-step">
+                                Next <i class="fas fa-arrow-right ms-1"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer (نفس الموجود عندكم تقريباً) -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -285,13 +523,20 @@
         </div>
     </footer>
 
-    <!-- Chat Bubble -->
     <div class="chat-bubble">
         <i class="fas fa-comments"></i>
     </div>
 
+    <!-- Scripts العامة -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/lang.js"></script>
+
+    <!-- Firebase (لو شغّال عندك) -->
+    <script type="module" src="../../assets/js/firebase-config.js"></script>
+    <script type="module" src="../../assets/js/auth-firebase.js"></script>
+
+    <!-- Wizard JS الخاص بالصفحة -->
+    <script src="provider-registration.js"></script>
 </body>
 </html>
