@@ -11,70 +11,145 @@
 <body>
     <!-- Header -->
     <header>
-    <div class="container header-container">
-        <div class="logo">
-            <i class="fas fa-building" style="font-size: 2rem; color: var(--accent-light);"></i>
-            <span class="logo-text">BuildingCare</span>
-        </div>
-        
-        <nav id="main-nav">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="features/cleaning/cleaning-services.html">Cleaning Services</a></li>
-                <li><a href="features/maintenance/maintenance-services.html">Maintenance Services</a></li>
-                <li><a href="features/gallery/gallery.html">Gallery</a></li>
-                <li><a href="features/about/about.html">About Us</a></li>
-                <li><a href="features/faq/faq.html">FAQ</a></li>
-                <li><a href="features/auth/login.html" class="login-nav-btn">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </a></li>
-            </ul>
-        </nav>
-        
-        <div class="header-actions">
-            <button class="lang-toggle" id="lang-toggle">EN</button>
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </div>
-</header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Reliable Cleaning & Maintenance Services You Can Trust</h1>
-            <p>Professional building maintenance and cleaning services for residential complexes, schools, and institutions with verified service providers.</p>
-            <a href="features/contact/contact.html" class="cta-button">Book a Service Now</a>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-building" style="font-size: 2rem; color: var(--accent-light);"></i>
+                <span class="logo-text">BuildingCare</span>
+            </div>
             
-            <!-- Quick Booking Widget -->
-            <div class="quick-booking">
-                <h3 style="text-align: center; margin-bottom: 20px; color: var(--primary-dark);">Quick Booking</h3>
-                <form class="booking-form">
-                    <div class="form-group">
-                        <label for="service-type">Service Type</label>
-                        <select id="service-type">
-                            <option value="">Select a service</option>
-                            <option value="cleaning">Cleaning Services</option>
-                            <option value="maintenance">Maintenance Services</option>
-                        </select>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features/cleaning/cleaning-services.html">Cleaning Services</a></li>
+                    <li><a href="features/maintenance/maintenance-services.html">Maintenance Services</a></li>
+                    <li><a href="features/gallery/gallery.html">Gallery</a></li>
+                    <li><a href="features/about/about.html">About Us</a></li>
+                    <li><a href="features/faq/faq.html">FAQ</a></li>
+                    <li><a href="features/auth/login.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle">EN</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with 3D Shape -->
+    <section class="hero" id="home">
+        <!-- 3D Shape Background -->
+        <div class="hero-3d-shape">
+            <iframe src='https://my.spline.design/claritystream-jBgZNU5kGxx2PZ5kfBSD85qJ/' 
+                    frameborder='0' 
+                    width='100%' 
+                    height='100%'
+                    loading="lazy"
+                    title="3D Background Shape">
+            </iframe>
+        </div>
+        
+        <!-- Wave animations (subtle background) -->
+        <div class="hero-wave"></div>
+        <div class="hero-wave"></div>
+        <div class="hero-wave"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Reliable Cleaning & Maintenance Services You Can Trust</h1>
+                <p>Professional building maintenance and cleaning services for residential complexes, schools, and institutions with verified service providers.</p>
+                
+                <a href="features/contact/contact.html" class="cta-button">
+                    Book a Service Now
+                    <div class="star-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
                     </div>
-                    <div class="form-group">
-                        <label for="service-category">Service Category</label>
-                        <select id="service-category">
-                            <option value="">Select category</option>
-                            <option value="home-cleaning">Home Cleaning</option>
-                            <option value="common-area">Common Area Cleaning</option>
-                            <option value="electrical">Electrical Maintenance</option>
-                            <option value="plumbing">Plumbing Services</option>
-                        </select>
+                    <div class="star-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
                     </div>
-                    <div class="form-group">
-                        <label for="booking-date">Preferred Date</label>
-                        <input type="date" id="booking-date">
+                    <div class="star-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
                     </div>
-                    <button type="submit" class="booking-submit">Get Estimate</button>
-                </form>
+                    <div class="star-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="star-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs></defs>
+                            <g id="Layer_x0020_1">
+                                <metadata id="CorelCorpID_0Corel-Layer"></metadata>
+                                <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </a>
+                
+                <!-- Quick Booking Widget -->
+                <div class="quick-booking">
+                    <h3>Quick Booking</h3>
+                    <form class="booking-form">
+                        <div class="form-group">
+                            <label for="service-type">Service Type</label>
+                            <select id="service-type">
+                                <option value="">Select a service</option>
+                                <option value="cleaning">Cleaning Services</option>
+                                <option value="maintenance">Maintenance Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="service-category">Service Category</label>
+                            <select id="service-category">
+                                <option value="">Select category</option>
+                                <option value="home-cleaning">Home Cleaning</option>
+                                <option value="common-area">Common Area Cleaning</option>
+                                <option value="electrical">Electrical Maintenance</option>
+                                <option value="plumbing">Plumbing Services</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-date">Preferred Date</label>
+                            <input type="date" id="booking-date">
+                        </div>
+                        <button type="submit" class="booking-submit">Get Estimate</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -89,32 +164,36 @@
             
             <div class="services-grid">
                 <!-- Cleaning Services -->
-                <div class="service-card">
-                    <div class="service-img">
-                        <i class="fas fa-broom"></i>
-                    </div>
-                    <div class="service-content">
+                <div class="service-box">
+                    <span></span>
+                    <div class="box-content">
+                        <div class="service-icon">
+                            <i class="fas fa-broom"></i>
+                        </div>
                         <h3>Cleaning Services</h3>
                         <p>Professional cleaning for homes, common areas, upholstery, windows, gardens, and water tanks.</p>
                         <a href="features/cleaning/cleaning-services.html" class="service-btn">View Details</a>
                     </div>
                 </div>
                 
-                <div class="service-card">
-                    <div class="service-img">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <div class="service-content">
+                <!-- Maintenance Services -->
+                <div class="service-box">
+                    <span></span>
+                    <div class="box-content">
+                        <div class="service-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
                         <h3>Maintenance Services</h3>
                         <p>Electrical, plumbing, gas, elevator, and metalwork maintenance by certified technicians.</p>
                         <a href="features/maintenance/maintenance-services.html" class="service-btn">View Details</a>
                     </div>
                 </div>
-                
-                
             </div>
         </div>
     </section>
+<br>
+<br>
+
 
     <!-- Gallery Section -->
     <section class="section gallery-section" id="gallery">
@@ -124,33 +203,80 @@
                 <p>See the quality of our services through our completed projects</p>
             </div>
             
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Building Cleaning">
-                    <div class="gallery-overlay">
-                        <h3>Building Common Area Cleaning</h3>
+            <!-- New Gallery Slider -->
+            <div class="gallery-slider"
+                 style="--width: 280px;
+                        --height: 320px;
+                        --quantity: 8;">
+                <div class="slider-list">
+                    <div class="slider-item" style="--position: 1">
+                        <div class="gallery-card">
+                            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Building Cleaning">
+                            <div class="card-overlay">
+                                <h3>Building Common Area Cleaning</h3>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Window Cleaning">
-                    <div class="gallery-overlay">
-                        <h3>Professional Window Cleaning</h3>
+                    <div class="slider-item" style="--position: 2">
+                        <div class="gallery-card">
+                            <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Window Cleaning">
+                            <div class="card-overlay">
+                                <h3>Professional Window Cleaning</h3>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80" alt="Electrical Maintenance">
-                    <div class="gallery-overlay">
-                        <h3>Electrical System Maintenance</h3>
+                    <div class="slider-item" style="--position: 3">
+                        <div class="gallery-card">
+                            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80" alt="Electrical Maintenance">
+                            <div class="card-overlay">
+                                <h3>Electrical System Maintenance</h3>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Plumbing Services">
-                    <div class="gallery-overlay">
-                        <h3>Plumbing System Repair</h3>
+                    <div class="slider-item" style="--position: 4">
+                        <div class="gallery-card">
+                            <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Plumbing Services">
+                            <div class="card-overlay">
+                                <h3>Plumbing System Repair</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" style="--position: 5">
+                        <div class="gallery-card">
+                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Carpet Cleaning">
+                            <div class="card-overlay">
+                                <h3>Professional Carpet Cleaning</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" style="--position: 6">
+                        <div class="gallery-card">
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1073&q=80" alt="Painting Services">
+                            <div class="card-overlay">
+                                <h3>Interior Painting Services</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" style="--position: 7">
+                        <div class="gallery-card">
+                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Garden Maintenance">
+                            <div class="card-overlay">
+                                <h3>Garden & Lawn Maintenance</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slider-item" style="--position: 8">
+                        <div class="gallery-card">
+                            <img src="https://images.unsplash.com/photo-1572021331475-b3215c53a6b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Upholstery Cleaning">
+                            <div class="card-overlay">
+                                <h3>Upholstery Cleaning</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 30px;">
+            
+            <div style="text-align: center; margin-top: 40px;">
                 <a href="features/gallery/gallery.html" class="cta-button">View Full Gallery</a>
             </div>
         </div>
@@ -164,74 +290,179 @@
                 <p>We partner with verified companies and service providers</p>
             </div>
             
-            <div class="trust-logos">
-                <div class="trust-logo">Company 1</div>
-                <div class="trust-logo">Company 2</div>
-                <div class="trust-logo">Company 3</div>
-                <div class="trust-logo">Company 4</div>
-                <div class="trust-logo">Company 5</div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Trusted Since</span>
+                            <span>2018</span>
+                        </div>
+                        <p class="heading">CleanPro Solutions</p>
+                        <div class="categories">
+                            <span>Cleaning</span>
+                            <span>Professional</span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Premium Partner
+                    </div>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Trusted Since</span>
+                            <span>2019</span>
+                        </div>
+                        <p class="heading">MaintainX Technologies</p>
+                        <div class="categories">
+                            <span>Maintenance</span>
+                            <span>Certified</span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Gold Partner
+                    </div>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Trusted Since</span>
+                            <span>2020</span>
+                        </div>
+                        <p class="heading">BuildRight Constructions</p>
+                        <div class="categories">
+                            <span>Construction</span>
+                            <span>Reliable</span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Verified Partner
+                    </div>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Trusted Since</span>
+                            <span>2017</span>
+                        </div>
+                        <p class="heading">CarePlus Services</p>
+                        <div class="categories">
+                            <span>Maintenance</span>
+                            <span>24/7</span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Platinum Partner
+                    </div>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Trusted Since</span>
+                            <span>2021</span>
+                        </div>
+                        <p class="heading">ServiceHub Network</p>
+                        <div class="categories">
+                            <span>Multi-Service</span>
+                            <span>Verified</span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Strategic Partner
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="section">
+    <section class="section testimonials-section">
         <div class="container">
             <div class="section-title">
                 <h2>What Our Clients Say</h2>
                 <p>Real feedback from our satisfied customers</p>
             </div>
             
-            <div class="testimonials-slider">
-                <div class="testimonials-container" id="testimonials-container">
-                    <div class="testimonial">
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Testimonial</span>
+                            <span>★★★★★</span>
+                        </div>
+                        <p class="heading">"Extremely Professional & Thorough"</p>
                         <div class="testimonial-content">
                             "The cleaning team was extremely professional and thorough. Our building common areas have never looked better. Highly recommended!"
                         </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">AS</div>
-                            <div class="author-info">
-                                <h4>Ahmed Sami</h4>
-                                <p>Residential Complex Manager</p>
-                            </div>
+                        <div class="categories">
+                            <span>Cleaning</span>
+                            <span>Professional</span>
                         </div>
                     </div>
-                    
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            "Quick response for our emergency plumbing issue. The technician arrived within an hour and fixed the problem efficiently."
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">MJ</div>
-                            <div class="author-info">
-                                <h4>Mariam Jaber</h4>
-                                <p>School Administrator</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            "Regular maintenance service for our elevators has been flawless. The team is always punctual and professional."
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">KA</div>
-                            <div class="author-info">
-                                <h4>Khalid Al-Mansoori</h4>
-                                <p>Commercial Building Owner</p>
-                            </div>
+                    <div class="footer">
+                        <div class="author-info">
+                            <h4>Ahmed Sami</h4>
+                            <p>Residential Complex Manager</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="slider-nav">
-                    <div class="slider-dot active" data-index="0"></div>
-                    <div class="slider-dot" data-index="1"></div>
-                    <div class="slider-dot" data-index="2"></div>
+                <div class="testimonial-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Testimonial</span>
+                            <span>★★★★★</span>
+                        </div>
+                        <p class="heading">"Quick Emergency Response"</p>
+                        <div class="testimonial-content">
+                            "Quick response for our emergency plumbing issue. The technician arrived within an hour and fixed the problem efficiently."
+                        </div>
+                        <div class="categories">
+                            <span>Maintenance</span>
+                            <span>Emergency</span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="author-info">
+                            <h4>Mariam Jaber</h4>
+                            <p>School Administrator</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Testimonial</span>
+                            <span>★★★★★</span>
+                        </div>
+                        <p class="heading">"Flawless Regular Service"</p>
+                        <div class="testimonial-content">
+                            "Regular maintenance service for our elevators has been flawless. The team is always punctual and professional."
+                        </div>
+                        <div class="categories">
+                            <span>Maintenance</span>
+                            <span>Reliable</span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="author-info">
+                            <h4>Khalid Al-Mansoori</h4>
+                            <p>Commercial Building Owner</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+<br>
+<br>
+<br>
+<br>
 
     <!-- Footer -->
     <footer id="contact">

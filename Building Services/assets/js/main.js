@@ -731,3 +731,18 @@ document.addEventListener('DOMContentLoaded', () => {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = MainApp;
 }
+
+
+// In your main.js
+document.addEventListener('DOMContentLoaded', function() {
+    const iframe = document.querySelector('.hero-3d-shape iframe');
+    const container = document.querySelector('.hero-3d-shape');
+    
+    if (iframe) {
+        container.classList.add('loading');
+        iframe.addEventListener('load', function() {
+            container.classList.remove('loading');
+            container.classList.add('loaded');
+        });
+    }
+});
