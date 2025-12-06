@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="contact.css">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with consistent navbar -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-building" style="font-size: 2rem; color: var(--accent-light);"></i>
+                <i class="fas fa-building" style="font-size: 2rem; color: var(--primary-light);"></i>
                 <span class="logo-text">BuildingCare</span>
             </div>
             
@@ -24,7 +25,11 @@
                     <li><a href="../maintenance/maintenance-services.html">Maintenance Services</a></li>
                     <li><a href="../gallery/gallery.html">Gallery</a></li>
                     <li><a href="../about/about.html">About Us</a></li>
+                    <li><a href="../faq/faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="../auth/login.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a></li>
                 </ul>
             </nav>
             
@@ -38,87 +43,100 @@
     </header>
 
     <!-- Page Hero -->
-    <section class="hero" style="padding: 150px 0 80px;">
+    <section class="contact-hero">
         <div class="container">
-            <h1>Contact BuildingCare</h1>
-            <p>Get in touch with us for all your building maintenance and cleaning needs</p>
+            <div class="contact-hero-content">
+                <h1>Contact BuildingCare</h1>
+                <p>Get in touch with us for all your building maintenance and cleaning needs</p>
+            </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="section">
+    <section class="contact-section">
         <div class="container">
             <div class="section-title">
                 <h2>Get In Touch</h2>
                 <p>We're here to help with all your building maintenance and cleaning requirements</p>
             </div>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px;">
+            <div class="contact-container">
                 <!-- Contact Information -->
-                <div>
-                    <h3 style="color: var(--primary-dark); margin-bottom: 30px;">Contact Information</h3>
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
                     
-                    <div style="display: flex; flex-direction: column; gap: 25px;">
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
-                            <div style="background-color: var(--primary-light); color: var(--primary-dark); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <div>
-                                <h4 style="color: var(--primary-dark); margin-bottom: 5px;">Our Address</h4>
+                            <div class="contact-details">
+                                <h4>Our Address</h4>
                                 <p>123 Business District,<br>City, State 12345</p>
                             </div>
                         </div>
                         
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
-                            <div style="background-color: var(--primary-light); color: var(--primary-dark); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
-                            <div>
-                                <h4 style="color: var(--primary-dark); margin-bottom: 5px;">Phone Number</h4>
+                            <div class="contact-details">
+                                <h4>Phone Number</h4>
                                 <p>+123 456 7890<br>+123 456 7891 (Emergency)</p>
                             </div>
                         </div>
                         
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
-                            <div style="background-color: var(--primary-light); color: var(--primary-dark); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
-                            <div>
-                                <h4 style="color: var(--primary-dark); margin-bottom: 5px;">Email Address</h4>
+                            <div class="contact-details">
+                                <h4>Email Address</h4>
                                 <p>info@buildingcare.com<br>support@buildingcare.com</p>
                             </div>
                         </div>
                         
-                        <div style="display: flex; align-items: flex-start; gap: 15px;">
-                            <div style="background-color: var(--primary-light); color: var(--primary-dark); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <div class="contact-item">
+                            <div class="contact-icon">
                                 <i class="fas fa-clock"></i>
                             </div>
-                            <div>
-                                <h4 style="color: var(--primary-dark); margin-bottom: 5px;">Business Hours</h4>
+                            <div class="contact-details">
+                                <h4>Business Hours</h4>
                                 <p>Sunday - Thursday: 8:00 AM - 6:00 PM<br>Friday: 8:00 AM - 1:00 PM<br>Saturday: Closed</p>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="emergency-contact">
+                        <div class="emergency-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div>
+                            <h4>24/7 Emergency Service</h4>
+                            <p>For urgent maintenance issues, call our emergency hotline:</p>
+                            <p class="emergency-number">+123 456 7891</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Contact Form -->
-                <div>
-                    <h3 style="color: var(--primary-dark); margin-bottom: 30px;">Send Us a Message</h3>
+                <div class="contact-form-container">
+                    <h3>Send Us a Message</h3>
                     
-                    <form style="display: flex; flex-direction: column; gap: 20px;">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <form class="contact-form">
+                        <div class="form-row">
                             <div class="form-group">
-                                <label for="first-name">First Name</label>
+                                <label for="first-name">First Name *</label>
                                 <input type="text" id="first-name" required>
                             </div>
                             <div class="form-group">
-                                <label for="last-name">Last Name</label>
+                                <label for="last-name">Last Name *</label>
                                 <input type="text" id="last-name" required>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Email Address</label>
+                            <label for="email">Email Address *</label>
                             <input type="email" id="email" required>
                         </div>
                         
@@ -140,11 +158,11 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" rows="5" style="padding: 12px; border: 1px solid var(--gray-medium); border-radius: 5px; font-family: inherit; resize: vertical;"></textarea>
+                            <label for="message">Message *</label>
+                            <textarea id="message" rows="5" required></textarea>
                         </div>
                         
-                        <button type="submit" class="booking-submit" style="width: 100%;">Send Message</button>
+                        <button type="submit" class="contact-submit-btn">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -152,16 +170,42 @@
     </section>
 
     <!-- Map Section -->
-    <section class="section" style="padding-top: 0;">
+    <section class="map-section">
         <div class="container">
-            <div style="background-color: var(--gray-light); border-radius: 10px; overflow: hidden; height: 400px;">
-                <!-- This would be replaced with an actual map embed -->
-                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: var(--primary-light); color: var(--primary-dark);">
-                    <div style="text-align: center;">
-                        <i class="fas fa-map" style="font-size: 3rem; margin-bottom: 15px;"></i>
-                        <h3>Interactive Map</h3>
-                        <p>Our location would be displayed here</p>
+            <div class="section-title">
+                <h2>Find Us</h2>
+                <p>Visit our office or contact us for on-site consultations</p>
+            </div>
+            
+            <div class="map-container">
+                <!-- Map Placeholder - Replace with actual map embed -->
+                <div class="map-placeholder">
+                    <div class="map-content">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Our Location</h3>
+                        <p>123 Business District, City, State 12345</p>
+                        <a href="https://maps.google.com" target="_blank" class="map-directions-btn">
+                            <i class="fas fa-directions"></i> Get Directions
+                        </a>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Contact -->
+    <section class="quick-contact-section">
+        <div class="container">
+            <div class="quick-contact-content">
+                <h2>Need Immediate Assistance?</h2>
+                <p>For urgent inquiries or emergency services, call us directly</p>
+                <div class="quick-contact-actions">
+                    <a href="tel:+1234567890" class="quick-call-btn">
+                        <i class="fas fa-phone"></i> Call Now: +123 456 7890
+                    </a>
+                    <a href="mailto:info@buildingcare.com" class="quick-email-btn">
+                        <i class="fas fa-envelope"></i> Email Us
+                    </a>
                 </div>
             </div>
         </div>
@@ -190,6 +234,7 @@
                         <li><a href="../maintenance/maintenance-services.html">Maintenance Services</a></li>
                         <li><a href="../gallery/gallery.html">Gallery</a></li>
                         <li><a href="../about/about.html">About Us</a></li>
+                        <li><a href="../faq/faq.html">FAQ</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -228,5 +273,6 @@
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/lang.js"></script>
+    <script src="contact.js"></script>
 </body>
 </html>

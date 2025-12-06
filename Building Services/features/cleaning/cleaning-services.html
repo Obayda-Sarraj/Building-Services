@@ -1,24 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cleaning Services - BuildingCare</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="cleaning.css">
 </head>
 <body>
+    <!-- Header - Updated with home page navbar -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-building" style="font-size: 2rem; color: var(--accent-light);"></i>
+                <i class="fas fa-building" style="font-size: 2rem; color: var(--primary-light);"></i>
                 <span class="logo-text">BuildingCare</span>
             </div>
-            <a href="../index.html" class="back-btn">
-                <i class="fas fa-arrow-left"></i> Back to Home
-            </a>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="cleaning-services.html">Cleaning Services</a></li>
+                    <li><a href="../maintenance/maintenance-services.html">Maintenance Services</a></li>
+                    <li><a href="../gallery/gallery.html">Gallery</a></li>
+                    <li><a href="../about/about.html">About Us</a></li>
+                    <li><a href="../faq/faq.html">FAQ</a></li>
+                    <li><a href="../auth/login.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle">EN</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 

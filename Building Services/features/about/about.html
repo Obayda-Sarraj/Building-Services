@@ -7,170 +7,267 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="about.css">
 </head>
 <body>
-    <!-- Header -->
-    <!-- Header - Include this in all pages -->
-<header>
-    <div class="container header-container">
-        <div class="logo">
-            <i class="fas fa-building" style="font-size: 2rem; color: var(--accent-light);"></i>
-            <span class="logo-text">BuildingCare</span>
+    <!-- Header - Updated with home page navbar -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-building" style="font-size: 2rem; color: var(--primary-light);"></i>
+                <span class="logo-text">BuildingCare</span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../cleaning/cleaning-services.html">Cleaning Services</a></li>
+                    <li><a href="../maintenance/maintenance-services.html">Maintenance Services</a></li>
+                    <li><a href="../gallery/gallery.html">Gallery</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="../faq/faq.html">FAQ</a></li>
+                    <li><a href="../auth/login.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle">EN</button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
-        
-        <nav id="main-nav">
-            <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../cleaning/cleaning-services.html">Cleaning Services</a></li>
-                <li><a href="../maintenance/maintenance-services.html">Maintenance Services</a></li>
-                <li><a href="../gallery/gallery.html">Gallery</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="../faq/faq.html">FAQ</a></li>
-                <li><a href="../auth/login.html" class="login-nav-btn">
-                    <i class="fas fa-sign-in-alt"></i> Login
-                </a></li>
-            </ul>
-        </nav>
-        
-        <div class="header-actions">
-            <button class="lang-toggle" id="lang-toggle">EN</button>
-            <button class="mobile-menu-btn" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </div>
-</header>
+    </header>
 
     <!-- Page Hero -->
-    <section class="hero" style="padding: 150px 0 80px;">
+    <section class="about-hero-section">
         <div class="container">
-            <h1>About BuildingCare</h1>
-            <p>Your trusted partner in building maintenance and cleaning services since 2010</p>
+            <div class="section-title">
+                <h2 class="tracking-in-contract">About BuildingCare</h2>
+                <p>Your trusted partner in building maintenance and cleaning services since 2010</p>
+            </div>
         </div>
     </section>
 
-    <!-- About Content -->
-    <section class="section">
+    <!-- About Our Company Section -->
+    <section class="about-company-section">
         <div class="container">
             <div class="section-title">
-                <h2>Our Story</h2>
+                <h2>Our Story & Mission</h2>
                 <p>BuildingCare was founded with a simple mission: to provide reliable, professional building maintenance services</p>
             </div>
             
-            <div style="max-width: 800px; margin: 0 auto;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px; align-items: center;">
-                    <div>
-                        <h3 style="color: var(--primary-dark); margin-bottom: 20px;">Who We Are</h3>
-                        <p style="margin-bottom: 15px;">BuildingCare is a leading provider of comprehensive building maintenance and cleaning services. We specialize in serving residential complexes, commercial buildings, schools, and institutions.</p>
-                        <p style="margin-bottom: 15px;">Our team consists of certified professionals with years of experience in their respective fields. We pride ourselves on our attention to detail and commitment to customer satisfaction.</p>
+            <div class="cards-container">
+                <div class="card-item card-1">
+                    <p class="tip">Who We Are</p>
+                    <p class="second-text">BuildingCare is a leading provider of comprehensive building maintenance and cleaning services. We specialize in serving residential complexes, commercial buildings, schools, and institutions. Our team consists of certified professionals with years of experience in their respective fields.</p>
+                </div>
+                <div class="card-item card-2">
+                    <p class="tip">Our Mission</p>
+                    <p class="second-text">To provide exceptional building maintenance and cleaning services through verified professionals, ensuring safe, clean, and well-maintained environments for our clients.</p>
+                </div>
+                <div class="card-item card-3">
+                    <p class="tip">Why We're Different</p>
+                    <p class="second-text">We pride ourselves on our attention to detail and commitment to customer satisfaction. With over 13 years of experience, we've built a reputation for excellence and reliability in the industry.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose BuildingCare?</h2>
+                <p>Discover what sets us apart from other service providers</p>
+            </div>
+            
+            <div class="services-detailed-grid">
+                <!-- Verified Professionals -->
+                <div class="e-card playing">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="service-type">Quality Assurance</div>
+                        <div class="service-name">Verified Professionals</div>
+                        <div class="service-features-list">
+                            • All technicians certified<br>
+                            • Background verified<br>
+                            • Ongoing training<br>
+                            • Quality guaranteed
+                        </div>
                     </div>
-                    <div style="background-color: var(--accent-light); padding: 30px; border-radius: 10px;">
-                        <h4 style="color: var(--primary-dark); margin-bottom: 15px;">Our Mission</h4>
-                        <p>To provide exceptional building maintenance and cleaning services through verified professionals, ensuring safe, clean, and well-maintained environments for our clients.</p>
-                    </div>
+                    <button class="e-card-learn-btn">Learn More</button>
                 </div>
                 
-                <div style="margin-bottom: 50px;">
-                    <h3 style="color: var(--primary-dark); margin-bottom: 20px; text-align: center;">Why Choose BuildingCare?</h3>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                        <div style="text-align: center; padding: 20px;">
-                            <i class="fas fa-user-check" style="font-size: 2.5rem; color: var(--primary-light); margin-bottom: 15px;"></i>
-                            <h4 style="color: var(--primary-dark); margin-bottom: 10px;">Verified Professionals</h4>
-                            <p>All our service providers are thoroughly vetted and certified</p>
+                <!-- Quick Response -->
+                <div class="e-card playing">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <i class="fas fa-clock"></i>
                         </div>
-                        <div style="text-align: center; padding: 20px;">
-                            <i class="fas fa-clock" style="font-size: 2.5rem; color: var(--primary-light); margin-bottom: 15px;"></i>
-                            <h4 style="color: var(--primary-dark); margin-bottom: 10px;">Quick Response</h4>
-                            <p>Emergency services available with rapid response times</p>
-                        </div>
-                        <div style="text-align: center; padding: 20px;">
-                            <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--primary-light); margin-bottom: 15px;"></i>
-                            <h4 style="color: var(--primary-dark); margin-bottom: 10px;">Quality Guarantee</h4>
-                            <p>We stand behind our work with a satisfaction guarantee</p>
-                        </div>
-                        <div style="text-align: center; padding: 20px;">
-                            <i class="fas fa-tools" style="font-size: 2.5rem; color: var(--primary-light); margin-bottom: 15px;"></i>
-                            <h4 style="color: var(--primary-dark); margin-bottom: 10px;">Comprehensive Services</h4>
-                            <p>One-stop solution for all your building maintenance needs</p>
+                        <div class="service-type">Reliability</div>
+                        <div class="service-name">Quick Response</div>
+                        <div class="service-features-list">
+                            • Emergency services<br>
+                            • Rapid response times<br>
+                            • 24/7 availability<br>
+                            • Scheduled maintenance
                         </div>
                     </div>
+                    <button class="e-card-learn-btn">Learn More</button>
+                </div>
+                
+                <!-- Quality Guarantee -->
+                <div class="e-card playing">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="service-type">Peace of Mind</div>
+                        <div class="service-name">Quality Guarantee</div>
+                        <div class="service-features-list">
+                            • Satisfaction guarantee<br>
+                            • Premium materials<br>
+                            • Workmanship warranty<br>
+                            • Follow-up inspections
+                        </div>
+                    </div>
+                    <button class="e-card-learn-btn">Learn More</button>
+                </div>
+                
+                <!-- Comprehensive Services -->
+                <div class="e-card playing">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="service-type">Convenience</div>
+                        <div class="service-name">Comprehensive Services</div>
+                        <div class="service-features-list">
+                            • One-stop solution<br>
+                            • Multiple services<br>
+                            • Custom packages<br>
+                            • Professional coordination
+                        </div>
+                    </div>
+                    <button class="e-card-learn-btn">Learn More</button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="section" style="background-color: var(--gray-light);">
+    <section class="stats-section">
         <div class="container">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: center;">
-                <div>
-                    <h3 style="font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 10px;">500+</h3>
-                    <p style="color: var(--primary-medium); font-weight: 500;">Projects Completed</p>
+            <div class="section-title">
+                <h2>Our Achievements</h2>
+                <p>Numbers that speak about our dedication and success</p>
+            </div>
+            
+            <div class="stats-grid">
+                <!-- Projects Completed -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Completed</div>
                 </div>
-                <div>
-                    <h3 style="font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 10px;">13+</h3>
-                    <p style="color: var(--primary-medium); font-weight: 500;">Years Experience</p>
+                
+                <!-- Years Experience -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="stat-number">13+</div>
+                    <div class="stat-label">Years Experience</div>
                 </div>
-                <div>
-                    <h3 style="font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 10px;">50+</h3>
-                    <p style="color: var(--primary-medium); font-weight: 500;">Verified Professionals</p>
+                
+                <!-- Verified Professionals -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Verified Professionals</div>
                 </div>
-                <div>
-                    <h3 style="font-size: 2.5rem; color: var(--primary-dark); margin-bottom: 10px;">98%</h3>
-                    <p style="color: var(--primary-medium); font-weight: 500;">Client Satisfaction</p>
+                
+                <!-- Client Satisfaction -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="contact">
+    <!-- Call to Action Section -->
+    <section class="join-team-section">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>BuildingCare</h3>
-                    <p>Professional building maintenance and cleaning services with verified providers.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <div class="color-dots">
+                <div class="color-dot"></div>
+                <div class="color-dot"></div>
+                <div class="color-dot"></div>
+                <div class="color-dot"></div>
+                <div class="color-dot"></div>
+            </div>
+
+            <h2>Ready to Experience Professional Building Care?</h2>
+            <p>Join thousands of satisfied customers who trust BuildingCare for their maintenance and cleaning needs. Book a service today or contact us for a free consultation.</p>
+            
+            <button class="custom-button shake-bottom">
+                <div class="bg"></div>
+                <div class="wrap">
+                    <div class="content">
+                        <span class="char">
+                            <span>C</span>
+                            <span>o</span>
+                            <span>n</span>
+                            <span>t</span>
+                            <span>a</span>
+                            <span>c</span>
+                            <span>t</span>
+                            <span> </span>
+                            <span>U</span>
+                            <span>s</span>
+                            <span> </span>
+                            <span>N</span>
+                            <span>o</span>
+                            <span>w</span>
+                            <span>!</span>
+                        </span>
                     </div>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="../index.html">Home</a></li>
-                        <li><a href="../cleaning/cleaning-services.html">Cleaning Services</a></li>
-                        <li><a href="../maintenance/maintenance-services.html">Maintenance Services</a></li>
-                        <li><a href="../gallery/gallery.html">Gallery</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="../contact/contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <ul class="footer-links">
-                        <li><a href="../cleaning/cleaning-services.html">Cleaning Services</a></li>
-                        <li><a href="../maintenance/maintenance-services.html">Maintenance Services</a></li>
-                        <li><a href="#">Pest Control</a></li>
-                        <li><a href="#">Emergency Services</a></li>
-                        <li><a href="#">Consultation</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Business District, City</li>
-                        <li><i class="fas fa-phone"></i> +123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> info@buildingcare.com</li>
-                    </ul>
-                </div>
-            </div>
-            
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
             <div class="footer-bottom">
                 <p>&copy; 2023 BuildingCare. All rights reserved.</p>
             </div>
@@ -184,5 +281,6 @@
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/lang.js"></script>
+    <script src="about.js"></script>
 </body>
 </html>

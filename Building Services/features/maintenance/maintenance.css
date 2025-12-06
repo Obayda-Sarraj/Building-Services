@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +20,7 @@ body {
 }
 
 header {
-    background-color: var(--primary-dark);
+    background-color: #044550; /* Updated to new dark color */
     color: var(--text-light);
     padding: 25px 0;
     box-shadow: var(--shadow);
@@ -48,7 +47,7 @@ header {
 
 .logo i {
     font-size: 2.2rem;
-    color: var(--accent-light);
+    color: #9fd3cd; /* Updated to new light color */
     transition: var(--transition);
 }
 
@@ -59,7 +58,7 @@ header {
 .logo-text {
     font-size: 1.6rem;
     font-weight: 700;
-    color: var(--accent-light);
+    color: #9fd3cd; /* Updated to new light color */
     letter-spacing: -0.5px;
 }
 
@@ -73,15 +72,15 @@ header {
     transition: var(--transition);
     padding: 10px 20px;
     border-radius: 50px;
-    background: rgba(218, 241, 222, 0.1);
-    border: 1px solid rgba(218, 241, 222, 0.2);
+    background: rgba(159, 211, 205, 0.1); /* Updated to new light color with opacity */
+    border: 1px solid rgba(159, 211, 205, 0.2);
 }
 
 .back-btn:hover {
-    color: var(--primary-light);
-    background: rgba(218, 241, 222, 0.2);
+    color: #4fb3ae; /* Updated to new accent color */
+    background: rgba(79, 179, 174, 0.2);
     transform: translateX(-5px);
-    border-color: var(--primary-light);
+    border-color: #4fb3ae;
 }
 
 /* About Our Maintenance Service Cards */
@@ -99,7 +98,7 @@ header {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #0d5c63, #248ea9, #2a9d8f);
+    background: linear-gradient(90deg, #044550, #086e77, #19396c); /* Updated to new colors */
 }
 
 /* Text Animation */
@@ -118,7 +117,7 @@ header {
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, #0d5c63, #248ea9);
+    background: linear-gradient(90deg, #044550, #086e77); /* Updated to new colors */
     border-radius: 2px;
 }
 
@@ -212,17 +211,17 @@ header {
     z-index: 2;
 }
 
-/* Card Colors with gradients for Maintenance */
+/* Card Colors with NEW gradients for Maintenance */
 .card-item.card-1 {
-    background: linear-gradient(135deg, #0d5c63 0%, #1a8b8f 100%);
+    background: linear-gradient(135deg, #044550 0%, #086e77 100%); /* Updated colors */
 }
 
 .card-item.card-2 {
-    background: linear-gradient(135deg, #248ea9 0%, #36b1d9 100%);
+    background: linear-gradient(135deg, #086e77 0%, #4fb3ae 100%); /* Updated colors */
 }
 
 .card-item.card-3 {
-    background: linear-gradient(135deg, #2a9d8f 0%, #44c2b5 100%);
+    background: linear-gradient(135deg, #19396c 0%, #4fb3ae 100%); /* Updated colors */
 }
 
 /* E-Card Design for Maintenance Services */
@@ -238,7 +237,7 @@ header {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #0d5c63, transparent);
+    background: linear-gradient(90deg, transparent, #044550, transparent); /* Updated color */
 }
 
 .section-title {
@@ -248,7 +247,7 @@ header {
 
 .section-title h2 {
     font-size: 2.5rem;
-    color: #2a9d8f;
+    color: #086e77; /* Updated color */
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
@@ -262,7 +261,7 @@ header {
     transform: translateX(-50%);
     width: 100px;
     height: 4px;
-    background: linear-gradient(90deg, #0d5c63, #248ea9);
+    background: linear-gradient(90deg, #044550, #4fb3ae); /* Updated colors */
     border-radius: 2px;
 }
 
@@ -343,29 +342,29 @@ header {
     animation-duration: 45s;
 }
 
-/* Card-specific wave colors for Maintenance */
+/* Card-specific wave colors for Maintenance - UPDATED */
 .e-card.card-1 .wave {
-    background: linear-gradient(744deg, #0d5c63, #1a8b8f 60%, #2a9d8f);
+    background: linear-gradient(744deg, #044550, #086e77 60%, #4fb3ae); /* Updated colors */
 }
 
 .e-card.card-2 .wave {
-    background: linear-gradient(744deg, #248ea9, #36b1d9 60%, #4fd4ff);
+    background: linear-gradient(744deg, #086e77, #4fb3ae 60%, #9fd3cd); /* Updated colors */
 }
 
 .e-card.card-3 .wave {
-    background: linear-gradient(744deg, #2a9d8f, #44c2b5 60%, #5fe7d9);
+    background: linear-gradient(744deg, #19396c, #4fb3ae 60%, #9fd3cd); /* Updated colors */
 }
 
 .e-card.card-4 .wave {
-    background: linear-gradient(744deg, #0d5c63, #1a8b8f 60%, #2a9d8f);
+    background: linear-gradient(744deg, #044550, #086e77 60%, #4fb3ae); /* Updated colors */
 }
 
 .e-card.card-5 .wave {
-    background: linear-gradient(744deg, #248ea9, #36b1d9 60%, #4fd4ff);
+    background: linear-gradient(744deg, #086e77, #4fb3ae 60%, #9fd3cd); /* Updated colors */
 }
 
 .e-card.card-6 .wave {
-    background: linear-gradient(744deg, #2a9d8f, #44c2b5 60%, #5fe7d9);
+    background: linear-gradient(744deg, #19396c, #4fb3ae 60%, #9fd3cd); /* Updated colors */
 }
 
 .infotop {
@@ -455,7 +454,7 @@ header {
     box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
-/* Join Team Section - Updated with maintenance colors */
+/* Join Team Section - Updated with NEW colors */
 .join-team-section {
     padding: 120px 0;
     background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -471,7 +470,7 @@ header {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #0d5c63, #248ea9, #2a9d8f);
+    background: linear-gradient(90deg, #044550, #086e77, #19396c); /* Updated colors */
 }
 
 .join-team-section .container {
@@ -481,7 +480,7 @@ header {
 
 .join-team-section h2 {
     font-size: 2.8rem;
-    color: #2a9d8f;
+    color: #086e77; /* Updated color */
     margin-bottom: 30px;
     font-weight: 700;
     position: relative;
@@ -496,7 +495,7 @@ header {
     transform: translateX(-50%);
     width: 150px;
     height: 4px;
-    background: linear-gradient(90deg, #0d5c63, #248ea9);
+    background: linear-gradient(90deg, #044550, #4fb3ae); /* Updated colors */
     border-radius: 2px;
 }
 
@@ -573,14 +572,13 @@ header {
     }
 }
 
-/* Enhanced Custom Button with maintenance colors */
+/* Enhanced Custom Button with NEW colors */
 .custom-button {
-    --blue-1: #0d5c63;
-    --blue-2: #248ea9;
-    --green-1: #2a9d8f;
-    --blue-3: #1a8b8f;
-    --blue-4: #36b1d9;
-    --green-2: #44c2b5;
+    --dark: #044550;
+    --primary: #086e77;
+    --secondary: #19396c;
+    --accent: #4fb3ae;
+    --light: #9fd3cd;
     
     border-radius: 50px;
     outline: none;
@@ -612,15 +610,15 @@ header {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: linear-gradient(135deg, var(--blue-1) 0%, var(--blue-2) 50%, var(--green-1) 100%);
+    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--accent) 100%);
 }
 
 .custom-button .bg::before {
     filter: blur(8px);
     transition: all 0.4s ease;
     box-shadow:
-        0 10px 30px rgba(13, 92, 99, 0.3),
-        0 20px 50px rgba(13, 92, 99, 0.2);
+        0 10px 30px rgba(4, 69, 80, 0.3),
+        0 20px 50px rgba(4, 69, 80, 0.2);
 }
 
 .custom-button .wrap {
@@ -629,7 +627,7 @@ header {
     height: 100%;
     transform: translate(4px, -4px);
     padding: 3px;
-    background: linear-gradient(135deg, var(--blue-1) 0%, var(--blue-2) 50%, var(--green-1) 100%);
+    background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 50%, var(--accent) 100%);
     position: relative;
     transition: all 0.4s ease;
 }
@@ -646,7 +644,7 @@ header {
     border-radius: calc(50px * 0.95);
     font-weight: 700;
     transition: all 0.4s ease;
-    background: linear-gradient(135deg, var(--green-1) 0%, var(--blue-3) 100%);
+    background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
 }
 
 .custom-button .char {
@@ -670,7 +668,7 @@ header {
 
 .custom-button:hover .wrap {
     transform: translate(6px, -6px);
-    background: linear-gradient(135deg, var(--blue-3) 0%, var(--blue-4) 50%, var(--green-2) 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 50%, var(--light) 100%);
 }
 
 .custom-button:hover .char span {
@@ -681,12 +679,12 @@ header {
 .custom-button:hover .bg::before {
     filter: blur(10px);
     box-shadow:
-        0 15px 40px rgba(13, 92, 99, 0.4),
-        0 30px 70px rgba(13, 92, 99, 0.3);
+        0 15px 40px rgba(4, 69, 80, 0.4),
+        0 30px 70px rgba(4, 69, 80, 0.3);
 }
 
 .custom-button:hover .content {
-    background: linear-gradient(135deg, var(--green-2) 0%, var(--blue-1) 100%);
+    background: linear-gradient(135deg, var(--light) 0%, var(--dark) 100%);
 }
 
 .custom-button:active .wrap {
@@ -701,7 +699,7 @@ header {
     left: -50px;
     width: 200px;
     height: 200px;
-    background: rgba(13, 92, 99, 0.05);
+    background: rgba(4, 69, 80, 0.05); /* Updated color */
     border-radius: 50%;
     z-index: -1;
 }
@@ -713,12 +711,12 @@ header {
     right: -50px;
     width: 200px;
     height: 200px;
-    background: rgba(42, 157, 143, 0.05);
+    background: rgba(79, 179, 174, 0.05); /* Updated color */
     border-radius: 50%;
     z-index: -1;
 }
 
-/* Colorful dots decoration */
+/* Colorful dots decoration - Updated colors */
 .color-dots {
     position: absolute;
     width: 100%;
@@ -738,35 +736,35 @@ header {
 }
 
 .color-dot:nth-child(1) {
-    background: #0d5c63;
+    background: #044550; /* Updated color */
     top: 20%;
     left: 10%;
     animation-delay: 0s;
 }
 
 .color-dot:nth-child(2) {
-    background: #248ea9;
+    background: #086e77; /* Updated color */
     top: 60%;
     left: 15%;
     animation-delay: 1s;
 }
 
 .color-dot:nth-child(3) {
-    background: #2a9d8f;
+    background: #19396c; /* Updated color */
     top: 30%;
     right: 10%;
     animation-delay: 2s;
 }
 
 .color-dot:nth-child(4) {
-    background: #1a8b8f;
+    background: #4fb3ae; /* Updated color */
     bottom: 20%;
     right: 15%;
     animation-delay: 3s;
 }
 
 .color-dot:nth-child(5) {
-    background: #36b1d9;
+    background: #9fd3cd; /* Updated color */
     top: 40%;
     left: 20%;
     animation-delay: 4s;
@@ -783,7 +781,7 @@ header {
 }
 
 footer {
-    background-color: var(--primary-dark);
+    background-color: #044550; /* Updated to new dark color */
     color: var(--text-light);
     padding: 50px 0 25px;
     text-align: center;
@@ -797,13 +795,13 @@ footer::before {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #0d5c63, #248ea9, #2a9d8f);
+    background: linear-gradient(90deg, #044550, #086e77, #19396c); /* Updated colors */
 }
 
 .footer-bottom {
     padding-top: 25px;
-    border-top: 1px solid rgba(142, 182, 155, 0.2);
-    color: var(--accent-light);
+    border-top: 1px solid rgba(159, 211, 205, 0.2); /* Updated color */
+    color: #9fd3cd; /* Updated color */
     font-size: 0.95rem;
     opacity: 0.8;
 }
