@@ -1,0 +1,2565 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Management - Admin Panel</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Calendar Library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
+    <!-- Styles -->
+    <style>
+        /* =============================================
+           MODERN ADMIN CSS - BOOKING MANAGEMENT
+           Color palette: #044550, #086e77, #193946, #4fb3ae, #9fd3cd
+        ============================================== */
+        
+        :root {
+            --primary-dark: #044550;
+            --primary-medium: #086e77;
+            --primary-regular: #193946;
+            --primary-light: #4fb3ae;
+            --accent-light: #9fd3cd;
+            --gray-dark: #1a1a1a;
+            --gray-medium: #666;
+            --gray-light: #f8f9fa;
+            --gray-bg: #f0f7f9;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #0ea5e9;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(4, 69, 80, 0.08);
+            --shadow-md: 0 4px 20px rgba(4, 69, 80, 0.12);
+            --shadow-lg: 0 8px 30px rgba(4, 69, 80, 0.16);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f0f7f9 0%, #e6f3f5 100%);
+            color: var(--gray-dark);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Admin Layout */
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Modern Glass Sidebar */
+        .admin-sidebar {
+            width: 280px;
+            background: rgba(4, 69, 80, 0.95);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 30px rgba(4, 69, 80, 0.25);
+            border-right: 1px solid rgba(79, 179, 174, 0.2);
+            transition: var(--transition);
+        }
+
+        .admin-logo {
+            padding: 30px 25px;
+            border-bottom: 1px solid rgba(159, 211, 205, 0.2);
+            margin-bottom: 20px;
+            text-align: center;
+            background: rgba(4, 69, 80, 0.3);
+        }
+
+        .admin-logo i {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .admin-logo h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .admin-logo p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: var(--accent-light);
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        .admin-nav {
+            padding: 0 15px;
+        }
+
+        .admin-nav ul {
+            list-style: none;
+        }
+
+        .admin-nav-item {
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .admin-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: var(--transition);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary-light);
+            transform: scaleY(0);
+            transition: var(--transition);
+        }
+
+        .admin-nav-link:hover {
+            background: rgba(79, 179, 174, 0.15);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .admin-nav-link:hover::before {
+            transform: scaleY(1);
+        }
+
+        .admin-nav-link.active {
+            background: linear-gradient(90deg, rgba(79, 179, 174, 0.25), rgba(159, 211, 205, 0.15));
+            color: var(--white);
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .admin-nav-link.active::before {
+            display: none;
+        }
+
+        .admin-nav-link i {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+            color: var(--primary-light);
+        }
+
+        .admin-nav-link.active i {
+            color: var(--accent-light);
+        }
+
+        /* Dropdown Styles */
+        .admin-nav-dropdown {
+            position: relative;
+        }
+
+        .admin-nav-dropdown .admin-nav-link i.fa-chevron-down {
+            margin-left: auto;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .admin-nav-dropdown.active .admin-nav-link i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .admin-dropdown-menu {
+            display: none;
+            background: rgba(4, 69, 80, 0.9);
+            margin: 5px 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .admin-nav-dropdown.active .admin-dropdown-menu {
+            display: block;
+        }
+
+        .admin-dropdown-menu .admin-nav-link {
+            padding: 14px 20px 14px 40px;
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
+        }
+
+        .admin-dropdown-menu .admin-nav-link:hover {
+            background: rgba(79, 179, 174, 0.2);
+            border-left-color: var(--primary-light);
+        }
+
+        /* Sidebar Footer */
+        .sidebar-footer {
+            padding: 20px;
+            margin-top: auto;
+            border-top: 1px solid rgba(159, 211, 205, 0.2);
+        }
+
+        .sidebar-footer .admin-nav-link {
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-footer .admin-nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(79, 179, 174, 0.3);
+        }
+
+        .sidebar-footer .admin-nav-link.logout {
+            color: #ff6b6b;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .sidebar-footer .admin-nav-link.logout:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Main Content */
+        .admin-main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 30px;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        /* Page Header */
+        .admin-page-header {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            padding: 25px 35px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(4, 69, 80, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-dark), var(--primary-light));
+        }
+
+        .admin-page-header h1 {
+            color: var(--primary-dark);
+            font-size: 1.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+
+        .admin-page-header h1 i {
+            color: var(--primary-medium);
+            background: rgba(8, 110, 119, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Modern Stats Cards */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-xl);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card.pending::before {
+            background: linear-gradient(90deg, #ffc107, #ff9800);
+        }
+
+        .stat-card.confirmed::before {
+            background: linear-gradient(90deg, var(--primary-medium), var(--primary-regular));
+        }
+
+        .stat-card.in-progress::before {
+            background: linear-gradient(90deg, var(--primary-light), var(--accent-light));
+        }
+
+        .stat-card.completed::before {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+
+        .stat-card.cancelled::before {
+            background: linear-gradient(90deg, #ef4444, #f87171);
+        }
+
+        .stat-card.revenue::before {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-medium));
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+            color: var(--white);
+        }
+
+        .stat-icon.pending {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
+        }
+
+        .stat-icon.confirmed {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-regular));
+            box-shadow: 0 6px 20px rgba(8, 110, 119, 0.3);
+        }
+
+        .stat-icon.in-progress {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            box-shadow: 0 6px 20px rgba(79, 179, 174, 0.3);
+        }
+
+        .stat-icon.completed {
+            background: linear-gradient(135deg, #10b981, #34d399);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .stat-icon.cancelled {
+            background: linear-gradient(135deg, #ef4444, #f87171);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        .stat-icon.revenue {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            box-shadow: 0 6px 20px rgba(4, 69, 80, 0.3);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--primary-medium);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* View Toggle */
+        .view-toggle {
+            display: flex;
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-lg);
+            padding: 8px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(4, 69, 80, 0.08);
+            gap: 8px;
+        }
+
+        .view-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border: none;
+            background: transparent;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--gray-medium);
+        }
+
+        .view-btn:hover {
+            background: rgba(159, 211, 205, 0.15);
+            color: var(--primary-medium);
+        }
+
+        .view-btn.active {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            color: var(--white);
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(79, 179, 174, 0.3);
+        }
+
+        /* Date Range Picker */
+        .date-range-picker {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 30px;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+        }
+
+        .date-range-picker h3 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .date-range-picker h3 i {
+            color: var(--primary-light);
+            background: rgba(79, 179, 174, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .date-inputs {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr auto auto;
+            gap: 15px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .date-inputs {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+        }
+
+        .date-input {
+            padding: 14px 18px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            background: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .date-input:hover {
+            border-color: var(--primary-light);
+        }
+
+        .date-input:focus {
+            outline: none;
+            border-color: var(--primary-medium);
+            box-shadow: 0 0 0 3px rgba(79, 179, 174, 0.2);
+        }
+
+        .date-inputs span {
+            color: var(--primary-medium);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Quick Filters */
+        .quick-filters {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            background: var(--white);
+            color: var(--gray-medium);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-medium);
+            background: rgba(79, 179, 174, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            border-color: var(--primary-medium);
+            background: linear-gradient(135deg, rgba(79, 179, 174, 0.15), rgba(159, 211, 205, 0.1));
+            color: var(--primary-medium);
+            font-weight: 700;
+        }
+
+        /* Action Buttons */
+        .admin-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .admin-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .admin-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-dark));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(4, 69, 80, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(4, 69, 80, 0.4);
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(79, 179, 174, 0.3);
+        }
+
+        .btn-view:hover {
+            background: linear-gradient(135deg, var(--accent-light), var(--primary-light));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 179, 174, 0.4);
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, #ffd166, #ffb347);
+            color: #856404;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+
+        .btn-edit:hover {
+            background: linear-gradient(135deg, #ffb347, #ffd166);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
+        }
+
+        /* Modern Tables */
+        .bookings-table-container {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(4, 69, 80, 0.06);
+        }
+
+        .table-header h3 {
+            color: var(--primary-dark);
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .table-header h3 i {
+            color: var(--primary-light);
+            background: rgba(79, 179, 174, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .table-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-input {
+            padding: 12px 18px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            background: var(--white);
+            transition: var(--transition);
+            width: 250px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(79, 179, 174, 0.2);
+        }
+
+        .filter-select {
+            padding: 12px 18px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            background: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 180px;
+            font-family: 'Inter', sans-serif;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23044550' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(79, 179, 174, 0.2);
+        }
+
+        .bookings-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .bookings-table th {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-dark));
+            color: var(--white);
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            border: none;
+        }
+
+        .bookings-table td {
+            padding: 20px 15px;
+            border-bottom: 1px solid rgba(4, 69, 80, 0.06);
+            vertical-align: middle;
+            color: var(--gray-dark);
+            transition: var(--transition);
+        }
+
+        .bookings-table tbody tr {
+            transition: var(--transition);
+        }
+
+        .bookings-table tbody tr:hover {
+            background: rgba(159, 211, 205, 0.1);
+            transform: translateX(4px);
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-width: 120px;
+            border: 2px solid transparent;
+        }
+
+        .badge-pending {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            color: #856404;
+            border-color: #ffd166;
+        }
+
+        .badge-confirmed {
+            background: linear-gradient(135deg, rgba(79, 179, 174, 0.15), rgba(159, 211, 205, 0.1));
+            color: var(--primary-medium);
+            border-color: var(--primary-light);
+        }
+
+        .badge-in-progress {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(56, 189, 248, 0.1));
+            color: #0c5460;
+            border-color: #bee5eb;
+        }
+
+        .badge-completed {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(52, 211, 153, 0.1));
+            color: #155724;
+            border-color: #b1dfbb;
+        }
+
+        .badge-cancelled {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(248, 113, 113, 0.1));
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+
+        /* Client & Provider Info */
+        .client-info, .provider-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .client-avatar, .provider-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+            font-weight: 700;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--white);
+        }
+
+        .client-avatar {
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-medium));
+        }
+
+        .provider-avatar {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-regular));
+        }
+
+        .user-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+        }
+
+        .user-phone {
+            font-size: 0.85rem;
+            color: var(--primary-medium);
+        }
+
+        /* Service Info */
+        .service-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .service-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: white;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-name {
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .service-category {
+            font-size: 0.85rem;
+            color: var(--primary-medium);
+            background: rgba(79, 179, 174, 0.1);
+            padding: 4px 12px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        /* Booking Actions */
+        .booking-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--white);
+            color: var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            font-size: 1rem;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .action-btn.view:hover {
+            background: rgba(79, 179, 174, 0.1);
+            color: var(--primary-medium);
+            border-color: var(--primary-light);
+        }
+
+        .action-btn.edit:hover {
+            background: rgba(255, 193, 7, 0.1);
+            color: #856404;
+            border-color: #ffc107;
+        }
+
+        .action-btn.cancel:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #721c24;
+            border-color: #ef4444;
+        }
+
+        .action-btn.assign:hover {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0c5460;
+            border-color: #0ea5e9;
+        }
+
+        .action-btn.message:hover {
+            background: rgba(111, 66, 193, 0.1);
+            color: #5427a3;
+            border-color: #6f42c1;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 30px;
+            border-top: 1px solid rgba(4, 69, 80, 0.06);
+        }
+
+        .pagination-info {
+            color: var(--primary-medium);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .page-numbers {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-number {
+            background: var(--white);
+            color: var(--primary-dark);
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .page-number:hover {
+            border-color: var(--primary-light);
+            background: rgba(79, 179, 174, 0.05);
+        }
+
+        .page-number.active {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(79, 179, 174, 0.3);
+        }
+
+        /* Calendar View */
+        .calendar-view {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+            display: none;
+        }
+
+        .calendar-view h3 {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .calendar-view h3 i {
+            color: var(--primary-light);
+            background: rgba(79, 179, 174, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 12px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 700;
+            color: var(--primary-dark);
+            padding: 15px;
+            background: rgba(159, 211, 205, 0.15);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+        }
+
+        .calendar-day {
+            min-height: 120px;
+            padding: 12px;
+            border: 2px solid rgba(4, 69, 80, 0.08);
+            border-radius: var(--radius-md);
+            overflow-y: auto;
+            background: var(--white);
+            transition: var(--transition);
+        }
+
+        .calendar-day:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+        }
+
+        .calendar-date {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .calendar-booking {
+            background: rgba(79, 179, 174, 0.1);
+            border-left: 3px solid var(--primary-medium);
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-booking:hover {
+            background: rgba(79, 179, 174, 0.2);
+            transform: translateX(3px);
+        }
+
+        .booking-time {
+            font-size: 0.8rem;
+            color: var(--primary-medium);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .booking-service {
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Export Section */
+        .export-section {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+        }
+
+        .export-section h3 {
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .export-section h3 i {
+            color: var(--primary-light);
+            background: rgba(79, 179, 174, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .export-section p {
+            color: var(--primary-medium);
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .export-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .export-btn {
+            padding: 15px 20px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            background: var(--white);
+            color: var(--gray-medium);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+
+        .export-btn:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-medium);
+            background: rgba(79, 179, 174, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Toggle Button */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .admin-sidebar {
+                width: 250px;
+            }
+            .admin-main {
+                margin-left: 250px;
+            }
+            .stats-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            .admin-sidebar.active {
+                transform: translateX(0);
+            }
+            .admin-main {
+                margin-left: 0;
+                padding: 20px;
+            }
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .stats-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .table-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .search-input, .filter-select {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .admin-page-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            .stats-cards {
+                grid-template-columns: 1fr;
+            }
+            .date-inputs {
+                grid-template-columns: 1fr;
+            }
+            .quick-filters {
+                flex-direction: column;
+            }
+            .filter-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .bookings-table {
+                display: block;
+                overflow-x: auto;
+            }
+            .calendar-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+            .export-options {
+                grid-template-columns: 1fr;
+            }
+            .pagination {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .pagination-controls {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .calendar-grid {
+                grid-template-columns: 1fr;
+            }
+            .calendar-day-header {
+                display: none;
+            }
+            .view-toggle {
+                flex-direction: column;
+            }
+            .booking-actions {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+            }
+        }
+    </style>
+</head>
+<body class="admin-body">
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="admin-container">
+        <!-- Modern Glass Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <i class="fas fa-calendar-check"></i>
+                <h2>BuildingCare</h2>
+                <p>Booking Management</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <ul>
+                    <li class="admin-nav-item">
+                        <a href="admin-dashboard.html" class="admin-nav-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item admin-nav-dropdown">
+                        <a href="#" class="admin-nav-link" onclick="toggleDropdown(this)">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Service Providers</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <div class="admin-dropdown-menu">
+                            <a href="admin-providers.html" class="admin-nav-link">All Providers</a>
+                            <a href="admin-providers-pending.html" class="admin-nav-link">Pending Verification</a>
+                            <a href="admin-providers-add.html" class="admin-nav-link">Add New Provider</a>
+                        </div>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-users.html" class="admin-nav-link">
+                            <i class="fas fa-user-friends"></i>
+                            <span>User Management</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-services.html" class="admin-nav-link">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Service Management</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-bookings.html" class="admin-nav-link active">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Booking Management</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-reviews.html" class="admin-nav-link">
+                            <i class="fas fa-star"></i>
+                            <span>Reviews & Ratings</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-reports.html" class="admin-nav-link">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports & Analytics</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-settings.html" class="admin-nav-link">
+                            <i class="fas fa-cog"></i>
+                            <span>System Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../index.html" class="admin-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Main Site</span>
+                </a>
+                <a href="../../features/auth/login.html" class="admin-nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Page Header -->
+            <div class="admin-page-header">
+                <h1><i class="fas fa-calendar-alt"></i> Booking Management</h1>
+                <div class="header-actions">
+                    <button class="admin-btn btn-primary" onclick="createNewBooking()">
+                        <i class="fas fa-plus"></i> Create Booking
+                    </button>
+                    <button class="admin-btn btn-view" onclick="exportBookings('all')">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Booking Statistics -->
+            <section class="stats-cards">
+                <div class="stat-card pending">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Pending</div>
+                </div>
+                
+                <div class="stat-card confirmed">
+                    <div class="stat-icon confirmed">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-value">156</div>
+                    <div class="stat-label">Confirmed</div>
+                </div>
+                
+                <div class="stat-card in-progress">
+                    <div class="stat-icon in-progress">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">In Progress</div>
+                </div>
+                
+                <div class="stat-card completed">
+                    <div class="stat-icon completed">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div class="stat-value">1,247</div>
+                    <div class="stat-label">Completed</div>
+                </div>
+                
+                <div class="stat-card cancelled">
+                    <div class="stat-icon cancelled">
+                        <i class="fas fa-times-circle"></i>
+                    </div>
+                    <div class="stat-value">18</div>
+                    <div class="stat-label">Cancelled</div>
+                </div>
+                
+                <div class="stat-card revenue">
+                    <div class="stat-icon revenue">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="stat-value">$45,680</div>
+                    <div class="stat-label">Total Revenue</div>
+                </div>
+            </section>
+            
+            <!-- View Toggle -->
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="table">
+                    <i class="fas fa-table"></i>
+                    <span>Table View</span>
+                </button>
+                <button class="view-btn" data-view="calendar">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Calendar View</span>
+                </button>
+                <button class="view-btn" data-view="timeline">
+                    <i class="fas fa-stream"></i>
+                    <span>Timeline</span>
+                </button>
+            </div>
+            
+            <!-- Date Range Picker -->
+            <section class="date-range-picker">
+                <h3><i class="fas fa-filter"></i> Filter by Date Range</h3>
+                <div class="date-inputs">
+                    <input type="text" class="date-input" id="start-date" placeholder="Start Date" readonly>
+                    <span>to</span>
+                    <input type="text" class="date-input" id="end-date" placeholder="End Date" readonly>
+                    <button class="admin-btn btn-view" onclick="applyDateFilter()">
+                        <i class="fas fa-filter"></i> Apply
+                    </button>
+                    <button class="admin-btn btn-edit" onclick="resetDateFilter()">
+                        <i class="fas fa-redo"></i> Reset
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Quick Filters -->
+            <div class="quick-filters">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-list"></i> All Bookings
+                </button>
+                <button class="filter-btn" data-filter="today">
+                    <i class="fas fa-calendar-day"></i> Today
+                </button>
+                <button class="filter-btn" data-filter="tomorrow">
+                    <i class="fas fa-calendar-plus"></i> Tomorrow
+                </button>
+                <button class="filter-btn" data-filter="this-week">
+                    <i class="fas fa-calendar-week"></i> This Week
+                </button>
+                <button class="filter-btn" data-filter="this-month">
+                    <i class="fas fa-calendar"></i> This Month
+                </button>
+                <button class="filter-btn" data-filter="urgent">
+                    <i class="fas fa-exclamation-triangle"></i> Urgent
+                </button>
+                <button class="filter-btn" data-filter="unassigned">
+                    <i class="fas fa-user-times"></i> Unassigned
+                </button>
+            </div>
+            
+            <!-- Table View -->
+            <section class="bookings-table-container" id="tableView">
+                <div class="table-header">
+                    <h3><i class="fas fa-list-alt"></i> Recent Bookings</h3>
+                    <div class="table-controls">
+                        <input type="text" class="search-input" placeholder="Search bookings..." id="booking-search">
+                        <select class="filter-select" id="booking-status-filter">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="in-progress">In Progress</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table class="bookings-table">
+                    <thead>
+                        <tr>
+                            <th>Booking ID</th>
+                            <th>Client</th>
+                            <th>Service</th>
+                            <th>Provider</th>
+                            <th>Date & Time</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Booking 1 -->
+                        <tr>
+                            <td>
+                                <strong style="color: var(--primary-dark);">#BC-2023-001</strong>
+                            </td>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">AJ</div>
+                                    <div class="user-details">
+                                        <div class="user-name">Ahmed Johnson</div>
+                                        <div class="user-phone">+1 (555) 123-4567</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="service-info">
+                                    <div class="service-icon">
+                                        <i class="fas fa-home"></i>
+                                    </div>
+                                    <div class="service-details">
+                                        <div class="service-name">Home Cleaning</div>
+                                        <span class="service-category">Cleaning</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="provider-info">
+                                    <div class="provider-avatar">CP</div>
+                                    <div class="user-details">
+                                        <div class="user-name">CleanPro Team</div>
+                                        <div class="user-phone">+1 (555) 987-6543</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--primary-dark);">Oct 15, 2023</strong>
+                                    <span style="color: var(--primary-medium); font-size: 0.9rem;">10:00 AM - 2:00 PM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <strong style="color: var(--primary-dark); font-size: 1.1rem;">$120</strong>
+                            </td>
+                            <td>
+                                <span class="status-badge badge-completed">Completed</span>
+                            </td>
+                            <td>
+                                <div class="booking-actions">
+                                    <button class="action-btn view" title="View Details" onclick="viewBookingDetails('BC-2023-001')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit Booking" onclick="editBooking('BC-2023-001')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn message" title="Message Client" onclick="messageClient('BC-2023-001')">
+                                        <i class="fas fa-envelope"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Booking 2 -->
+                        <tr>
+                            <td>
+                                <strong style="color: var(--primary-dark);">#BC-2023-002</strong>
+                            </td>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">SJ</div>
+                                    <div class="user-details">
+                                        <div class="user-name">Sarah Johnson</div>
+                                        <div class="user-phone">+1 (555) 234-5678</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="service-info">
+                                    <div class="service-icon">
+                                        <i class="fas fa-bolt"></i>
+                                    </div>
+                                    <div class="service-details">
+                                        <div class="service-name">Electrical Repair</div>
+                                        <span class="service-category">Electrical</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="provider-info">
+                                    <div class="provider-avatar">EF</div>
+                                    <div class="user-details">
+                                        <div class="user-name">ElectroFix</div>
+                                        <div class="user-phone">+1 (555) 876-5432</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--primary-dark);">Oct 16, 2023</strong>
+                                    <span style="color: var(--primary-medium); font-size: 0.9rem;">2:00 PM - 4:00 PM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <strong style="color: var(--primary-dark); font-size: 1.1rem;">$85</strong>
+                            </td>
+                            <td>
+                                <span class="status-badge badge-in-progress">In Progress</span>
+                            </td>
+                            <td>
+                                <div class="booking-actions">
+                                    <button class="action-btn view" title="View Details" onclick="viewBookingDetails('BC-2023-002')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit Booking" onclick="editBooking('BC-2023-002')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn cancel" title="Cancel Booking" onclick="cancelBooking('BC-2023-002')">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Booking 3 -->
+                        <tr>
+                            <td>
+                                <strong style="color: var(--primary-dark);">#BC-2023-003</strong>
+                            </td>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">MB</div>
+                                    <div class="user-details">
+                                        <div class="user-name">Michael Brown</div>
+                                        <div class="user-phone">+1 (555) 345-6789</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="service-info">
+                                    <div class="service-icon">
+                                        <i class="fas fa-faucet"></i>
+                                    </div>
+                                    <div class="service-details">
+                                        <div class="service-name">Plumbing Service</div>
+                                        <span class="service-category">Plumbing</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="provider-info">
+                                    <div class="provider-avatar">PM</div>
+                                    <div class="user-details">
+                                        <div class="user-name">PipeMaster</div>
+                                        <div class="user-phone">+1 (555) 765-4321</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--primary-dark);">Oct 17, 2023</strong>
+                                    <span style="color: var(--primary-medium); font-size: 0.9rem;">9:00 AM - 11:00 AM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <strong style="color: var(--primary-dark); font-size: 1.1rem;">$150</strong>
+                            </td>
+                            <td>
+                                <span class="status-badge badge-confirmed">Confirmed</span>
+                            </td>
+                            <td>
+                                <div class="booking-actions">
+                                    <button class="action-btn view" title="View Details" onclick="viewBookingDetails('BC-2023-003')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit Booking" onclick="editBooking('BC-2023-003')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn assign" title="Assign Provider" onclick="assignProvider('BC-2023-003')">
+                                        <i class="fas fa-user-plus"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Booking 4 -->
+                        <tr>
+                            <td>
+                                <strong style="color: var(--primary-dark);">#BC-2023-004</strong>
+                            </td>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">ED</div>
+                                    <div class="user-details">
+                                        <div class="user-name">Emily Davis</div>
+                                        <div class="user-phone">+1 (555) 456-7890</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="service-info">
+                                    <div class="service-icon">
+                                        <i class="fas fa-window-maximize"></i>
+                                    </div>
+                                    <div class="service-details">
+                                        <div class="service-name">Window Cleaning</div>
+                                        <span class="service-category">Cleaning</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="provider-info">
+                                    <div class="provider-avatar">SC</div>
+                                    <div class="user-details">
+                                        <div class="user-name">SparkleClean</div>
+                                        <div class="user-phone">+1 (555) 654-3210</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--primary-dark);">Oct 18, 2023</strong>
+                                    <span style="color: var(--primary-medium); font-size: 0.9rem;">1:00 PM - 3:00 PM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <strong style="color: var(--primary-dark); font-size: 1.1rem;">$95</strong>
+                            </td>
+                            <td>
+                                <span class="status-badge badge-pending">Pending</span>
+                            </td>
+                            <td>
+                                <div class="booking-actions">
+                                    <button class="action-btn view" title="View Details" onclick="viewBookingDetails('BC-2023-004')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit Booking" onclick="editBooking('BC-2023-004')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn assign" title="Assign Provider" onclick="assignProvider('BC-2023-004')">
+                                        <i class="fas fa-user-plus"></i>
+                                    </button>
+                                    <button class="action-btn cancel" title="Cancel Booking" onclick="cancelBooking('BC-2023-004')">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        <!-- Booking 5 -->
+                        <tr>
+                            <td>
+                                <strong style="color: var(--primary-dark);">#BC-2023-005</strong>
+                            </td>
+                            <td>
+                                <div class="client-info">
+                                    <div class="client-avatar">RW</div>
+                                    <div class="user-details">
+                                        <div class="user-name">Robert Wilson</div>
+                                        <div class="user-phone">+1 (555) 567-8901</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="service-info">
+                                    <div class="service-icon">
+                                        <i class="fas fa-wind"></i>
+                                    </div>
+                                    <div class="service-details">
+                                        <div class="service-name">HVAC Maintenance</div>
+                                        <span class="service-category">Maintenance</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="provider-info">
+                                    <div class="provider-avatar">CT</div>
+                                    <div class="user-details">
+                                        <div class="user-name">CoolAir Tech</div>
+                                        <div class="user-phone">+1 (555) 543-2109</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="display: flex; flex-direction: column;">
+                                    <strong style="color: var(--primary-dark);">Oct 19, 2023</strong>
+                                    <span style="color: var(--primary-medium); font-size: 0.9rem;">11:00 AM - 1:00 PM</span>
+                                </div>
+                            </td>
+                            <td>
+                                <strong style="color: var(--primary-dark); font-size: 1.1rem;">$200</strong>
+                            </td>
+                            <td>
+                                <span class="status-badge badge-cancelled">Cancelled</span>
+                            </td>
+                            <td>
+                                <div class="booking-actions">
+                                    <button class="action-btn view" title="View Details" onclick="viewBookingDetails('BC-2023-005')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button class="action-btn edit" title="Edit Booking" onclick="editBooking('BC-2023-005')">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button class="action-btn message" title="Message Client" onclick="messageClient('BC-2023-005')">
+                                        <i class="fas fa-envelope"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <div class="pagination-info">
+                        Showing 1 to 5 of 1,487 bookings
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="admin-btn btn-view">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <div class="page-numbers">
+                            <span class="page-number active">1</span>
+                            <span class="page-number">2</span>
+                            <span class="page-number">3</span>
+                            <span style="color: var(--primary-medium); padding: 10px 8px;">...</span>
+                            <span class="page-number">25</span>
+                        </div>
+                        <button class="admin-btn btn-view">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Calendar View (Hidden by default) -->
+            <section class="calendar-view" id="calendarView">
+                <h3><i class="fas fa-calendar-alt"></i> Booking Calendar - October 2023</h3>
+                
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+                    <div class="calendar-day-header">Sun</div>
+                    
+                    <!-- Week 1 -->
+                    <div class="calendar-day">
+                        <div class="calendar-date">1</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">2</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">3</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-010')">
+                            <div class="booking-time">10:00 AM</div>
+                            <div class="booking-service">Home Cleaning</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">4</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">5</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-011')">
+                            <div class="booking-time">2:00 PM</div>
+                            <div class="booking-service">Plumbing</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">6</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">7</div>
+                    </div>
+                    
+                    <!-- Week 2 -->
+                    <div class="calendar-day">
+                        <div class="calendar-date">8</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">9</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-012')">
+                            <div class="booking-time">9:00 AM</div>
+                            <div class="booking-service">Window Cleaning</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">10</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">11</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-013')">
+                            <div class="booking-time">1:00 PM</div>
+                            <div class="booking-service">Electrical</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">12</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">13</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">14</div>
+                    </div>
+                    
+                    <!-- Week 3 -->
+                    <div class="calendar-day">
+                        <div class="calendar-date">15</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-001')">
+                            <div class="booking-time">10:00 AM</div>
+                            <div class="booking-service">Home Cleaning</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">16</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-002')">
+                            <div class="booking-time">2:00 PM</div>
+                            <div class="booking-service">Electrical</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">17</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-003')">
+                            <div class="booking-time">9:00 AM</div>
+                            <div class="booking-service">Plumbing</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">18</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-004')">
+                            <div class="booking-time">1:00 PM</div>
+                            <div class="booking-service">Window Cleaning</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">19</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-005')">
+                            <div class="booking-time">11:00 AM</div>
+                            <div class="booking-service">HVAC</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">20</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">21</div>
+                    </div>
+                    
+                    <!-- Week 4 -->
+                    <div class="calendar-day">
+                        <div class="calendar-date">22</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">23</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-006')">
+                            <div class="booking-time">3:00 PM</div>
+                            <div class="booking-service">Deep Cleaning</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">24</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">25</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-007')">
+                            <div class="booking-time">10:00 AM</div>
+                            <div class="booking-service">Appliance Repair</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">26</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">27</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-008')">
+                            <div class="booking-time">2:00 PM</div>
+                            <div class="booking-service">Painting</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">28</div>
+                    </div>
+                    
+                    <!-- Week 5 -->
+                    <div class="calendar-day">
+                        <div class="calendar-date">29</div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">30</div>
+                        <div class="calendar-booking" onclick="viewBookingDetails('BC-2023-009')">
+                            <div class="booking-time">11:00 AM</div>
+                            <div class="booking-service">Garden Maintenance</div>
+                        </div>
+                    </div>
+                    <div class="calendar-day">
+                        <div class="calendar-date">31</div>
+                    </div>
+                    <div class="calendar-day empty"></div>
+                    <div class="calendar-day empty"></div>
+                    <div class="calendar-day empty"></div>
+                    <div class="calendar-day empty"></div>
+                    <div class="calendar-day empty"></div>
+                </div>
+            </section>
+            
+            <!-- Export Section -->
+            <section class="export-section">
+                <h3><i class="fas fa-file-export"></i> Export Booking Data</h3>
+                <p>
+                    Export booking data in various formats for reporting, analysis, or accounting purposes.
+                </p>
+                
+                <div class="export-options">
+                    <button class="export-btn" onclick="exportBookings('csv')">
+                        <i class="fas fa-file-csv"></i> Export as CSV
+                    </button>
+                    <button class="export-btn" onclick="exportBookings('excel')">
+                        <i class="fas fa-file-excel"></i> Export as Excel
+                    </button>
+                    <button class="export-btn" onclick="exportBookings('pdf')">
+                        <i class="fas fa-file-pdf"></i> Export as PDF
+                    </button>
+                    <button class="export-btn" onclick="exportBookings('json')">
+                        <i class="fas fa-file-code"></i> Export as JSON
+                    </button>
+                    <button class="export-btn" onclick="generateInvoiceReport()">
+                        <i class="fas fa-file-invoice-dollar"></i> Invoice Report
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Booking Management Functions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize date pickers
+            flatpickr("#start-date", {
+                dateFormat: "Y-m-d",
+                defaultDate: new Date().setDate(new Date().getDate() - 7),
+                onChange: function(selectedDates, dateStr) {
+                    console.log("Start date selected:", dateStr);
+                }
+            });
+            
+            flatpickr("#end-date", {
+                dateFormat: "Y-m-d",
+                defaultDate: "today",
+                onChange: function(selectedDates, dateStr) {
+                    console.log("End date selected:", dateStr);
+                }
+            });
+            
+            // View toggle functionality
+            const viewButtons = document.querySelectorAll('.view-btn');
+            const tableView = document.getElementById('tableView');
+            const calendarView = document.getElementById('calendarView');
+            
+            viewButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const viewType = this.getAttribute('data-view');
+                    
+                    // Update active state
+                    viewButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Show selected view
+                    switch(viewType) {
+                        case 'table':
+                            tableView.style.display = 'block';
+                            calendarView.style.display = 'none';
+                            break;
+                        case 'calendar':
+                            tableView.style.display = 'none';
+                            calendarView.style.display = 'block';
+                            break;
+                        case 'timeline':
+                            // In production, you would show timeline view
+                            alert('Timeline view would be implemented here.');
+                            break;
+                    }
+                });
+            });
+            
+            // Quick filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterType = this.getAttribute('data-filter');
+                    
+                    // Update active state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Apply filter
+                    applyQuickFilter(filterType);
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('booking-search');
+            searchInput.addEventListener('input', function() {
+                filterBookingsBySearch(this.value);
+            });
+            
+            // Status filter
+            const statusFilter = document.getElementById('booking-status-filter');
+            statusFilter.addEventListener('change', function() {
+                filterBookingsByStatus(this.value);
+            });
+            
+            // Initialize calendar with today's date
+            highlightTodayInCalendar();
+            
+            // Initialize sidebar
+            initSidebar();
+        });
+        
+        function initSidebar() {
+            // Set active navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.admin-nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Sidebar Functions
+        function toggleDropdown(element) {
+            event.preventDefault();
+            const parent = element.parentElement;
+            parent.classList.toggle('active');
+            
+            // Close other dropdowns
+            document.querySelectorAll('.admin-nav-dropdown').forEach(dropdown => {
+                if (dropdown !== parent) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.admin-sidebar');
+            sidebar.classList.toggle('active');
+            
+            // Update toggle button icon
+            const toggleBtn = document.querySelector('.mobile-toggle i');
+            if (sidebar.classList.contains('active')) {
+                toggleBtn.className = 'fas fa-times';
+            } else {
+                toggleBtn.className = 'fas fa-bars';
+            }
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            // Close dropdowns
+            if (!e.target.closest('.admin-nav-dropdown')) {
+                document.querySelectorAll('.admin-nav-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+            
+            // Close sidebar on mobile when clicking outside
+            const sidebar = document.querySelector('.admin-sidebar');
+            const toggleBtn = document.querySelector('.mobile-toggle');
+            
+            if (window.innerWidth <= 992 && 
+                !sidebar.contains(e.target) && 
+                !toggleBtn.contains(e.target) &&
+                sidebar.classList.contains('active')) {
+                toggleSidebar();
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const sidebar = document.querySelector('.admin-sidebar');
+            if (window.innerWidth > 992) {
+                sidebar.classList.remove('active');
+                document.querySelector('.mobile-toggle i').className = 'fas fa-bars';
+            }
+        });
+        
+        // Booking Functions
+        function applyDateFilter() {
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            
+            if (!startDate || !endDate) {
+                alert('Please select both start and end dates.');
+                return;
+            }
+            
+            console.log(`Filtering bookings from ${startDate} to ${endDate}`);
+            // In production, send API request to filter bookings
+            
+            // Show loading state
+            const tableBody = document.querySelector('.bookings-table tbody');
+            const rows = tableBody.querySelectorAll('tr');
+            
+            // Simulate filtering
+            rows.forEach(row => {
+                const dateCell = row.querySelector('td:nth-child(5) strong');
+                if (dateCell) {
+                    const bookingDate = new Date(dateCell.textContent);
+                    // In production, you would compare with actual dates
+                    row.style.display = 'table-row';
+                }
+            });
+            
+            showNotification(`Filtered bookings from ${startDate} to ${endDate}`, 'success');
+        }
+        
+        function resetDateFilter() {
+            document.getElementById('start-date').value = '';
+            document.getElementById('end-date').value = '';
+            
+            // Show all rows
+            const rows = document.querySelectorAll('.bookings-table tbody tr');
+            rows.forEach(row => row.style.display = 'table-row');
+            
+            // Reset quick filters
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                if (btn.getAttribute('data-filter') === 'all') {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            // Reset status filter
+            document.getElementById('booking-status-filter').value = '';
+            
+            showNotification('Filters have been reset', 'info');
+        }
+        
+        function applyQuickFilter(filterType) {
+            const rows = document.querySelectorAll('.bookings-table tbody tr');
+            
+            rows.forEach(row => {
+                let shouldShow = false;
+                
+                switch(filterType) {
+                    case 'all':
+                        shouldShow = true;
+                        break;
+                    case 'today':
+                        // In production, compare with actual date
+                        shouldShow = Math.random() > 0.5; // Simulate
+                        break;
+                    case 'urgent':
+                        const statusBadge = row.querySelector('.status-badge');
+                        shouldShow = statusBadge && statusBadge.textContent === 'Pending';
+                        break;
+                    case 'unassigned':
+                        // In production, check if provider is assigned
+                        shouldShow = Math.random() > 0.7; // Simulate
+                        break;
+                    default:
+                        shouldShow = true;
+                }
+                
+                row.style.display = shouldShow ? 'table-row' : 'none';
+            });
+            
+            showNotification(`Filter applied: ${filterType.replace('-', ' ')}`, 'info');
+        }
+        
+        function filterBookingsBySearch(query) {
+            const rows = document.querySelectorAll('.bookings-table tbody tr');
+            let matchCount = 0;
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const matches = text.includes(query.toLowerCase());
+                row.style.display = matches ? 'table-row' : 'none';
+                if (matches) matchCount++;
+            });
+            
+            if (query) {
+                showNotification(`Found ${matchCount} bookings matching "${query}"`, 'info');
+            }
+        }
+        
+        function filterBookingsByStatus(status) {
+            const rows = document.querySelectorAll('.bookings-table tbody tr');
+            let matchCount = 0;
+            
+            if (!status) {
+                rows.forEach(row => row.style.display = 'table-row');
+                return;
+            }
+            
+            rows.forEach(row => {
+                const statusBadge = row.querySelector('.status-badge');
+                let statusText = '';
+                
+                if (statusBadge) {
+                    statusText = statusBadge.textContent.toLowerCase().replace(/\s+/g, '-');
+                }
+                
+                const matches = statusText === status;
+                row.style.display = matches ? 'table-row' : 'none';
+                if (matches) matchCount++;
+            });
+            
+            if (status) {
+                const statusName = status.replace('-', ' ');
+                showNotification(`Showing ${matchCount} ${statusName} bookings`, 'info');
+            }
+        }
+        
+        function viewBookingDetails(bookingId) {
+            console.log(`Viewing booking details: ${bookingId}`);
+            showNotification(`Loading booking ${bookingId} details...`, 'info');
+            // In production, open booking details modal or page
+            setTimeout(() => {
+                alert(`Viewing details for booking ${bookingId}\n\nThis would show:\n- Complete booking information\n- Client details\n- Service provider details\n- Booking history\n- Payment information\n- Chat history`);
+            }, 500);
+        }
+        
+        function editBooking(bookingId) {
+            console.log(`Editing booking: ${bookingId}`);
+            showNotification(`Opening edit mode for booking ${bookingId}`, 'info');
+            // In production, open edit booking modal
+            setTimeout(() => {
+                alert(`Editing booking ${bookingId}\n\nThis would allow:\n- Changing booking date/time\n- Updating service details\n- Modifying pricing\n- Adding special instructions`);
+            }, 500);
+        }
+        
+        function cancelBooking(bookingId) {
+            if (confirm(`Are you sure you want to cancel booking ${bookingId}? This action may notify the client and provider.`)) {
+                console.log(`Cancelling booking: ${bookingId}`);
+                // In production, send cancel API request
+                
+                // Update UI
+                const row = document.querySelector(`tr:has(strong:contains('${bookingId}'))`);
+                if (row) {
+                    const statusBadge = row.querySelector('.status-badge');
+                    if (statusBadge) {
+                        statusBadge.textContent = 'Cancelled';
+                        statusBadge.className = 'status-badge badge-cancelled';
+                        
+                        // Update actions
+                        const actionsDiv = row.querySelector('.booking-actions');
+                        if (actionsDiv) {
+                            actionsDiv.innerHTML = `
+                                <button class="action-btn view" title="View Details" onclick="viewBookingDetails('${bookingId}')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="action-btn message" title="Message Client" onclick="messageClient('${bookingId}')">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                            `;
+                        }
+                    }
+                }
+                
+                showNotification(`Booking ${bookingId} has been cancelled.`, 'success');
+                updateStats();
+            }
+        }
+        
+        function assignProvider(bookingId) {
+            console.log(`Assigning provider to booking: ${bookingId}`);
+            showNotification(`Opening provider assignment for booking ${bookingId}`, 'info');
+            // In production, open provider assignment modal
+            setTimeout(() => {
+                alert(`Assigning provider to booking ${bookingId}\n\nThis would show:\n- List of available providers\n- Provider ratings and availability\n- Option to assign manually\n- Send assignment notification`);
+            }, 500);
+        }
+        
+        function messageClient(bookingId) {
+            console.log(`Messaging client for booking: ${bookingId}`);
+            showNotification(`Opening messaging for booking ${bookingId}`, 'info');
+            // In production, open messaging modal
+            setTimeout(() => {
+                alert(`Messaging client for booking ${bookingId}\n\nThis would open:\n- Direct messaging interface\n- Pre-filled booking context\n- Message templates\n- Attachment options`);
+            }, 500);
+        }
+        
+        function createNewBooking() {
+            console.log('Creating new booking');
+            showNotification('Opening new booking form...', 'info');
+            // In production, open new booking modal
+            setTimeout(() => {
+                alert('Creating new booking\n\nThis would allow:\n- Selecting client\n- Choosing service\n- Setting date/time\n- Assigning provider\n- Setting price\n- Adding special notes');
+            }, 500);
+        }
+        
+        function exportBookings(format) {
+            console.log(`Exporting bookings as ${format}`);
+            showNotification(`Exporting bookings as ${format.toUpperCase()}...`, 'info');
+            // In production, trigger download
+            setTimeout(() => {
+                alert(`Exporting bookings as ${format.toUpperCase()}\n\nDownload will start in production.\n\nExport includes:\n- Booking details\n- Client information\n- Service provider details\n- Payment information\n- Status history`);
+            }, 1000);
+        }
+        
+        function generateInvoiceReport() {
+            console.log('Generating invoice report');
+            showNotification('Generating invoice report...', 'info');
+            // In production, generate and download invoice report
+            setTimeout(() => {
+                alert('Generating invoice report\n\nThis would create:\n- Summary of all payments\n- Individual invoices\n- Tax calculations\n- Export in PDF format\n- Option to email to clients');
+            }, 1000);
+        }
+        
+        function highlightTodayInCalendar() {
+            const today = new Date().getDate();
+            const calendarDates = document.querySelectorAll('.calendar-date');
+            
+            calendarDates.forEach(dateEl => {
+                if (parseInt(dateEl.textContent) === today) {
+                    dateEl.parentElement.style.borderColor = 'var(--primary-light)';
+                    dateEl.parentElement.style.background = 'rgba(79, 179, 174, 0.1)';
+                }
+            });
+        }
+        
+        function updateStats() {
+            // Update statistics based on current bookings
+            const pendingCount = document.querySelectorAll('.badge-pending').length;
+            const confirmedCount = document.querySelectorAll('.badge-confirmed').length;
+            const inProgressCount = document.querySelectorAll('.badge-in-progress').length;
+            const completedCount = document.querySelectorAll('.badge-completed').length;
+            const cancelledCount = document.querySelectorAll('.badge-cancelled').length;
+            
+            // Update stats cards
+            document.querySelector('.stat-card.pending .stat-value').textContent = pendingCount;
+            document.querySelector('.stat-card.confirmed .stat-value').textContent = confirmedCount;
+            document.querySelector('.stat-card.in-progress .stat-value').textContent = inProgressCount;
+            document.querySelector('.stat-card.completed .stat-value').textContent = completedCount;
+            document.querySelector('.stat-card.cancelled .stat-value').textContent = cancelledCount;
+        }
+        
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button onclick="this.parentElement.remove()" style="background: none; border: none; color: inherit; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            // Style the notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#0ea5e9'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: var(--radius-md);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+                min-width: 300px;
+                max-width: 400px;
+                box-shadow: var(--shadow-lg);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+        
+        // Initialize stats
+        updateStats();
+        
+        // Add CSS animations for notifications
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

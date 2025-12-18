@@ -1,0 +1,2420 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Management - Admin Panel</title>
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <style>
+        /* =============================================
+           MODERN ADMIN CSS - SERVICE MANAGEMENT
+           Color palette: #044550, #086e77, #193946, #4fb3ae, #9fd3cd
+        ============================================== */
+        
+        :root {
+            --primary-dark: #044550;
+            --primary-medium: #086e77;
+            --primary-regular: #193946;
+            --primary-light: #4fb3ae;
+            --accent-light: #9fd3cd;
+            --gray-dark: #1a1a1a;
+            --gray-medium: #666;
+            --gray-light: #f8f9fa;
+            --gray-bg: #f0f7f9;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #0ea5e9;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(4, 69, 80, 0.08);
+            --shadow-md: 0 4px 20px rgba(4, 69, 80, 0.12);
+            --shadow-lg: 0 8px 30px rgba(4, 69, 80, 0.16);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f0f7f9 0%, #e6f3f5 100%);
+            color: var(--gray-dark);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Admin Layout */
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Modern Glass Sidebar */
+        .admin-sidebar {
+            width: 280px;
+            background: rgba(4, 69, 80, 0.95);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 30px rgba(4, 69, 80, 0.25);
+            border-right: 1px solid rgba(79, 179, 174, 0.2);
+            transition: var(--transition);
+        }
+
+        .admin-logo {
+            padding: 30px 25px;
+            border-bottom: 1px solid rgba(159, 211, 205, 0.2);
+            margin-bottom: 20px;
+            text-align: center;
+            background: rgba(4, 69, 80, 0.3);
+        }
+
+        .admin-logo i {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .admin-logo h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
+            margin-bottom: 5px;
+        }
+
+        .admin-logo p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            color: var(--accent-light);
+            font-weight: 400;
+        }
+
+        /* Navigation */
+        .admin-nav {
+            padding: 0 15px;
+        }
+
+        .admin-nav ul {
+            list-style: none;
+        }
+
+        .admin-nav-item {
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+        .admin-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            transition: var(--transition);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary-light);
+            transform: scaleY(0);
+            transition: var(--transition);
+        }
+
+        .admin-nav-link:hover {
+            background: rgba(79, 179, 174, 0.15);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .admin-nav-link:hover::before {
+            transform: scaleY(1);
+        }
+
+        .admin-nav-link.active {
+            background: linear-gradient(90deg, rgba(79, 179, 174, 0.25), rgba(159, 211, 205, 0.15));
+            color: var(--white);
+            border-left: 4px solid var(--primary-light);
+        }
+
+        .admin-nav-link.active::before {
+            display: none;
+        }
+
+        .admin-nav-link i {
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+            color: var(--primary-light);
+        }
+
+        .admin-nav-link.active i {
+            color: var(--accent-light);
+        }
+
+        /* Dropdown Styles */
+        .admin-nav-dropdown {
+            position: relative;
+        }
+
+        .admin-nav-dropdown .admin-nav-link i.fa-chevron-down {
+            margin-left: auto;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .admin-nav-dropdown.active .admin-nav-link i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
+        .admin-dropdown-menu {
+            display: none;
+            background: rgba(4, 69, 80, 0.9);
+            margin: 5px 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .admin-nav-dropdown.active .admin-dropdown-menu {
+            display: block;
+        }
+
+        .admin-dropdown-menu .admin-nav-link {
+            padding: 14px 20px 14px 40px;
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
+        }
+
+        .admin-dropdown-menu .admin-nav-link:hover {
+            background: rgba(79, 179, 174, 0.2);
+            border-left-color: var(--primary-light);
+        }
+
+        /* Sidebar Footer */
+        .sidebar-footer {
+            padding: 20px;
+            margin-top: auto;
+            border-top: 1px solid rgba(159, 211, 205, 0.2);
+        }
+
+        .sidebar-footer .admin-nav-link {
+            margin-bottom: 10px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-footer .admin-nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(79, 179, 174, 0.3);
+        }
+
+        .sidebar-footer .admin-nav-link.logout {
+            color: #ff6b6b;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .sidebar-footer .admin-nav-link.logout:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Main Content */
+        .admin-main {
+            flex: 1;
+            margin-left: 280px;
+            padding: 30px;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        /* Page Header */
+        .admin-page-header {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            padding: 25px 35px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(4, 69, 80, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .admin-page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-dark), var(--primary-light));
+        }
+
+        .admin-page-header h1 {
+            color: var(--primary-dark);
+            font-size: 1.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+        }
+
+        .admin-page-header h1 i {
+            color: var(--primary-medium);
+            background: rgba(8, 110, 119, 0.1);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Service Categories */
+        .service-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-lg);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border: 2px solid transparent;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .category-card.active {
+            border-color: var(--primary-medium);
+            background: linear-gradient(135deg, rgba(79, 179, 174, 0.1), rgba(159, 211, 205, 0.05));
+            box-shadow: 0 4px 20px rgba(79, 179, 174, 0.2);
+        }
+
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .category-icon.cleaning {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+        }
+
+        .category-icon.maintenance {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-regular));
+        }
+
+        .category-icon.electrical {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .category-icon.plumbing {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+        }
+
+        .category-icon.other {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+        }
+
+        .category-name {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .category-count {
+            font-size: 0.9rem;
+            color: var(--primary-medium);
+            background: rgba(79, 179, 174, 0.1);
+            padding: 6px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* Search and Filter */
+        .admin-search-bar {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 25px;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .admin-search-bar {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            background: var(--white);
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(79, 179, 174, 0.2);
+        }
+
+        .filter-select {
+            padding: 14px 18px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            background: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 180px;
+            font-family: 'Inter', sans-serif;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23044550' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(79, 179, 174, 0.2);
+        }
+
+        /* Bulk Actions */
+        .bulk-actions {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 25px;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .bulk-actions {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+        }
+
+        .bulk-select {
+            padding: 12px 16px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            background: var(--white);
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+            cursor: pointer;
+            min-width: 200px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .selected-count {
+            margin-left: auto;
+            color: var(--primary-medium);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .selected-count span {
+            background: var(--primary-light);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-left: 8px;
+        }
+
+        /* Action Buttons */
+        .admin-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .admin-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .admin-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-medium), var(--primary-dark));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(4, 69, 80, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(4, 69, 80, 0.4);
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(79, 179, 174, 0.3);
+        }
+
+        .btn-view:hover {
+            background: linear-gradient(135deg, var(--accent-light), var(--primary-light));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(79, 179, 174, 0.4);
+        }
+
+        .btn-edit {
+            background: linear-gradient(135deg, #ffd166, #ffb347);
+            color: #856404;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.2);
+        }
+
+        .btn-edit:hover {
+            background: linear-gradient(135deg, #ffb347, #ffd166);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-delete:hover {
+            background: linear-gradient(135deg, #ff8e8e, #ff6b6b);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Service Cards */
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        @media (max-width: 1200px) {
+            .service-cards {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            border: 1px solid rgba(4, 69, 80, 0.08);
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .service-card.selected::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-light), var(--accent-light));
+            z-index: 1;
+        }
+
+        .service-card.featured::after {
+            content: 'FEATURED';
+            position: absolute;
+            top: 15px;
+            right: -25px;
+            background: linear-gradient(135deg, #ffd166, #ffb347);
+            color: #856404;
+            padding: 5px 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transform: rotate(45deg);
+            z-index: 2;
+        }
+
+        .service-header {
+            padding: 25px;
+            border-bottom: 1px solid rgba(4, 69, 80, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-icon-small {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-info {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .service-name {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            font-size: 1.2rem;
+        }
+
+        .service-category {
+            font-size: 0.85rem;
+            color: var(--primary-medium);
+            background: rgba(79, 179, 174, 0.1);
+            padding: 6px 14px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        /* Service Status Toggle */
+        .status-toggle {
+            position: relative;
+            width: 55px;
+            height: 28px;
+        }
+
+        .status-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #e5e7eb;
+            transition: var(--transition);
+            border-radius: 34px;
+            border: 2px solid transparent;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: var(--transition);
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input:checked + .toggle-slider {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(27px);
+        }
+
+        /* Service Body */
+        .service-body {
+            padding: 25px;
+        }
+
+        .service-description {
+            color: var(--gray-medium);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .service-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(4, 69, 80, 0.02);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(4, 69, 80, 0.05);
+        }
+
+        .meta-label {
+            font-size: 0.9rem;
+            color: var(--primary-medium);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .service-price {
+            font-weight: 800;
+            color: var(--primary-dark);
+            font-size: 1.4rem;
+        }
+
+        .service-duration {
+            color: var(--primary-medium);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Service Footer */
+        .service-footer {
+            padding: 20px 25px;
+            background: rgba(159, 211, 205, 0.05);
+            border-top: 1px solid rgba(4, 69, 80, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--primary-medium);
+            font-weight: 500;
+        }
+
+        .stat-item i {
+            color: var(--primary-light);
+            font-size: 1rem;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: var(--radius-sm);
+            border: none;
+            background: var(--white);
+            color: var(--gray-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            font-size: 1rem;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .action-btn.view:hover {
+            background: rgba(79, 179, 174, 0.1);
+            color: var(--primary-medium);
+            border-color: var(--primary-light);
+        }
+
+        .action-btn.edit:hover {
+            background: rgba(255, 193, 7, 0.1);
+            color: #856404;
+            border-color: #ffc107;
+        }
+
+        .action-btn.delete:hover {
+            background: rgba(239, 68, 68, 0.1);
+            color: #721c24;
+            border-color: #ef4444;
+        }
+
+        /* Pricing Rules */
+        .pricing-rules {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-xl);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 35px;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+        }
+
+        .pricing-rules h3 {
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-rules h3 i {
+            color: var(--primary-light);
+            background: rgba(79, 179, 174, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .rule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .rule-item {
+            display: flex;
+            align-items: center;
+            padding: 18px 20px;
+            background: rgba(159, 211, 205, 0.05);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(4, 69, 80, 0.08);
+            transition: var(--transition);
+        }
+
+        .rule-item:hover {
+            border-color: var(--primary-light);
+            background: rgba(79, 179, 174, 0.08);
+        }
+
+        .rule-name {
+            flex: 1;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+        }
+
+        .rule-value {
+            color: var(--primary-medium);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-right: 20px;
+        }
+
+        /* Pagination */
+        .admin-pagination {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 35px;
+            border: 1px solid rgba(4, 69, 80, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .admin-pagination {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        .pagination-numbers {
+            display: flex;
+            gap: 10px;
+        }
+
+        .page-number {
+            width: 45px;
+            height: 45px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--white);
+            color: var(--primary-dark);
+            border: 2px solid rgba(4, 69, 80, 0.1);
+        }
+
+        .page-number:hover {
+            border-color: var(--primary-light);
+            background: rgba(79, 179, 174, 0.05);
+        }
+
+        .page-number.active {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+            color: var(--white);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(79, 179, 174, 0.3);
+        }
+
+        /* Modal Styles */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .admin-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--white) 0%, #fafdfe 100%);
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(4, 69, 80, 0.4);
+            border: 1px solid rgba(4, 69, 80, 0.1);
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid rgba(4, 69, 80, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            color: var(--white);
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        /* Form Styles */
+        .admin-form-group {
+            margin-bottom: 25px;
+        }
+
+        .admin-form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.95rem;
+        }
+
+        .admin-form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(4, 69, 80, 0.1);
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            background: var(--white);
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .admin-form-control:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(79, 179, 174, 0.2);
+        }
+
+        textarea.admin-form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(4, 69, 80, 0.2);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-check-label {
+            color: var(--primary-dark);
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(4, 69, 80, 0.1);
+        }
+
+        /* Mobile Toggle Button */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .admin-sidebar {
+                width: 250px;
+            }
+            .admin-main {
+                margin-left: 250px;
+            }
+            .service-categories {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            .admin-sidebar.active {
+                transform: translateX(0);
+            }
+            .admin-main {
+                margin-left: 0;
+                padding: 20px;
+            }
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .service-categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-categories {
+                grid-template-columns: 1fr;
+            }
+            .admin-page-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            .service-stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .service-footer {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            .service-actions {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .service-meta {
+                grid-template-columns: 1fr;
+            }
+            .pagination-numbers {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="admin-body">
+    <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="admin-container">
+        <!-- Modern Glass Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <i class="fas fa-concierge-bell"></i>
+                <h2>BuildingCare</h2>
+                <p>Service Management</p>
+            </div>
+            
+            <nav class="admin-nav">
+                <ul>
+                    <li class="admin-nav-item">
+                        <a href="admin-dashboard.html" class="admin-nav-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item admin-nav-dropdown">
+                        <a href="#" class="admin-nav-link" onclick="toggleDropdown(this)">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Service Providers</span>
+                            <i class="fas fa-chevron-down ms-auto"></i>
+                        </a>
+                        <div class="admin-dropdown-menu">
+                            <a href="admin-providers.html" class="admin-nav-link">All Providers</a>
+                            <a href="admin-providers-pending.html" class="admin-nav-link">Pending Verification</a>
+                            <a href="admin-providers-add.html" class="admin-nav-link">Add New Provider</a>
+                        </div>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-users.html" class="admin-nav-link">
+                            <i class="fas fa-user-friends"></i>
+                            <span>User Management</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-services.html" class="admin-nav-link active">
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Service Management</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-bookings.html" class="admin-nav-link">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Booking Management</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-reviews.html" class="admin-nav-link">
+                            <i class="fas fa-star"></i>
+                            <span>Reviews & Ratings</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-reports.html" class="admin-nav-link">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports & Analytics</span>
+                        </a>
+                    </li>
+                    
+                    <li class="admin-nav-item">
+                        <a href="admin-settings.html" class="admin-nav-link">
+                            <i class="fas fa-cog"></i>
+                            <span>System Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="../../index.html" class="admin-nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Back to Main Site</span>
+                </a>
+                <a href="../../features/auth/login.html" class="admin-nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Page Header -->
+            <div class="admin-page-header">
+                <h1><i class="fas fa-concierge-bell"></i> Service Management</h1>
+                <div class="header-actions">
+                    <button class="admin-btn btn-primary" onclick="openAddServiceModal()">
+                        <i class="fas fa-plus"></i> Add New Service
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Service Categories -->
+            <section class="service-categories">
+                <div class="category-card active" data-category="all" onclick="filterServices('all')">
+                    <div class="category-icon cleaning">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <div class="category-name">All Services</div>
+                    <div class="category-count">42</div>
+                </div>
+                
+                <div class="category-card" data-category="cleaning" onclick="filterServices('cleaning')">
+                    <div class="category-icon cleaning">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <div class="category-name">Cleaning</div>
+                    <div class="category-count">18</div>
+                </div>
+                
+                <div class="category-card" data-category="maintenance" onclick="filterServices('maintenance')">
+                    <div class="category-icon maintenance">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="category-name">Maintenance</div>
+                    <div class="category-count">12</div>
+                </div>
+                
+                <div class="category-card" data-category="electrical" onclick="filterServices('electrical')">
+                    <div class="category-icon electrical">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="category-name">Electrical</div>
+                    <div class="category-count">6</div>
+                </div>
+                
+                <div class="category-card" data-category="plumbing" onclick="filterServices('plumbing')">
+                    <div class="category-icon plumbing">
+                        <i class="fas fa-faucet"></i>
+                    </div>
+                    <div class="category-name">Plumbing</div>
+                    <div class="category-count">4</div>
+                </div>
+                
+                <div class="category-card" data-category="other" onclick="filterServices('other')">
+                    <div class="category-icon other">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="category-name">Other Services</div>
+                    <div class="category-count">2</div>
+                </div>
+            </section>
+            
+            <!-- Search and Filter -->
+            <div class="admin-search-bar">
+                <input type="text" class="search-input" placeholder="Search services by name or description..." id="service-search">
+                <select class="filter-select" id="status-filter">
+                    <option value="">All Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="featured">Featured</option>
+                </select>
+                <select class="filter-select" id="price-filter">
+                    <option value="">All Prices</option>
+                    <option value="0-50">$0 - $50</option>
+                    <option value="50-100">$50 - $100</option>
+                    <option value="100+">$100+</option>
+                </select>
+            </div>
+            
+            <!-- Bulk Actions -->
+            <div class="bulk-actions">
+                <select class="bulk-select" id="bulk-action-select">
+                    <option value="">Bulk Actions</option>
+                    <option value="activate">Activate Selected</option>
+                    <option value="deactivate">Deactivate Selected</option>
+                    <option value="feature">Mark as Featured</option>
+                    <option value="unfeature">Remove Featured</option>
+                    <option value="delete">Delete Selected</option>
+                </select>
+                <button class="admin-btn btn-view" id="apply-bulk-action">
+                    Apply
+                </button>
+                <div class="selected-count">
+                    <span id="selected-count">0</span> services selected
+                </div>
+            </div>
+            
+            <!-- Services Grid -->
+            <section class="service-cards" id="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card" data-category="cleaning" data-status="active" data-id="1">
+                    <div class="service-header">
+                        <div class="service-icon-small" style="background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="service-info">
+                            <div class="service-name">Home Cleaning</div>
+                            <span class="service-category">Cleaning</span>
+                        </div>
+                        <label class="status-toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="service-body">
+                        <p class="service-description">
+                            Complete home cleaning service including living room, bedrooms, kitchen, and bathrooms. Professional equipment and eco-friendly products.
+                        </p>
+                        
+                        <div class="service-meta">
+                            <div>
+                                <div class="meta-label">Base Price</div>
+                                <div class="service-price">$120</div>
+                            </div>
+                            <div>
+                                <div class="meta-label">Duration</div>
+                                <div class="service-duration">3-4 hours</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-footer">
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>245 bookings</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.8/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-actions">
+                            <button class="action-btn edit" title="Edit Service" onclick="editService(1)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn view" title="View Details" onclick="viewService(1)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn delete" title="Delete Service" onclick="deleteService(1)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 2 -->
+                <div class="service-card featured" data-category="plumbing" data-status="active" data-id="3">
+                    <div class="service-header">
+                        <div class="service-icon-small" style="background: linear-gradient(135deg, var(--primary-light), var(--accent-light));">
+                            <i class="fas fa-faucet"></i>
+                        </div>
+                        <div class="service-info">
+                            <div class="service-name">Plumbing Services</div>
+                            <span class="service-category">Plumbing</span>
+                        </div>
+                        <label class="status-toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="service-body">
+                        <p class="service-description">
+                            Comprehensive plumbing services including leak repair, pipe installation, and water heater maintenance. 24/7 emergency service available.
+                        </p>
+                        
+                        <div class="service-meta">
+                            <div>
+                                <div class="meta-label">Base Price</div>
+                                <div class="service-price">$85</div>
+                            </div>
+                            <div>
+                                <div class="meta-label">Emergency</div>
+                                <div class="service-duration">+$30</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-footer">
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>312 bookings</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.9/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-actions">
+                            <button class="action-btn edit" title="Edit Service" onclick="editService(3)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn view" title="View Details" onclick="viewService(3)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn delete" title="Delete Service" onclick="deleteService(3)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 3 -->
+                <div class="service-card" data-category="electrical" data-status="active" data-id="2">
+                    <div class="service-header">
+                        <div class="service-icon-small" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="service-info">
+                            <div class="service-name">Electrical Repair</div>
+                            <span class="service-category">Electrical</span>
+                        </div>
+                        <label class="status-toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="service-body">
+                        <p class="service-description">
+                            Professional electrical repair and installation services for residential and commercial buildings. Certified electricians with full insurance.
+                        </p>
+                        
+                        <div class="service-meta">
+                            <div>
+                                <div class="meta-label">Hourly Rate</div>
+                                <div class="service-price">$45/hour</div>
+                            </div>
+                            <div>
+                                <div class="meta-label">Minimum</div>
+                                <div class="service-duration">1 hour</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-footer">
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>189 bookings</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.7/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-actions">
+                            <button class="action-btn edit" title="Edit Service" onclick="editService(2)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn view" title="View Details" onclick="viewService(2)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn delete" title="Delete Service" onclick="deleteService(2)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card" data-category="cleaning" data-status="inactive" data-id="4">
+                    <div class="service-header">
+                        <div class="service-icon-small" style="background: linear-gradient(135deg, #6c757d, #495057);">
+                            <i class="fas fa-stairs"></i>
+                        </div>
+                        <div class="service-info">
+                            <div class="service-name">Stairwell Cleaning</div>
+                            <span class="service-category">Cleaning</span>
+                        </div>
+                        <label class="status-toggle">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="service-body">
+                        <p class="service-description">
+                            Specialized cleaning service for building stairwells, including handrails and corners. High-reach equipment for multi-story buildings.
+                        </p>
+                        
+                        <div class="service-meta">
+                            <div>
+                                <div class="meta-label">Per Floor</div>
+                                <div class="service-price">$15/floor</div>
+                            </div>
+                            <div>
+                                <div class="meta-label">Minimum</div>
+                                <div class="service-duration">3 floors</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-footer">
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>87 bookings</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.5/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-actions">
+                            <button class="action-btn edit" title="Edit Service" onclick="editService(4)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn view" title="View Details" onclick="viewService(4)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn delete" title="Delete Service" onclick="deleteService(4)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="service-card" data-category="maintenance" data-status="active" data-id="5">
+                    <div class="service-header">
+                        <div class="service-icon-small" style="background: linear-gradient(135deg, var(--primary-medium), var(--primary-regular));">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="service-info">
+                            <div class="service-name">HVAC Maintenance</div>
+                            <span class="service-category">Maintenance</span>
+                        </div>
+                        <label class="status-toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="service-body">
+                        <p class="service-description">
+                            Regular HVAC system maintenance including cleaning, filter replacement, and performance check. Improves efficiency and extends lifespan.
+                        </p>
+                        
+                        <div class="service-meta">
+                            <div>
+                                <div class="meta-label">Per Unit</div>
+                                <div class="service-price">$120</div>
+                            </div>
+                            <div>
+                                <div class="meta-label">Duration</div>
+                                <div class="service-duration">1-2 hours</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-footer">
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>156 bookings</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.6/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-actions">
+                            <button class="action-btn edit" title="Edit Service" onclick="editService(5)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn view" title="View Details" onclick="viewService(5)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn delete" title="Delete Service" onclick="deleteService(5)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="service-card featured" data-category="other" data-status="active" data-id="6">
+                    <div class="service-header">
+                        <div class="service-icon-small" style="background: linear-gradient(135deg, #17a2b8, #138496);">
+                            <i class="fas fa-paint-roller"></i>
+                        </div>
+                        <div class="service-info">
+                            <div class="service-name">Painting Services</div>
+                            <span class="service-category">Other Services</span>
+                        </div>
+                        <label class="status-toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="service-body">
+                        <p class="service-description">
+                            Interior and exterior painting services for residential and commercial properties. Premium quality paints with warranty coverage.
+                        </p>
+                        
+                        <div class="service-meta">
+                            <div>
+                                <div class="meta-label">Per Room</div>
+                                <div class="service-price">$250+</div>
+                            </div>
+                            <div>
+                                <div class="meta-label">Estimate</div>
+                                <div class="service-duration">Required</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-footer">
+                        <div class="service-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>94 bookings</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-star"></i>
+                                <span>4.7/5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="service-actions">
+                            <button class="action-btn edit" title="Edit Service" onclick="editService(6)">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="action-btn view" title="View Details" onclick="viewService(6)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn delete" title="Delete Service" onclick="deleteService(6)">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Pagination -->
+            <div class="admin-pagination">
+                <button class="admin-btn btn-view">
+                    <i class="fas fa-chevron-left"></i> Previous
+                </button>
+                <div class="pagination-numbers">
+                    <span class="page-number active">1</span>
+                    <span class="page-number">2</span>
+                    <span class="page-number">3</span>
+                    <span class="page-number">4</span>
+                    <span class="page-number">5</span>
+                </div>
+                <button class="admin-btn btn-view">
+                    Next <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <!-- Pricing Rules Section -->
+            <section class="pricing-rules">
+                <h3><i class="fas fa-tags"></i> Pricing Rules & Configuration</h3>
+                
+                <div class="rule-list">
+                    <div class="rule-item">
+                        <div class="rule-name">Emergency Service Surcharge</div>
+                        <div class="rule-value">+30%</div>
+                        <div class="service-actions" style="margin-left: 15px;">
+                            <button class="action-btn edit" onclick="editPricingRule('emergency')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="rule-item">
+                        <div class="rule-name">Weekend Service Surcharge</div>
+                        <div class="rule-value">+20%</div>
+                        <div class="service-actions" style="margin-left: 15px;">
+                            <button class="action-btn edit" onclick="editPricingRule('weekend')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="rule-item">
+                        <div class="rule-name">Commercial Property Premium</div>
+                        <div class="rule-value">+25%</div>
+                        <div class="service-actions" style="margin-left: 15px;">
+                            <button class="action-btn edit" onclick="editPricingRule('commercial')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="rule-item">
+                        <div class="rule-name">Multiple Service Discount</div>
+                        <div class="rule-value">-15%</div>
+                        <div class="service-actions" style="margin-left: 15px;">
+                            <button class="action-btn edit" onclick="editPricingRule('discount')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="rule-item">
+                        <div class="rule-name">Monthly Subscription Discount</div>
+                        <div class="rule-value">-20%</div>
+                        <div class="service-actions" style="margin-left: 15px;">
+                            <button class="action-btn edit" onclick="editPricingRule('subscription')">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Add Service Modal -->
+    <div class="admin-modal" id="addServiceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Service</h3>
+                <button class="modal-close" onclick="closeAddServiceModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="addServiceForm">
+                    <div class="admin-form-group">
+                        <label class="admin-form-label">Service Name</label>
+                        <input type="text" class="admin-form-control" placeholder="Enter service name" required>
+                    </div>
+                    
+                    <div class="admin-form-group">
+                        <label class="admin-form-label">Category</label>
+                        <select class="admin-form-control" required>
+                            <option value="">Select Category</option>
+                            <option value="cleaning">Cleaning</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="electrical">Electrical</option>
+                            <option value="plumbing">Plumbing</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="admin-form-group">
+                        <label class="admin-form-label">Description</label>
+                        <textarea class="admin-form-control" rows="3" placeholder="Describe the service in detail" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="admin-form-group">
+                            <label class="admin-form-label">Pricing Type</label>
+                            <select class="admin-form-control" required>
+                                <option value="fixed">Fixed Price</option>
+                                <option value="hourly">Hourly Rate</option>
+                                <option value="per_unit">Per Unit</option>
+                                <option value="custom">Custom Quote</option>
+                            </select>
+                        </div>
+                        <div class="admin-form-group">
+                            <label class="admin-form-label">Base Price ($)</label>
+                            <input type="number" class="admin-form-control" min="0" step="0.01" placeholder="0.00" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="admin-form-group">
+                            <label class="admin-form-label">Estimated Duration (hours)</label>
+                            <input type="number" class="admin-form-control" min="0.5" step="0.5" placeholder="2.0">
+                        </div>
+                        <div class="admin-form-group">
+                            <label class="admin-form-label">Icon</label>
+                            <select class="admin-form-control">
+                                <option value="broom">Broom</option>
+                                <option value="tools">Tools</option>
+                                <option value="bolt">Bolt</option>
+                                <option value="faucet">Faucet</option>
+                                <option value="wind">Wind</option>
+                                <option value="home">Home</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="featuredCheck">
+                        <label class="form-check-label" for="featuredCheck">Mark as Featured Service</label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="activeCheck" checked>
+                        <label class="form-check-label" for="activeCheck">Activate Service</label>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="admin-btn btn-view" onclick="closeAddServiceModal()">Cancel</button>
+                        <button type="submit" class="admin-btn btn-primary">Add Service</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script>
+        // Service Management Functions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize sidebar
+            initSidebar();
+            
+            // Category Filter
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active state
+                    categoryCards.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter services
+                    filterServices(category);
+                });
+            });
+            
+            // Search functionality
+            const searchInput = document.getElementById('service-search');
+            searchInput.addEventListener('input', function() {
+                filterServicesBySearch(this.value);
+            });
+            
+            // Status filter
+            const statusFilter = document.getElementById('status-filter');
+            statusFilter.addEventListener('change', function() {
+                filterServicesByStatus(this.value);
+            });
+            
+            // Price filter
+            const priceFilter = document.getElementById('price-filter');
+            priceFilter.addEventListener('change', function() {
+                filterServicesByPrice(this.value);
+            });
+            
+            // Bulk actions
+            const bulkActionSelect = document.getElementById('bulk-action-select');
+            const applyBulkActionBtn = document.getElementById('apply-bulk-action');
+            const selectedCountSpan = document.getElementById('selected-count');
+            
+            applyBulkActionBtn.addEventListener('click', function() {
+                const action = bulkActionSelect.value;
+                if (action) {
+                    applyBulkAction(action);
+                }
+            });
+            
+            // Service selection
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    if (!e.target.closest('.service-actions') && !e.target.closest('.status-toggle')) {
+                        this.classList.toggle('selected');
+                        updateSelectedCount();
+                    }
+                });
+            });
+            
+            // Status toggles
+            const statusToggles = document.querySelectorAll('.status-toggle input');
+            statusToggles.forEach(toggle => {
+                toggle.addEventListener('change', function() {
+                    const serviceCard = this.closest('.service-card');
+                    const serviceId = serviceCard.getAttribute('data-id') || 'unknown';
+                    const newStatus = this.checked ? 'active' : 'inactive';
+                    
+                    console.log(`Service ${serviceId} status changed to: ${newStatus}`);
+                    showNotification(`Service status updated to ${newStatus}`, 'success');
+                    // In production, send API request to update status
+                });
+            });
+            
+            // Handle form submission
+            document.getElementById('addServiceForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                const serviceData = Object.fromEntries(formData);
+                
+                console.log('Adding new service:', serviceData);
+                showNotification('Service added successfully!', 'success');
+                
+                // Close modal and reset form
+                closeAddServiceModal();
+                
+                // In production, refresh the services list
+            });
+            
+            // Initialize
+            updateSelectedCount();
+        });
+        
+        function initSidebar() {
+            // Set active navigation
+            const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.admin-nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Sidebar Functions
+        function toggleDropdown(element) {
+            event.preventDefault();
+            const parent = element.parentElement;
+            parent.classList.toggle('active');
+            
+            // Close other dropdowns
+            document.querySelectorAll('.admin-nav-dropdown').forEach(dropdown => {
+                if (dropdown !== parent) {
+                    dropdown.classList.remove('active');
+                }
+            });
+        }
+        
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.admin-sidebar');
+            sidebar.classList.toggle('active');
+            
+            // Update toggle button icon
+            const toggleBtn = document.querySelector('.mobile-toggle i');
+            if (sidebar.classList.contains('active')) {
+                toggleBtn.className = 'fas fa-times';
+            } else {
+                toggleBtn.className = 'fas fa-bars';
+            }
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            // Close dropdowns
+            if (!e.target.closest('.admin-nav-dropdown')) {
+                document.querySelectorAll('.admin-nav-dropdown').forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+            
+            // Close sidebar on mobile when clicking outside
+            const sidebar = document.querySelector('.admin-sidebar');
+            const toggleBtn = document.querySelector('.mobile-toggle');
+            
+            if (window.innerWidth <= 992 && 
+                !sidebar.contains(e.target) && 
+                !toggleBtn.contains(e.target) &&
+                sidebar.classList.contains('active')) {
+                toggleSidebar();
+            }
+        });
+        
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const sidebar = document.querySelector('.admin-sidebar');
+            if (window.innerWidth > 992) {
+                sidebar.classList.remove('active');
+                document.querySelector('.mobile-toggle i').className = 'fas fa-bars';
+            }
+        });
+        
+        // Service Functions
+        function filterServices(category) {
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            updateServiceCounts();
+            showNotification(`Showing ${category === 'all' ? 'all' : category} services`, 'info');
+        }
+        
+        function filterServicesBySearch(query) {
+            const serviceCards = document.querySelectorAll('.service-card');
+            const activeCategory = document.querySelector('.category-card.active').getAttribute('data-category');
+            
+            let matchCount = 0;
+            serviceCards.forEach(card => {
+                const name = card.querySelector('.service-name').textContent.toLowerCase();
+                const description = card.querySelector('.service-description').textContent.toLowerCase();
+                const category = card.getAttribute('data-category');
+                
+                const matchesSearch = name.includes(query.toLowerCase()) || 
+                                    description.includes(query.toLowerCase());
+                const matchesCategory = activeCategory === 'all' || category === activeCategory;
+                
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'block';
+                    matchCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            if (query) {
+                showNotification(`Found ${matchCount} services matching "${query}"`, 'info');
+            }
+        }
+        
+        function filterServicesByStatus(status) {
+            const serviceCards = document.querySelectorAll('.service-card');
+            let matchCount = 0;
+            
+            serviceCards.forEach(card => {
+                if (!status || card.getAttribute('data-status') === status) {
+                    card.style.display = 'block';
+                    matchCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            if (status) {
+                showNotification(`Showing ${matchCount} ${status} services`, 'info');
+            }
+        }
+        
+        function filterServicesByPrice(range) {
+            const serviceCards = document.querySelectorAll('.service-card');
+            let matchCount = 0;
+            
+            if (!range) {
+                serviceCards.forEach(card => {
+                    card.style.display = 'block';
+                    matchCount++;
+                });
+                return;
+            }
+            
+            serviceCards.forEach(card => {
+                const priceText = card.querySelector('.service-price').textContent;
+                let price = 0;
+                
+                // Extract price from text
+                if (priceText.includes('/')) {
+                    price = parseFloat(priceText.split('/')[0].replace('$', '').trim());
+                } else {
+                    price = parseFloat(priceText.replace('$', '').replace('+', '').trim());
+                }
+                
+                let [min, max] = range.split('-').map(Number);
+                if (range.endsWith('+')) {
+                    min = parseInt(range.replace('+', ''));
+                    max = Infinity;
+                }
+                
+                if (price >= min && price <= max) {
+                    card.style.display = 'block';
+                    matchCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            showNotification(`Showing ${matchCount} services in price range ${range}`, 'info');
+        }
+        
+        function updateSelectedCount() {
+            const selectedCards = document.querySelectorAll('.service-card.selected');
+            const countSpan = document.getElementById('selected-count');
+            countSpan.textContent = selectedCards.length;
+            
+            // Update bulk action button state
+            const applyBtn = document.getElementById('apply-bulk-action');
+            applyBtn.disabled = selectedCards.length === 0;
+        }
+        
+        function applyBulkAction(action) {
+            const selectedCards = document.querySelectorAll('.service-card.selected');
+            const serviceIds = [];
+            
+            selectedCards.forEach(card => {
+                serviceIds.push(card.getAttribute('data-id') || 'unknown');
+            });
+            
+            if (serviceIds.length === 0) {
+                showNotification('Please select at least one service.', 'warning');
+                return;
+            }
+            
+            if (confirm(`Are you sure you want to ${action} ${serviceIds.length} selected service(s)?`)) {
+                console.log(`Applying ${action} to services:`, serviceIds);
+                
+                // Apply action to selected cards
+                selectedCards.forEach(card => {
+                    switch(action) {
+                        case 'activate':
+                            const toggle = card.querySelector('.status-toggle input');
+                            if (toggle) toggle.checked = true;
+                            card.setAttribute('data-status', 'active');
+                            break;
+                        case 'deactivate':
+                            const toggle2 = card.querySelector('.status-toggle input');
+                            if (toggle2) toggle2.checked = false;
+                            card.setAttribute('data-status', 'inactive');
+                            break;
+                        case 'feature':
+                            card.classList.add('featured');
+                            break;
+                        case 'unfeature':
+                            card.classList.remove('featured');
+                            break;
+                        case 'delete':
+                            card.remove();
+                            break;
+                    }
+                });
+                
+                // Clear selection
+                selectedCards.forEach(card => card.classList.remove('selected'));
+                updateSelectedCount();
+                bulkActionSelect.value = '';
+                updateServiceCounts();
+                
+                showNotification(`Successfully ${action}d ${serviceIds.length} service(s).`, 'success');
+            }
+        }
+        
+        function editService(serviceId) {
+            console.log(`Edit service ${serviceId}`);
+            showNotification(`Opening edit mode for service #${serviceId}`, 'info');
+            // In production, open edit modal with service data
+            setTimeout(() => {
+                alert(`Editing service #${serviceId} - This would open the edit modal in production.`);
+            }, 500);
+        }
+        
+        function viewService(serviceId) {
+            console.log(`View service ${serviceId}`);
+            showNotification(`Loading service #${serviceId} details...`, 'info');
+            // In production, redirect to service details page
+            setTimeout(() => {
+                alert(`Viewing service #${serviceId} details.\n\nThis would show:\n- Complete service information\n- Booking statistics\n- Provider assignments\n- Customer reviews\n- Performance metrics`);
+            }, 500);
+        }
+        
+        function deleteService(serviceId) {
+            if (confirm(`Are you sure you want to delete service #${serviceId}? This action cannot be undone.`)) {
+                console.log(`Delete service ${serviceId}`);
+                
+                // Remove from UI
+                const serviceCard = document.querySelector(`.service-card[data-id="${serviceId}"]`);
+                if (serviceCard) {
+                    serviceCard.style.animation = 'fadeOut 0.3s ease';
+                    setTimeout(() => {
+                        serviceCard.remove();
+                        updateServiceCounts();
+                    }, 300);
+                }
+                
+                showNotification(`Service #${serviceId} has been deleted.`, 'success');
+            }
+        }
+        
+        function editPricingRule(ruleType) {
+            showNotification(`Editing ${ruleType} pricing rule...`, 'info');
+            // In production, open pricing rule editor
+            setTimeout(() => {
+                alert(`Editing ${ruleType} pricing rule.\n\nThis would allow:\n- Modifying percentage or amount\n- Setting conditions\n- Adding expiration dates\n- Testing rule calculations`);
+            }, 500);
+        }
+        
+        function openAddServiceModal() {
+            document.getElementById('addServiceModal').classList.add('active');
+        }
+        
+        function closeAddServiceModal() {
+            document.getElementById('addServiceModal').classList.remove('active');
+            document.getElementById('addServiceForm').reset();
+        }
+        
+        function updateServiceCounts() {
+            // Update category counts based on visible services
+            const categories = ['all', 'cleaning', 'maintenance', 'electrical', 'plumbing', 'other'];
+            
+            categories.forEach(category => {
+                const count = document.querySelectorAll(`.service-card[data-category="${category === 'all' ? '*' : category}"]`).length;
+                const categoryCard = document.querySelector(`.category-card[data-category="${category}"] .category-count`);
+                if (categoryCard) {
+                    categoryCard.textContent = count;
+                }
+            });
+        }
+        
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button onclick="this.parentElement.remove()" style="background: none; border: none; color: inherit; cursor: pointer;">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            // Style the notification
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#10b981' : type === 'warning' ? '#f59e0b' : '#0ea5e9'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: var(--radius-md);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+                min-width: 300px;
+                max-width: 400px;
+                box-shadow: var(--shadow-lg);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+            `;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Auto-remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideOut 0.3s ease';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }
+            }, 5000);
+        }
+        
+        // Add CSS animations for notifications and fadeOut
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                to {
+                    opacity: 0;
+                    transform: scale(0.95);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

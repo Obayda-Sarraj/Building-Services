@@ -352,3 +352,78 @@ function handleSocialLogin(provider) {
 document.addEventListener('DOMContentLoaded', () => {
     new AuthManager();
 });
+
+
+
+// admin-auth.js - Admin authentication logic
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if current user is admin
+    function checkAdminStatus() {
+        const user = JSON.parse(localStorage.getItem('currentUser') || sessionStorage.getItem('currentUser'));
+        
+        if (user && user.role === 'admin') {
+            // Redirect to admin dashboard if on login page
+            if (window.location.pathname.includes('login.html')) {
+                window.location.href = '../../features/admin/admin-dashboard.html';
+            }
+            
+            // Add admin indicator to header if on main site
+            if (!window.location.pathname.includes('admin-')) {
+                const headerActions = document.querySelector('.header-actions');
+                if (headerActions) {
+                    const adminBtn = document.createElement('a');
+                    adminBtn.href = '../../features/admin/admin-dashboard.html';
+                    adminBtn.className = 'lang-toggle';
+                    adminBtn.style.marginRight = '10px';
+                    adminBtn.innerHTML = '<i class="fas fa-shield-alt"></i> Admin';
+                    headerActions.insertBefore(adminBtn, headerActions.firstChild);
+                }
+            }
+        }
+    }
+    
+    // Handle admin login
+    const adminEmails = [
+        'admin@buildingcare.com',
+        'superadmin@buildingcare.com',
+        'manager@buildingcare.com',
+        'support@buildingcare.com'
+    ];
+    
+    const loginForms = document.querySelectorAll('.login-form');
+    loginForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = this.querySelector('input[type="email"]').value;
+            const password = this.querySelector('input[type="password"]').value;
+            
+            // Check if admin email
+            if (adminEmails.includes(email.toLowerCase())) {
+                // Simulate admin login - In production, verify with backend
+                if (password === 'admin123') { // Default admin password
+                    const adminUser = {
+                        id: 'admin001',
+                        name: 'System Administrator',
+                        email: email,
+                        role: 'admin',
+                        permissions: ['all']
+                    };
+                    
+                    // Store in sessionStorage
+                    sessionStorage.setItem('currentUser', JSON.stringify(adminUser));
+                    sessionStorage.setItem('isAdmin', 'true');
+                    
+                    // Redirect to admin dashboard
+                    window.location.href = '../../features/admin/admin-dashboard.html';
+                    return;
+                }
+            }
+            
+            // Regular login logic continues...
+        });
+    });
+    
+    // Initialize admin check
+    checkAdminStatus();
+});
