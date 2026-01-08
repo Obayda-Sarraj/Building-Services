@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Services - Professional Maintenance & Cleaning</title>
+    <title>FixIt - Professional Maintenance & Cleaning Services</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/base.css">
@@ -13,8 +13,8 @@
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-building" style="font-size: 2rem; color: var(--accent-light);"></i>
-                <span class="logo-text">BuildingCare</span>
+                <i class="fas fa-tools" style="font-size: 2rem; color: var(--accent-light);"></i>
+                <span class="logo-text">FixIt</span>
             </div>
             
             <nav id="main-nav">
@@ -32,7 +32,10 @@
             </nav>
             
             <div class="header-actions">
-                <button class="lang-toggle" id="lang-toggle">EN</button>
+                <button class="lang-toggle" id="lang-toggle" onclick="switchLanguage()">AR</button>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
                 <button class="mobile-menu-btn" id="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -60,8 +63,8 @@
         
         <div class="container">
             <div class="hero-content">
-                <h1>Reliable Cleaning & Maintenance Services You Can Trust</h1>
-                <p>Professional building maintenance and cleaning services for residential complexes, schools, and institutions with verified service providers.</p>
+                <h1>Reliable Cleaning & Maintenance Services You Can Count On</h1>
+                <p>Professional building maintenance and cleaning services for residential complexes, schools, and institutions with certified service providers.</p>
                 
                 <a href="features/contact/contact.html" class="cta-button">
                     Book a Service Now
@@ -121,35 +124,8 @@
                     </div>
                 </a>
                 
-                <!-- Quick Booking Widget -->
-                <div class="quick-booking">
-                    <h3>Quick Booking</h3>
-                    <form class="booking-form">
-                        <div class="form-group">
-                            <label for="service-type">Service Type</label>
-                            <select id="service-type">
-                                <option value="">Select a service</option>
-                                <option value="cleaning">Cleaning Services</option>
-                                <option value="maintenance">Maintenance Services</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="service-category">Service Category</label>
-                            <select id="service-category">
-                                <option value="">Select category</option>
-                                <option value="home-cleaning">Home Cleaning</option>
-                                <option value="common-area">Common Area Cleaning</option>
-                                <option value="electrical">Electrical Maintenance</option>
-                                <option value="plumbing">Plumbing Services</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="booking-date">Preferred Date</label>
-                            <input type="date" id="booking-date">
-                        </div>
-                        <button type="submit" class="booking-submit">Get Estimate</button>
-                    </form>
-                </div>
+                
+            
             </div>
         </div>
     </section>
@@ -184,195 +160,106 @@
                             <i class="fas fa-tools"></i>
                         </div>
                         <h3>Maintenance Services</h3>
-                        <p>Electrical, plumbing, gas, elevator, and metalwork maintenance by certified technicians.</p>
+                        <p>Electrical, plumbing, gas, elevator, and metal works by certified technicians.</p>
                         <a href="features/maintenance/maintenance-services.html" class="service-btn">View Details</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-<br>
-<br>
 
 
-    <!-- Gallery Section -->
-    <section class="section gallery-section" id="gallery">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Work Gallery</h2>
-                <p>See the quality of our services through our completed projects</p>
-            </div>
-            
-            <!-- New Gallery Slider -->
-            <div class="gallery-slider"
-                 style="--width: 280px;
-                        --height: 320px;
-                        --quantity: 8;">
-                <div class="slider-list">
-                    <div class="slider-item" style="--position: 1">
-                        <div class="gallery-card">
-                            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Building Cleaning">
-                            <div class="card-overlay">
-                                <h3>Building Common Area Cleaning</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-item" style="--position: 2">
-                        <div class="gallery-card">
-                            <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Window Cleaning">
-                            <div class="card-overlay">
-                                <h3>Professional Window Cleaning</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-item" style="--position: 3">
-                        <div class="gallery-card">
-                            <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1169&q=80" alt="Electrical Maintenance">
-                            <div class="card-overlay">
-                                <h3>Electrical System Maintenance</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-item" style="--position: 4">
-                        <div class="gallery-card">
-                            <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Plumbing Services">
-                            <div class="card-overlay">
-                                <h3>Plumbing System Repair</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-item" style="--position: 5">
-                        <div class="gallery-card">
-                            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Carpet Cleaning">
-                            <div class="card-overlay">
-                                <h3>Professional Carpet Cleaning</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-item" style="--position: 6">
-                        <div class="gallery-card">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1073&q=80" alt="Painting Services">
-                            <div class="card-overlay">
-                                <h3>Interior Painting Services</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-item" style="--position: 7">
-                        <div class="gallery-card">
-                            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Garden Maintenance">
-                            <div class="card-overlay">
-                                <h3>Garden & Lawn Maintenance</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slider-item" style="--position: 8">
-                        <div class="gallery-card">
-                            <img src="https://images.unsplash.com/photo-1572021331475-b3215c53a6b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Upholstery Cleaning">
-                            <div class="card-overlay">
-                                <h3>Upholstery Cleaning</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="features/gallery/gallery.html" class="cta-button">View Full Gallery</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Section -->
+    <!-- Why Us Section (Replacing Trust Section) -->
     <section class="trust-section">
         <div class="container">
             <div class="section-title">
-                <h2>Trusted By</h2>
-                <p>We partner with verified companies and service providers</p>
+                <h2>Why Choose Us?</h2>
+                <p>What makes FixIt the best choice for your maintenance needs</p>
             </div>
             
             <div class="trust-grid">
                 <div class="trust-card">
                     <div class="main-content">
                         <div class="header">
-                            <span>Trusted Since</span>
+                            <span>Since</span>
                             <span>2018</span>
                         </div>
-                        <p class="heading">CleanPro Solutions</p>
+                        <p class="heading">Certified Professionals</p>
                         <div class="categories">
-                            <span>Cleaning</span>
-                            <span>Professional</span>
-                        </div>
-                    </div>
-                    <div class="footer">
-                        Premium Partner
-                    </div>
-                </div>
-                
-                <div class="trust-card">
-                    <div class="main-content">
-                        <div class="header">
-                            <span>Trusted Since</span>
-                            <span>2019</span>
-                        </div>
-                        <p class="heading">MaintainX Technologies</p>
-                        <div class="categories">
-                            <span>Maintenance</span>
+                            <span>Expert</span>
                             <span>Certified</span>
                         </div>
                     </div>
                     <div class="footer">
-                        Gold Partner
+                        Quality Assurance
                     </div>
                 </div>
                 
                 <div class="trust-card">
                     <div class="main-content">
                         <div class="header">
-                            <span>Trusted Since</span>
-                            <span>2020</span>
+                            <span>24/7</span>
+                            <span>Support</span>
                         </div>
-                        <p class="heading">BuildRight Constructions</p>
+                        <p class="heading">Emergency Services</p>
                         <div class="categories">
-                            <span>Construction</span>
+                            <span>Fast</span>
                             <span>Reliable</span>
                         </div>
                     </div>
                     <div class="footer">
-                        Verified Partner
+                        Always Available
                     </div>
                 </div>
                 
                 <div class="trust-card">
                     <div class="main-content">
                         <div class="header">
-                            <span>Trusted Since</span>
-                            <span>2017</span>
+                            <span>100%</span>
+                            <span>Satisfaction</span>
                         </div>
-                        <p class="heading">CarePlus Services</p>
+                        <p class="heading">Customer Guarantee</p>
                         <div class="categories">
-                            <span>Maintenance</span>
-                            <span>24/7</span>
+                            <span>Trusted</span>
+                            <span>Guaranteed</span>
                         </div>
                     </div>
                     <div class="footer">
-                        Platinum Partner
+                        Satisfaction Promise
                     </div>
                 </div>
                 
                 <div class="trust-card">
                     <div class="main-content">
                         <div class="header">
-                            <span>Trusted Since</span>
-                            <span>2021</span>
+                            <span>Fast</span>
+                            <span>Response</span>
                         </div>
-                        <p class="heading">ServiceHub Network</p>
+                        <p class="heading">Quick Response Time</p>
                         <div class="categories">
-                            <span>Multi-Service</span>
-                            <span>Verified</span>
+                            <span>1-Hour</span>
+                            <span>Response</span>
                         </div>
                     </div>
                     <div class="footer">
-                        Strategic Partner
+                        Quick Service
+                    </div>
+                </div>
+                
+                <div class="trust-card">
+                    <div class="main-content">
+                        <div class="header">
+                            <span>Affordable</span>
+                            <span>Prices</span>
+                        </div>
+                        <p class="heading">Competitive Pricing</p>
+                        <div class="categories">
+                            <span>Fair</span>
+                            <span>Transparent</span>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        Best Value
                     </div>
                 </div>
             </div>
@@ -394,9 +281,9 @@
                             <span>Testimonial</span>
                             <span>★★★★★</span>
                         </div>
-                        <p class="heading">"Extremely Professional & Thorough"</p>
+                        <p class="heading">"Highly Professional & Precise"</p>
                         <div class="testimonial-content">
-                            "The cleaning team was extremely professional and thorough. Our building common areas have never looked better. Highly recommended!"
+                            "The cleaning team was extremely professional and precise. Our building's common areas have never been this clean. Highly recommended!"
                         </div>
                         <div class="categories">
                             <span>Cleaning</span>
@@ -417,9 +304,9 @@
                             <span>Testimonial</span>
                             <span>★★★★★</span>
                         </div>
-                        <p class="heading">"Quick Emergency Response"</p>
+                        <p class="heading">"Fast Emergency Response"</p>
                         <div class="testimonial-content">
-                            "Quick response for our emergency plumbing issue. The technician arrived within an hour and fixed the problem efficiently."
+                            "Quick response to an emergency plumbing issue. The technician arrived within an hour and fixed the problem efficiently."
                         </div>
                         <div class="categories">
                             <span>Maintenance</span>
@@ -429,7 +316,7 @@
                     <div class="footer">
                         <div class="author-info">
                             <h4>Mariam Jaber</h4>
-                            <p>School Administrator</p>
+                            <p>School Director</p>
                         </div>
                     </div>
                 </div>
@@ -442,7 +329,7 @@
                         </div>
                         <p class="heading">"Flawless Regular Service"</p>
                         <div class="testimonial-content">
-                            "Regular maintenance service for our elevators has been flawless. The team is always punctual and professional."
+                            "The regular elevator maintenance service has been flawless. The team is always on time and professional."
                         </div>
                         <div class="categories">
                             <span>Maintenance</span>
@@ -451,7 +338,7 @@
                     </div>
                     <div class="footer">
                         <div class="author-info">
-                            <h4>Khalid Al-Mansoori</h4>
+                            <h4>Khalid Al Mansouri</h4>
                             <p>Commercial Building Owner</p>
                         </div>
                     </div>
@@ -459,18 +346,14 @@
             </div>
         </div>
     </section>
-<br>
-<br>
-<br>
-<br>
-
+<br> <br> <br> <br> <br> <br> <br> 
     <!-- Footer -->
     <footer id="contact">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>BuildingCare</h3>
-                    <p>Professional building maintenance and cleaning services with verified providers.</p>
+                    <h3>FixIt</h3>
+                    <p>Professional building maintenance and cleaning services with certified providers.</p>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
@@ -487,7 +370,7 @@
                         <li><a href="features/maintenance/maintenance-services.html">Maintenance Services</a></li>
                         <li><a href="features/gallery/gallery.html">Gallery</a></li>
                         <li><a href="features/about/about.html">About Us</a></li>
-                        <li><a href="features/contact/contact.html">Contact</a></li>
+                        <li><a href="features/contact/contact.html">Contact Us</a></li>
                     </ul>
                 </div>
                 
@@ -496,13 +379,13 @@
                     <ul class="footer-links">
                         <li><i class="fas fa-map-marker-alt"></i> 123 Business District, City</li>
                         <li><i class="fas fa-phone"></i> +123 456 7890</li>
-                        <li><i class="fas fa-envelope"></i> info@buildingcare.com</li>
+                        <li><i class="fas fa-envelope"></i> info@fixit.com</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 BuildingCare. All rights reserved.</p>
+                <p>&copy; 2023 FixIt. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -513,5 +396,34 @@
     </div>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        function switchLanguage() {
+            // This will switch to Arabic version
+            window.location.href = 'index-ar.html';
+        }
+
+        // Dark mode toggle functionality
+        document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            const icon = document.querySelector('#dark-mode-toggle i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    </script>
 </body>
 </html>
