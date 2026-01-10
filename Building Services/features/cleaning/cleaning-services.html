@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cleaning Services - BuildingCare</title>
+    <title>Cleaning Services - FixIt</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="cleaning.css">
 </head>
 <body>
-    <!-- Header - Updated with home page navbar -->
+    <!-- Header - Updated with FixIt logo and dark mode -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-building" style="font-size: 2rem; color: var(--primary-light);"></i>
-                <span class="logo-text">BuildingCare</span>
+                <!-- FixIt Logo -->
+                <img src="../../assets/images/logo2.png" alt="FixIt Logo" class="logo-img">
+                <span class="logo-text">FixIt</span>
             </div>
             
             <nav id="main-nav">
@@ -33,7 +34,10 @@
             </nav>
             
             <div class="header-actions">
-                <button class="lang-toggle" id="lang-toggle">EN</button>
+                <button class="lang-toggle" id="lang-toggle" onclick="switchLanguage()">AR</button>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
                 <button class="mobile-menu-btn" id="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -73,7 +77,7 @@
             </div>
             
             <div class="services-detailed-grid">
-                <!-- Stairwell Cleaning -->
+                <!-- Home Cleaning -->
                 <div class="e-card playing card-1">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -81,20 +85,20 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-stairs"></i>
+                            <img src="../../assets/images/cleaning-house-icon.png" alt="Home Cleaning" class="service-icon-img">
                         </div>
-                        <div class="service-type">Professional Service</div>
-                        <div class="service-name">Stairwell Cleaning</div>
+                        <div class="service-type">Complete Service</div>
+                        <div class="service-name">Home Cleaning</div>
                         <div class="service-features-list">
-                            • Step deep cleaning<br>
-                            • Handrail sanitization<br>
-                            • Wall & corner cleaning
+                            • All rooms & spaces<br>
+                            • Eco-friendly products<br>
+                            • Professional equipment
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('home-cleaning')">Book Service</button>
                 </div>
                 
-                <!-- Home Cleaning -->
+                <!-- Stairwell Cleaning -->
                 <div class="e-card playing card-2">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -102,20 +106,20 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-home"></i>
+                            <img src="../../assets/images/stairs-icon.png" alt="Stairwell Cleaning" class="service-icon-img">
                         </div>
-                        <div class="service-type">Complete Service</div>
-                        <div class="service-name">Home Cleaning</div>
+                        <div class="service-type">Professional Service</div>
+                        <div class="service-name">Stairwell Cleaning</div>
                         <div class="service-features-list">
-                            • Kitchen & bathroom<br>
-                            • Floor vacuuming<br>
-                            • Complete dusting
+                            • Common areas cleaning<br>
+                            • Handrail sanitization<br>
+                            • Wall & corner cleaning
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('stairwell-cleaning')">Book Service</button>
                 </div>
                 
-                <!-- Window Cleaning -->
+                <!-- Sofa Cleaning -->
                 <div class="e-card playing card-3">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -123,7 +127,28 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-window-maximize"></i>
+                            <img src="../../assets/images/couch-cleaning-icon.png" alt="Sofa Cleaning" class="service-icon-img">
+                        </div>
+                        <div class="service-type">Deep Cleaning</div>
+                        <div class="service-name">Sofa Cleaning</div>
+                        <div class="service-features-list">
+                            • Fabric preservation<br>
+                            • Stain removal<br>
+                            • Modern techniques
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('sofa-cleaning')">Book Service</button>
+                </div>
+                
+                <!-- Window Cleaning -->
+                <div class="e-card playing card-4">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/window-cleaner-icon.png" alt="Window Cleaning" class="service-icon-img">
                         </div>
                         <div class="service-type">Exterior/Interior</div>
                         <div class="service-name">Window Cleaning</div>
@@ -133,31 +158,10 @@
                             • Hard-to-reach access
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('window-cleaning')">Book Service</button>
                 </div>
                 
-                <!-- Upholstery & Carpet -->
-                <div class="e-card playing card-4">
-                    <div class="wave"></div>
-                    <div class="wave"></div>
-                    <div class="wave"></div>
-                    
-                    <div class="infotop">
-                        <div class="e-card-icon">
-                            <i class="fas fa-couch"></i>
-                        </div>
-                        <div class="service-type">Deep Cleaning</div>
-                        <div class="service-name">Upholstery & Carpet</div>
-                        <div class="service-features-list">
-                            • Steam cleaning<br>
-                            • Stain removal<br>
-                            • Quick-drying process
-                        </div>
-                    </div>
-                    <button class="e-card-book-btn">Book Service</button>
-                </div>
-                
-                <!-- Garden & Outdoor -->
+                <!-- Garden Cleaning -->
                 <div class="e-card playing card-5">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -165,17 +169,17 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-tree"></i>
+                            <img src="../../assets/images/garden-icon.png" alt="Garden Cleaning" class="service-icon-img">
                         </div>
                         <div class="service-type">Outdoor Service</div>
-                        <div class="service-name">Garden & Outdoor</div>
+                        <div class="service-name">Garden Cleaning</div>
                         <div class="service-features-list">
+                            • Trimming & arrangement<br>
                             • Debris removal<br>
-                            • Pressure washing<br>
-                            • Seasonal cleanup
+                            • Pressure washing
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('garden-cleaning')">Book Service</button>
                 </div>
                 
                 <!-- Water Tank Cleaning -->
@@ -186,17 +190,38 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-tint"></i>
+                            <img src="../../assets/images/water-filter-icon.png" alt="Water Tank Cleaning" class="service-icon-img">
                         </div>
                         <div class="service-type">Specialized Service</div>
                         <div class="service-name">Water Tank Cleaning</div>
                         <div class="service-features-list">
                             • Tank drainage<br>
-                            • Disinfection<br>
+                            • Sterilization<br>
                             • Filter replacement
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('watertank-cleaning')">Book Service</button>
+                </div>
+                
+                <!-- Pest Control -->
+                <div class="e-card playing card-1">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/control-arrows-icon.png" alt="Pest Control" class="service-icon-img">
+                        </div>
+                        <div class="service-type">Protection Service</div>
+                        <div class="service-name">Pest Control</div>
+                        <div class="service-features-list">
+                            • Rodent control<br>
+                            • Safe materials<br>
+                            • Certified methods
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('pest-control')">Book Service</button>
                 </div>
             </div>
         </div>
@@ -243,32 +268,55 @@
     <footer>
         <div class="container">
             <div class="footer-bottom">
-                <p>&copy; 2023 BuildingCare. All rights reserved.</p>
+                <p>&copy; 2023 FixIt. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-    // Back to home button
-    document.querySelector('.back-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = '../index.html';
+    // Language switcher
+    function switchLanguage() {
+        window.location.href = 'cleaning-services-ar.html';
+    }
+
+    // Dark mode toggle functionality
+    document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        const icon = this.querySelector('i');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('darkMode', 'disabled');
+        }
     });
+
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        const icon = document.querySelector('#dark-mode-toggle i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+
+    // Book service function - opens booking page
+    function bookService(serviceType) {
+        // Store the selected service type
+        localStorage.setItem('selectedService', serviceType);
+        
+        // Redirect to booking page
+        window.location.href = 'booking-form.html';
+    }
 
     // E-Card click events
     const eCards = document.querySelectorAll('.e-card');
     eCards.forEach(card => {
-        const button = card.querySelector('.e-card-book-btn');
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const serviceName = card.querySelector('.service-name').textContent;
-            alert(`Booking ${serviceName} service. Redirecting to booking form...`);
-            // In production: window.location.href = 'booking-form.html';
-        });
-        
         card.addEventListener('click', function() {
             const serviceName = this.querySelector('.service-name').textContent;
-            alert(`Viewing details for: ${serviceName}`);
+            console.log(`Viewing details for: ${serviceName}`);
         });
         
         // Add hover animation
@@ -296,11 +344,6 @@
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
         });
-        
-        card.addEventListener('click', function() {
-            const tip = this.querySelector('.tip').textContent;
-            alert(`Learn more about: ${tip}`);
-        });
     });
     
     // Initialize all e-cards with playing class on load
@@ -319,6 +362,6 @@
             dot.style.animationDelay = `${index * 0.5}s`;
         });
     });
-</script>
+    </script>
 </body>
 </html>

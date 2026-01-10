@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Maintenance Service - FixIt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="maintenance.css">
+    <style>
+        .booking-container {
+            padding: 140px 0 60px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .service-hero-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .booking-form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(4, 69, 80, 0.1);
+        }
+        
+        .booking-form-title {
+            font-size: 2.5rem;
+            color: #044550;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .service-description {
+            font-size: 1.1rem;
+            color: #086e77;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #044550;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .form-select, .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: #086e77;
+            box-shadow: 0 0 0 3px rgba(4, 69, 80, 0.1);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 10px 20px;
+            background: #e9ecef;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-label:hover {
+            background: #9fd3cd;
+        }
+        
+        .radio-label input[type="radio"]:checked + span {
+            color: #044550;
+            font-weight: 600;
+        }
+        
+        .features-list {
+            background: #daf1de;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .features-list li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #086e77;
+            font-weight: bold;
+        }
+        
+        .price-display {
+            font-size: 2.5rem;
+            color: #044550;
+            text-align: center;
+            margin: 30px 0;
+            font-weight: 700;
+        }
+        
+        .price-note {
+            text-align: center;
+            color: #adb5bd;
+            font-size: 0.9rem;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+        
+        .book-now-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #044550, #086e77);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .book-now-btn:hover {
+            background: linear-gradient(135deg, #086e77, #4fb3ae);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(4, 69, 80, 0.2);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: #086e77;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-btn:hover {
+            color: #044550;
+            text-decoration: underline;
+        }
+        
+        /* Service-specific colors */
+        .electrical-repair .price-display {
+            color: #044550;
+        }
+        
+        .home-electrical .price-display {
+            color: #086e77;
+        }
+        
+        .plumbing-service .price-display {
+            color: #19396c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../../assets/images/logo2.png" alt="FixIt Logo" class="logo-img">
+                <span class="logo-text">FixIt</span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../cleaning/cleaning-services.html">Cleaning Services</a></li>
+                    <li><a href="maintenance-services.html">Maintenance Services</a></li>
+                    <li><a href="../gallery/gallery.html">Gallery</a></li>
+                    <li><a href="../about/about.html">About Us</a></li>
+                    <li><a href="../faq/faq.html">FAQ</a></li>
+                    <li><a href="../auth/login.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle" onclick="switchLanguage()">AR</button>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="booking-container">
+        <div class="container">
+            <div class="booking-form-wrapper" id="bookingForm">
+                <!-- Service image will be inserted here by JavaScript -->
+                <img id="serviceImage" class="service-hero-image" alt="Service Image">
+                
+                <h1 id="serviceTitle" class="booking-form-title"></h1>
+                <p id="serviceDescription" class="service-description"></p>
+                
+                <form id="bookingFormElement">
+                    <div class="form-group">
+                        <label class="form-label">Where? Select Your City</label>
+                        <select class="form-select" id="citySelect" required>
+                            <option value="">Select your city</option>
+                            <option value="ramallah">Ramallah</option>
+                            <option value="nablus">Nablus</option>
+                            <option value="jerusalem">Jerusalem</option>
+                            <option value="bethlehem">Bethlehem</option>
+                            <option value="hebron">Hebron</option>
+                            <option value="jenin">Jenin</option>
+                            <option value="tulkarem">Tulkarem</option>
+                            <option value="qalqilya">Qalqilya</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Service Frequency</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="one-time" required>
+                                <span>One Time</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="weekly">
+                                <span>Weekly</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="bi-weekly">
+                                <span>Bi-Weekly</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="monthly">
+                                <span>Monthly</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">What's Included</label>
+                        <ul id="serviceFeatures" class="features-list">
+                            <!-- Features will be inserted by JavaScript -->
+                        </ul>
+                    </div>
+                    
+                    <div class="price-display" id="servicePrice">
+                        <!-- Price will be inserted by JavaScript -->
+                    </div>
+                    <p class="price-note">* Price may vary based on complexity and additional requirements</p>
+                    
+                    <button type="submit" class="book-now-btn">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </button>
+                    
+                    <a href="maintenance-services.html" class="back-btn">
+                        <i class="fas fa-arrow-left"></i> Back to Services
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Maintenance service data
+    const serviceData = {
+        'electrical-repair': {
+            title: 'Electrical Repair',
+            description: 'Efficient and safe electrical fault repair and maintenance by certified electricians.',
+            image: '../../assets/images/electrical appliances1.jpg',
+            features: [
+                'Electrical fault diagnosis',
+                'Safe repair procedures',
+                'Circuit testing and troubleshooting',
+                'Wiring inspection',
+                'Safety compliance check',
+                'Quality parts replacement',
+                'Post-repair testing'
+            ],
+            price: '₪200'
+        },
+        'home-electrical': {
+            title: 'Home Electrical',
+            description: 'Comprehensive home electrical services including installation and maintenance.',
+            image: '../../assets/images/homeElectrical1.jpg',
+            features: [
+                'Complete electrical installation',
+                'Wiring system maintenance',
+                'Lighting system upgrades',
+                'Circuit breaker inspection',
+                'Power outlet installation',
+                'Electrical safety audit',
+                'Energy efficiency consultation'
+            ],
+            price: '₪350'
+        },
+        'plumbing-service': {
+            title: 'Plumbing Service',
+            description: 'Professional plumbing services to solve all water and drainage issues.',
+            image: '../../assets/images/plumbingMaintenance1.jpg',
+            features: [
+                'Leak detection and repair',
+                'Pipe installation and replacement',
+                'Drain cleaning and unclogging',
+                'Water heater installation',
+                'Fixture installation',
+                'Water pressure adjustment',
+                'Emergency plumbing services'
+            ],
+            price: '₪250'
+        },
+        'gas-maintenance': {
+            title: 'Gas Maintenance',
+            description: 'Gas and HVAC system maintenance to maintain optimal performance.',
+            image: '../../assets/images/gasMaintenance1.jpg',
+            features: [
+                'Gas line inspection',
+                'Leak detection and repair',
+                'HVAC system maintenance',
+                'Performance optimization',
+                'Safety compliance check',
+                'Filter replacement',
+                'System efficiency testing'
+            ],
+            price: '₪300'
+        },
+        'elevator-maintenance': {
+            title: 'Elevator Maintenance',
+            description: 'Periodic and specialized elevator maintenance to ensure safety and efficiency.',
+            image: '../../assets/images/Elevator-Maintenance.webp',
+            features: [
+                'Regular safety inspections',
+                'Emergency repair services',
+                'Parts replacement',
+                'Performance testing',
+                'Safety standards compliance',
+                'Preventive maintenance',
+                '24/7 emergency support'
+            ],
+            price: '₪500'
+        },
+        'aluminum-work': {
+            title: 'Aluminum Work',
+            description: 'Installation and maintenance of metal and aluminum works.',
+            image: '../../assets/images/alumium-glass2.jpg',
+            features: [
+                'Aluminum installation',
+                'Metal works fabrication',
+                'Window and door installation',
+                'Structural maintenance',
+                'Quality craftsmanship',
+                'Custom design work',
+                'Finishing and polishing'
+            ],
+            price: '₪400'
+        },
+        'hvac-maintenance': {
+            title: 'HVAC Maintenance',
+            description: 'Air conditioning maintenance to ensure optimal performance and comfort year-round.',
+            image: '../../assets/images/hvacMaintenance1.jpg',
+            features: [
+                'AC system cleaning',
+                'Filter replacement',
+                'Performance optimization',
+                'Refrigerant level check',
+                'Duct cleaning',
+                'Energy efficiency assessment',
+                'Seasonal maintenance'
+            ],
+            price: '₪280'
+        }
+    };
+
+    // Get selected service from localStorage
+    const selectedService = localStorage.getItem('selectedService') || 'electrical-repair';
+    const service = serviceData[selectedService];
+
+    // Populate booking form with service data
+    document.addEventListener('DOMContentLoaded', function() {
+        if (service) {
+            // Set service title and description
+            document.getElementById('serviceTitle').textContent = service.title;
+            document.getElementById('serviceDescription').textContent = service.description;
+            document.getElementById('serviceImage').src = service.image;
+            document.getElementById('serviceImage').alt = service.title + ' Service';
+            
+            // Set service price
+            document.getElementById('servicePrice').textContent = service.price;
+            
+            // Add service class for styling
+            document.getElementById('bookingForm').classList.add(selectedService);
+            
+            // Populate features list
+            const featuresList = document.getElementById('serviceFeatures');
+            featuresList.innerHTML = '';
+            service.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+        }
+        
+        // Add form submission handler
+        document.getElementById('bookingFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const city = document.getElementById('citySelect').value;
+            const frequency = document.querySelector('input[name="frequency"]:checked')?.value;
+            
+            if (!city || !frequency) {
+                alert('Please select your city and service frequency');
+                return;
+            }
+            
+            // Here you would normally send this data to a server
+            const bookingData = {
+                service: service.title,
+                category: 'maintenance',
+                city: city,
+                frequency: frequency,
+                price: service.price,
+                date: new Date().toISOString()
+            };
+            
+            // Store booking in localStorage (for demo purposes)
+            localStorage.setItem('lastBooking', JSON.stringify(bookingData));
+            
+            // Show success message
+            alert(`Booking confirmed for ${service.title} in ${city} (${frequency})!\nTotal: ${service.price}\n\nThank you for choosing FixIt!`);
+            
+            // Redirect to confirmation page or home
+            window.location.href = '../index.html';
+        });
+        
+        // Dark mode toggle
+        document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            const icon = document.querySelector('#dark-mode-toggle i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    });
+    
+    function switchLanguage() {
+        // Redirect to Arabic version when available
+        window.location.href = 'maintenance-services-ar.html';
+    }
+    </script>
+</body>
+</html>

@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maintenance Services - BuildingCare</title>
+    <title>Maintenance Services - FixIt</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/base.css">
     <link rel="stylesheet" href="maintenance.css">
 </head>
 <body>
-    <!-- Header - Updated with home page navbar -->
+    <!-- Header - Updated with FixIt logo and dark mode -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <i class="fas fa-building" style="font-size: 2rem; color: var(--primary-light);"></i>
-                <span class="logo-text">BuildingCare</span>
+                <!-- FixIt Logo -->
+                <img src="../../assets/images/logo2.png" alt="FixIt Logo" class="logo-img">
+                <span class="logo-text">FixIt</span>
             </div>
             
             <nav id="main-nav">
@@ -33,7 +34,10 @@
             </nav>
             
             <div class="header-actions">
-                <button class="lang-toggle" id="lang-toggle">EN</button>
+                <button class="lang-toggle" id="lang-toggle" onclick="switchLanguage()">AR</button>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
                 <button class="mobile-menu-btn" id="mobile-menu-btn">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -73,7 +77,7 @@
             </div>
             
             <div class="services-detailed-grid">
-                <!-- Electrical Appliance Repair -->
+                <!-- Electrical Repair -->
                 <div class="e-card playing card-1">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -81,20 +85,20 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-plug"></i>
+                            <img src="../../assets/images/Electrical Repair Icon.png" alt="Electrical Repair" class="service-icon-img">
                         </div>
-                        <div class="service-type">Appliance Service</div>
-                        <div class="service-name">Electrical Appliance Repair</div>
+                        <div class="service-type">Electrical Service</div>
+                        <div class="service-name">Electrical Repair</div>
                         <div class="service-features-list">
-                            • Certified appliance technicians<br>
-                            • Diagnosis & troubleshooting<br>
-                            • Genuine parts replacement
+                            • Fault detection & repair<br>
+                            • Safe electrical maintenance<br>
+                            • Certified technicians
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('electrical-repair')">Book Service</button>
                 </div>
                 
-                <!-- Home Electrical Maintenance -->
+                <!-- Home Electrical -->
                 <div class="e-card playing card-2">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -102,20 +106,20 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-bolt"></i>
+                            <img src="../../assets/images/Home Electrical Appliances.png" alt="Home Electrical" class="service-icon-img">
                         </div>
-                        <div class="service-type">Electrical Service</div>
-                        <div class="service-name">Home Electrical Maintenance</div>
+                        <div class="service-type">Comprehensive Service</div>
+                        <div class="service-name">Home Electrical</div>
                         <div class="service-features-list">
-                            • Wiring inspection & repair<br>
-                            • Circuit breaker maintenance<br>
-                            • Lighting system upgrades
+                            • Installation & maintenance<br>
+                            • Wiring inspection<br>
+                            • System upgrades
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('home-electrical')">Book Service</button>
                 </div>
                 
-                <!-- Plumbing Services -->
+                <!-- Plumbing Service -->
                 <div class="e-card playing card-3">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -123,17 +127,17 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-faucet"></i>
+                            <img src="../../assets/images/Water Tap Icon.png" alt="Plumbing Service" class="service-icon-img">
                         </div>
-                        <div class="service-type">Plumbing Service</div>
-                        <div class="service-name">Plumbing Services</div>
+                        <div class="service-type">Professional Service</div>
+                        <div class="service-name">Plumbing Service</div>
                         <div class="service-features-list">
                             • Leak detection & repair<br>
-                            • Pipe installation<br>
-                            • Water heater installation
+                            • Drainage solutions<br>
+                            • Water system maintenance
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('plumbing-service')">Book Service</button>
                 </div>
                 
                 <!-- Gas Maintenance -->
@@ -144,17 +148,17 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-fire"></i>
+                            <img src="../../assets/images/Gas Icon.png" alt="Gas Maintenance" class="service-icon-img">
                         </div>
-                        <div class="service-type">Gas Service</div>
+                        <div class="service-type">Gas & HVAC Service</div>
                         <div class="service-name">Gas Maintenance</div>
                         <div class="service-features-list">
+                            • HVAC system maintenance<br>
                             • Gas line inspection<br>
-                            • Leak detection & repair<br>
-                            • Safety compliance
+                            • Performance optimization
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('gas-maintenance')">Book Service</button>
                 </div>
                 
                 <!-- Elevator Maintenance -->
@@ -165,20 +169,20 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-elevator"></i>
+                            <img src="../../assets/images/Elevator Repair Icon.png" alt="Elevator Maintenance" class="service-icon-img">
                         </div>
-                        <div class="service-type">Elevator Service</div>
+                        <div class="service-type">Specialized Service</div>
                         <div class="service-name">Elevator Maintenance</div>
                         <div class="service-features-list">
-                            • Regular inspection<br>
-                            • Emergency repair<br>
-                            • Safety standards compliance
+                            • Periodic maintenance<br>
+                            • Safety inspections<br>
+                            • Emergency repairs
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('elevator-maintenance')">Book Service</button>
                 </div>
                 
-                <!-- HVAC Maintenance -->
+                <!-- Aluminum Work -->
                 <div class="e-card playing card-3">
                     <div class="wave"></div>
                     <div class="wave"></div>
@@ -186,17 +190,38 @@
                     
                     <div class="infotop">
                         <div class="e-card-icon">
-                            <i class="fas fa-wind"></i>
+                            <img src="../../assets/images/Metal Work Icon.png" alt="Aluminum Work" class="service-icon-img">
                         </div>
-                        <div class="service-type">HVAC Service</div>
+                        <div class="service-type">Metal Work Service</div>
+                        <div class="service-name">Aluminum Work</div>
+                        <div class="service-features-list">
+                            • Installation & maintenance<br>
+                            • Metal works<br>
+                            • Quality craftsmanship
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('aluminum-work')">Book Service</button>
+                </div>
+                
+                <!-- HVAC Maintenance -->
+                <div class="e-card playing card-1">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/HVAC Service Icon.png" alt="HVAC Maintenance" class="service-icon-img">
+                        </div>
+                        <div class="service-type">Air Conditioning</div>
                         <div class="service-name">HVAC Maintenance</div>
                         <div class="service-features-list">
                             • AC system cleaning<br>
-                            • Filter replacement<br>
-                            • Performance optimization
+                            • Performance optimization<br>
+                            • Year-round comfort
                         </div>
                     </div>
-                    <button class="e-card-book-btn">Book Service</button>
+                    <button class="e-card-book-btn" onclick="bookService('hvac-maintenance')">Book Service</button>
                 </div>
             </div>
         </div>
@@ -243,32 +268,56 @@
     <footer>
         <div class="container">
             <div class="footer-bottom">
-                <p>&copy; 2023 BuildingCare. All rights reserved.</p>
+                <p>&copy; 2023 FixIt. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-    // Back to home button
-    document.querySelector('.back-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = '../index.html';
+    // Language switcher
+    function switchLanguage() {
+        window.location.href = 'maintenance-services-ar.html';
+    }
+
+    // Dark mode toggle functionality
+    document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        const icon = this.querySelector('i');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('darkMode', 'disabled');
+        }
     });
+
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        const icon = document.querySelector('#dark-mode-toggle i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+
+    // Book service function - opens booking page
+    function bookService(serviceType) {
+        // Store the selected service type
+        localStorage.setItem('selectedService', serviceType);
+        localStorage.setItem('serviceCategory', 'maintenance');
+        
+        // Redirect to booking page
+        window.location.href = 'booking-form.html';
+    }
 
     // E-Card click events
     const eCards = document.querySelectorAll('.e-card');
     eCards.forEach(card => {
-        const button = card.querySelector('.e-card-book-btn');
-        button.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const serviceName = card.querySelector('.service-name').textContent;
-            alert(`Booking ${serviceName} service. Redirecting to booking form...`);
-            // In production: window.location.href = 'booking-form.html';
-        });
-        
         card.addEventListener('click', function() {
             const serviceName = this.querySelector('.service-name').textContent;
-            alert(`Viewing details for: ${serviceName}`);
+            console.log(`Viewing details for: ${serviceName}`);
         });
         
         // Add hover animation
@@ -296,11 +345,6 @@
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
         });
-        
-        card.addEventListener('click', function() {
-            const tip = this.querySelector('.tip').textContent;
-            alert(`Learn more about: ${tip}`);
-        });
     });
     
     // Initialize all e-cards with playing class on load
@@ -319,6 +363,6 @@
             dot.style.animationDelay = `${index * 0.5}s`;
         });
     });
-</script>
+    </script>
 </body>
 </html>

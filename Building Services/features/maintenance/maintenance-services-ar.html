@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمات الصيانة - فيكس إت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="maintenance.css">
+</head>
+<body class="rtl">
+    <!-- Header - Updated with FixIt logo and dark mode -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- FixIt Logo -->
+                <img src="../../assets/images/logo2.png" alt="شعار فيكس إت" class="logo-img">
+                <span class="logo-text">فيكس إت</span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index-ar.html">الرئيسية</a></li>
+                    <li><a href="../cleaning/cleaning-services-ar.html">خدمات التنظيف</a></li>
+                    <li><a href="maintenance-services-ar.html">خدمات الصيانة</a></li>
+                    <li><a href="../gallery/gallery-ar.html">المعرض</a></li>
+                    <li><a href="../about/about-ar.html">من نحن</a></li>
+                    <li><a href="../faq/faq-ar.html">الأسئلة الشائعة</a></li>
+                    <li><a href="../auth/login-ar.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle" onclick="switchLanguage()">EN</button>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-maintenance-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="tracking-in-contract">عن خدمة الصيانة لدينا</h2>
+                <p>اختبر خدمات صيانة متميزة مع فنيينا المعتمدين المكرسين للتميز</p>
+            </div>
+            
+            <div class="cards-container cards">
+                <div class="card-item card-1">
+                    <p class="tip">خبرة معتمدة</p>
+                    <p class="second-text">يتكون فريقنا من فنيين مرخصين ومعتمدين يتبعون معايير الصناعة ويحافظون على أعلى جودة في العمل بدقة.</p>
+                </div>
+                <div class="card-item card-2">
+                    <p class="tip">استجابة سريعة</p>
+                    <p class="second-text">نفهم إلحاح مشكلات الصيانة. يوفر فريقنا أوقات استجابة سريعة وحلولًا فعالة لتقليل وقت التوقف.</p>
+                </div>
+                <div class="card-item card-3">
+                    <p class="tip">ضمان الجودة</p>
+                    <p class="second-text">نستخدم قطع غيار متميزة ونتبع فحوصات جودة صارمة لضمان أن كل إصلاح وعمل صيانة يفي بمعايير الصناعة أو يتجاوزها.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدمات الصيانة لدينا</h2>
+                <p>اكتشف مجموعة شاملة من حلول الصيانة الاحترافية مع بطاقات متحركة جميلة</p>
+            </div>
+            
+            <div class="services-detailed-grid">
+                <!-- إصلاح كهربائي -->
+                <div class="e-card playing card-1">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/electrical-repair-icon.png" alt="إصلاح كهربائي" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة كهربائية</div>
+                        <div class="service-name">إصلاح كهربائي</div>
+                        <div class="service-features-list">
+                            • كشف وإصلاح الأعطال<br>
+                            • صيانة كهربائية آمنة<br>
+                            • فنيون معتمدون
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('electrical-repair')">احجز الخدمة</button>
+                </div>
+                
+                <!-- كهرباء المنازل -->
+                <div class="e-card playing card-2">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/home-electrical-icon.png" alt="كهرباء المنازل" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة شاملة</div>
+                        <div class="service-name">كهرباء المنازل</div>
+                        <div class="service-features-list">
+                            • تركيب وصيانة<br>
+                            • فحص الأسلاك<br>
+                            • ترقيات الأنظمة
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('home-electrical')">احجز الخدمة</button>
+                </div>
+                
+                <!-- خدمات السباكة -->
+                <div class="e-card playing card-3">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/plumbing-icon.png" alt="خدمات السباكة" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة احترافية</div>
+                        <div class="service-name">خدمات السباكة</div>
+                        <div class="service-features-list">
+                            • كشف وإصلاح التسريبات<br>
+                            • حلول الصرف الصحي<br>
+                            • صيانة نظام المياه
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('plumbing-service')">احجز الخدمة</button>
+                </div>
+                
+                <!-- صيانة الغاز -->
+                <div class="e-card playing card-1">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/gas-maintenance-icon.png" alt="صيانة الغاز" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة غاز وتكييف</div>
+                        <div class="service-name">صيانة الغاز</div>
+                        <div class="service-features-list">
+                            • صيانة أنظمة التكييف<br>
+                            • فحص خطوط الغاز<br>
+                            • تحسين الأداء
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('gas-maintenance')">احجز الخدمة</button>
+                </div>
+                
+                <!-- صيانة المصاعد -->
+                <div class="e-card playing card-2">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/elevator-icon.png" alt="صيانة المصاعد" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة متخصصة</div>
+                        <div class="service-name">صيانة المصاعد</div>
+                        <div class="service-features-list">
+                            • صيانة دورية<br>
+                            • فحوصات السلامة<br>
+                            • إصلاحات طارئة
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('elevator-maintenance')">احجز الخدمة</button>
+                </div>
+                
+                <!-- أعمال الألمنيوم -->
+                <div class="e-card playing card-3">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/aluminum-work-icon.png" alt="أعمال الألمنيوم" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة أعمال معدنية</div>
+                        <div class="service-name">أعمال الألمنيوم</div>
+                        <div class="service-features-list">
+                            • تركيب وصيانة<br>
+                            • أعمال معدنية<br>
+                            • إتقان في الصنعة
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('aluminum-work')">احجز الخدمة</button>
+                </div>
+                
+                <!-- صيانة التكييف -->
+                <div class="e-card playing card-1">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/hvac-icon.png" alt="صيانة التكييف" class="service-icon-img">
+                        </div>
+                        <div class="service-type">تكييف الهواء</div>
+                        <div class="service-name">صيانة التكييف</div>
+                        <div class="service-features-list">
+                            • تنظيف أنظمة التكييف<br>
+                            • تحسين الأداء<br>
+                            • راحة على مدار العام
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('hvac-maintenance')">احجز الخدمة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="join-team-section">
+        <div class="container">
+
+            <div class="color-dots">
+            <div class="color-dot"></div>
+            <div class="color-dot"></div>
+            <div class="color-dot"></div>
+            <div class="color-dot"></div>
+            <div class="color-dot"></div>
+            </div>
+
+            <h2>انضم إلى فريق الصيانة المحترف لدينا</h2>
+            <p>كن جزءًا من عائلتنا المتنامية من محترفي الصيانة. نقدم أسعارًا تنافسية وجداول مرنة وتدريبًا مستمرًا لمساعدتك على النجاح في حياتك المهنية التقنية.</p>
+            
+            <button class="custom-button shake-bottom">
+                <div class="bg"></div>
+                <div class="wrap">
+                    <div class="content">
+                        <span class="char">
+                            <span>ا</span>
+                            <span>ن</span>
+                            <span>ض</span>
+                            <span>م</span>
+                            <span> </span>
+                            <span>إ</span>
+                            <span>ل</span>
+                            <span>ي</span>
+                            <span>ن</span>
+                            <span>ا</span>
+                            <span>!</span>
+                        </span>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 فيكس إت. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Language switcher
+    function switchLanguage() {
+        window.location.href = 'maintenance-services.html';
+    }
+
+    // Dark mode toggle functionality
+    document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        const icon = this.querySelector('i');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        const icon = document.querySelector('#dark-mode-toggle i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+
+    // Book service function - opens booking page
+    function bookService(serviceType) {
+        // Store the selected service type
+        localStorage.setItem('selectedService', serviceType);
+        localStorage.setItem('serviceCategory', 'maintenance');
+        
+        // Redirect to Arabic booking page
+        window.location.href = 'booking-form-ar.html';
+    }
+
+    // E-Card click events
+    const eCards = document.querySelectorAll('.e-card');
+    eCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const serviceName = this.querySelector('.service-name').textContent;
+            console.log(`عرض تفاصيل: ${serviceName}`);
+        });
+        
+        // Add hover animation
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('playing');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('playing');
+        });
+    });
+    
+    // Join team button
+    document.querySelector('.custom-button').addEventListener('click', function() {
+        window.location.href = '../auth/role-selection-ar.html';
+    });
+    
+    // About cards hover effect
+    const cards = document.querySelectorAll('.card-item');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // Initialize all e-cards with playing class on load
+    window.addEventListener('load', function() {
+        eCards.forEach(card => {
+            card.classList.add('playing');
+            // Remove playing class after 3 seconds to save resources
+            setTimeout(() => {
+                card.classList.remove('playing');
+            }, 3000);
+        });
+        
+        // Add floating animation to colorful dots
+        const dots = document.querySelectorAll('.color-dot');
+        dots.forEach((dot, index) => {
+            dot.style.animationDelay = `${index * 0.5}s`;
+        });
+    });
+    </script>
+</body>
+</html>

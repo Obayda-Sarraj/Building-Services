@@ -746,3 +746,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const logoImg = document.querySelector('.logo-img');
+    const logoFallback = document.querySelector('.logo-fallback');
+    
+    if (logoImg) {
+        logoImg.addEventListener('error', function() {
+            logoImg.style.display = 'none';
+            if (logoFallback) {
+                logoFallback.style.display = 'block';
+            }
+        });
+    }
+});

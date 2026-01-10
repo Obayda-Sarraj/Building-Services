@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>احجز خدمة - فيكس إت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="cleaning.css">
+    <style>
+        .booking-container {
+            padding: 140px 0 60px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .service-hero-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .booking-form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(4, 69, 80, 0.1);
+        }
+        
+        .booking-form-title {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .service-description {
+            font-size: 1.1rem;
+            color: var(--primary-medium);
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .form-select, .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: var(--primary-medium);
+            box-shadow: 0 0 0 3px rgba(4, 69, 80, 0.1);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 10px 20px;
+            background: var(--gray-light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .radio-label:hover {
+            background: var(--primary-light);
+        }
+        
+        .radio-label input[type="radio"]:checked + span {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        .features-list {
+            background: var(--accent-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: right;
+        }
+        
+        .features-list li {
+            margin-bottom: 10px;
+            padding-right: 20px;
+            position: relative;
+        }
+        
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: var(--primary-medium);
+            font-weight: bold;
+        }
+        
+        .price-display {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            text-align: center;
+            margin: 30px 0;
+            font-weight: 700;
+        }
+        
+        .price-note {
+            text-align: center;
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+        
+        .book-now-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .book-now-btn:hover {
+            background: linear-gradient(135deg, var(--primary-medium), var(--gallery-accent));
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(4, 69, 80, 0.2);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--primary-medium);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-btn:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+        
+        /* Service-specific colors */
+        .home-cleaning .price-display {
+            color: var(--primary-dark);
+        }
+        
+        .stairwell-cleaning .price-display {
+            color: var(--primary-medium);
+        }
+        
+        .sofa-cleaning .price-display {
+            color: #19396c;
+        }
+        
+        .window-cleaning .price-display {
+            color: var(--gallery-accent);
+        }
+    </style>
+</head>
+<body class="rtl">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../../assets/images/logo2.png" alt="شعار فيكس إت" class="logo-img">
+                <span class="logo-text">فيكس إت</span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index-ar.html">الرئيسية</a></li>
+                    <li><a href="cleaning-services-ar.html">خدمات التنظيف</a></li>
+                    <li><a href="../maintenance/maintenance-services-ar.html">خدمات الصيانة</a></li>
+                    <li><a href="../gallery/gallery-ar.html">المعرض</a></li>
+                    <li><a href="../about/about-ar.html">من نحن</a></li>
+                    <li><a href="../faq/faq-ar.html">الأسئلة الشائعة</a></li>
+                    <li><a href="../auth/login-ar.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle" onclick="switchLanguage()">EN</button>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="booking-container">
+        <div class="container">
+            <div class="booking-form-wrapper" id="bookingForm">
+                <!-- Service image will be inserted here by JavaScript -->
+                <img id="serviceImage" class="service-hero-image" alt="صورة الخدمة">
+                
+                <h1 id="serviceTitle" class="booking-form-title"></h1>
+                <p id="serviceDescription" class="service-description"></p>
+                
+                <form id="bookingFormElement">
+                    <div class="form-group">
+                        <label class="form-label">أين؟ اختر مدينتك</label>
+                        <select class="form-select" id="citySelect" required>
+                            <option value="">اختر مدينتك</option>
+                            <option value="ramallah">رام الله</option>
+                            <option value="nablus">نابلس</option>
+                            <option value="jerusalem">القدس</option>
+                            <option value="bethlehem">بيت لحم</option>
+                            <option value="hebron">الخليل</option>
+                            <option value="jenin">جنين</option>
+                            <option value="tulkarem">طولكرم</option>
+                            <option value="qalqilya">قلقيلية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">تكرار الخدمة</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="one-time" required>
+                                <span>مرة واحدة</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="weekly">
+                                <span>أسبوعي</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="bi-weekly">
+                                <span>كل أسبوعين</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="monthly">
+                                <span>شهري</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">ما المدرج في الخدمة</label>
+                        <ul id="serviceFeatures" class="features-list">
+                            <!-- Features will be inserted by JavaScript -->
+                        </ul>
+                    </div>
+                    
+                    <div class="price-display" id="servicePrice">
+                        <!-- Price will be inserted by JavaScript -->
+                    </div>
+                    <p class="price-note">* قد يختلف السعر حسب حجم العقار والمتطلبات الإضافية</p>
+                    
+                    <button type="submit" class="book-now-btn">
+                        <i class="fas fa-calendar-check"></i> احجز الآن
+                    </button>
+                    
+                    <a href="cleaning-services-ar.html" class="back-btn">
+                        <i class="fas fa-arrow-right"></i> العودة إلى الخدمات
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Service data in Arabic
+    const serviceData = {
+        'home-cleaning': {
+            title: 'تنظيف المنازل',
+            description: 'خدمة تنظيف منزلية شاملة تغطي جميع الغرف والمساحات. يستخدم فريقنا المحترف منتجات تنظيف عالية الجودة وصديقة للبيئة.',
+            image: '../../assets/images/CleaningHome.png',
+            features: [
+                'تنظيف جميع الغرف (غرفة المعيشة، غرف النوم، المطبخ، الحمامات)',
+                'كنس وغسل الأرضيات',
+                'إزالة الغبار ومسح جميع الأسطح',
+                'تنظيف النوافذ (داخلي)',
+                'تعقيم الحمامات',
+                'تنظيف عميق للمطبخ',
+                'منتجات تنظيف صديقة للبيئة'
+            ],
+            price: '₪250'
+        },
+        'stairwell-cleaning': {
+            title: 'تنظيف السلالم',
+            description: 'تنظيف احترافي للسلالم والمناطق المشتركة في المباني السكنية والتجارية.',
+            image: '../../assets/images/stairwellCleaning1.jpg',
+            features: [
+                'تنظيف عميق للدرجات',
+                'تعقيم درابزين السلالم',
+                'تنظيف الجدران والزوايا',
+                'إزالة الحطام',
+                'تلميع الأرضيات',
+                'تنظيف تركيبات الإضاءة',
+                'صيانة المناطق المشتركة'
+            ],
+            price: '₪180'
+        },
+        'sofa-cleaning': {
+            title: 'تنظيف الكنب',
+            description: 'تنظيف عميق للكنب والأقمشة باستخدام تقنيات حديثة تحافظ على الأقمشة.',
+            image: '../../assets/images/sofa.jpg',
+            features: [
+                'محاليل تنظيف آمنة للأقمشة',
+                'معالجة إزالة البقع',
+                'تنظيف بالبخار',
+                'إزالة الروائح',
+                'عملية تجفيف سريعة',
+                'تلميع الجلد (إذا كان مطبقًا)',
+                'تطبيق حماية الأقمشة'
+            ],
+            price: '₪150'
+        },
+        'window-cleaning': {
+            title: 'تنظيف النوافذ',
+            description: 'تنظيف النوافذ الداخلية والخارجية للحصول على رؤية واضحة ونظيفة.',
+            image: '../../assets/images/Window Cleaning1.jpg',
+            features: [
+                'تنظيف الزجاج خالي من الخطوط',
+                'مسح الإطارات',
+                'الوصول للنوافذ صعبة الوصول',
+                'استخدام معدات السلامة',
+                'محاليل تنظيف صديقة للبيئة',
+                'إزالة الأوساخ والشوائب',
+                'تلميع نهائي للبريق'
+            ],
+            price: '₪120'
+        },
+        'garden-cleaning': {
+            title: 'تنظيف الحدائق',
+            description: 'خدمات العناية بالحدائق بما في ذلك التقليم والتنظيف وترتيب المساحات الخارجية.',
+            image: '../../assets/images/gardenCleaning1.jpg',
+            features: [
+                'قص وتقليم العشب',
+                'إزالة الأعشاب الضارة',
+                'صيانة أحواض النباتات',
+                'جمع الحطام والأوراق',
+                'تقليم التحوطات',
+                'تنظيف الأثاث الخارجي',
+                'تنظيف بالضغط (التراسات، الممرات)'
+            ],
+            price: '₪300'
+        },
+        'watertank-cleaning': {
+            title: 'تنظيف خزانات المياه',
+            description: 'تنظيف وتعقيم خزانات المياه لضمان مياه شرب نظيفة وآمنة.',
+            image: '../../assets/images/waterTankCleaning1.jpg',
+            features: [
+                'تصريف كامل للخزان',
+                'إزالة الرواسب والحمأة',
+                'غسيل بالضغط العالي',
+                'التعقيم والتطهير',
+                'استبدال الفلاتر',
+                'فحص جودة المياه',
+                'تقرير فحص الخزان'
+            ],
+            price: '₪400'
+        },
+        'pest-control': {
+            title: 'مكافحة الحشرات',
+            description: 'مكافحة احترافية للحشرات والقوارض باستخدام مواد آمنة ومعتمدة.',
+            image: '../../assets/images/pestControl1.jpg',
+            features: [
+                'فحص ومكافحة القوارض',
+                'إبادة الحشرات',
+                'مواد آمنة ومعتمدة',
+                'علاجات المتابعة',
+                'إجراءات الوقاية',
+                'خيارات صديقة للبيئة متاحة',
+                'نتائج مضمونة'
+            ],
+            price: '₪350'
+        }
+    };
+
+    // Get selected service from localStorage
+    const selectedService = localStorage.getItem('selectedService') || 'home-cleaning';
+    const service = serviceData[selectedService];
+
+    // Populate booking form with service data
+    document.addEventListener('DOMContentLoaded', function() {
+        if (service) {
+            // Set service title and description
+            document.getElementById('serviceTitle').textContent = service.title;
+            document.getElementById('serviceDescription').textContent = service.description;
+            document.getElementById('serviceImage').src = service.image;
+            document.getElementById('serviceImage').alt = service.title + ' الخدمة';
+            
+            // Set service price
+            document.getElementById('servicePrice').textContent = service.price;
+            
+            // Add service class for styling
+            document.getElementById('bookingForm').classList.add(selectedService);
+            
+            // Populate features list
+            const featuresList = document.getElementById('serviceFeatures');
+            service.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+        }
+        
+        // Add form submission handler
+        document.getElementById('bookingFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const city = document.getElementById('citySelect').value;
+            const frequency = document.querySelector('input[name="frequency"]:checked').value;
+            
+            if (!city) {
+                alert('الرجاء اختيار مدينتك');
+                return;
+            }
+            
+            // Here you would normally send this data to a server
+            const bookingData = {
+                service: service.title,
+                city: city,
+                frequency: frequency,
+                price: service.price,
+                date: new Date().toISOString()
+            };
+            
+            // Store booking in localStorage (for demo purposes)
+            localStorage.setItem('lastBooking', JSON.stringify(bookingData));
+            
+            // Show success message
+            alert(`تم تأكيد الحجز لـ ${service.title} في ${city} (${frequency})!\nالمجموع: ${service.price}\n\nشكرًا لاختيارك فيكس إت!`);
+            
+            // Redirect to confirmation page or home
+            window.location.href = '../index-ar.html';
+        });
+        
+        // Dark mode toggle
+        document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            const icon = document.querySelector('#dark-mode-toggle i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    });
+    
+    function switchLanguage() {
+        // Redirect to English version
+        window.location.href = 'booking-form.html';
+    }
+    </script>
+</body>
+</html>

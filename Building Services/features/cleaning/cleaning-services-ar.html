@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمات التنظيف - فيكس إت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="cleaning.css">
+</head>
+<body class="rtl">
+    <!-- Header - Updated with FixIt logo and dark mode -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <!-- FixIt Logo -->
+                <img src="../../assets/images/logo2.png" alt="شعار فيكس إت" class="logo-img">
+                <span class="logo-text">فيكس إت</span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index-ar.html">الرئيسية</a></li>
+                    <li><a href="cleaning-services-ar.html">خدمات التنظيف</a></li>
+                    <li><a href="../maintenance/maintenance-services-ar.html">خدمات الصيانة</a></li>
+                    <li><a href="../gallery/gallery-ar.html">المعرض</a></li>
+                    <li><a href="../about/about-ar.html">من نحن</a></li>
+                    <li><a href="../faq/faq-ar.html">الأسئلة الشائعة</a></li>
+                    <li><a href="../auth/login-ar.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle" onclick="switchLanguage()">EN</button>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="about-cleaning-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="tracking-in-contract">عن خدمة التنظيف لدينا</h2>
+                <p>اختبر خدمات تنظيف متميزة مع فريقنا المحترف المكرس للتميز</p>
+            </div>
+            
+            <div class="cards-container cards">
+                <div class="card-item card-1">
+                    <p class="tip">احترافية عالية</p>
+                    <p class="second-text">يتكون فريقنا من محترفي تنظيف مدربين ومعتمدين يتبعون أفضل الممارسات في الصناعة ويحافظون على أعلى معايير الخدمة مع الاهتمام الدقيق بالتفاصيل.</p>
+                </div>
+                <div class="card-item card-2">
+                    <p class="tip">دقة في الأداء</p>
+                    <p class="second-text">نولي اهتمامًا بكل التفاصيل، مما يضمن التنظيف الشامل والتعقيم لجميع المناطق. يضمن نهجنا المنهجي نتائج عالية الجودة ومتسقة في كل مرة.</p>
+                </div>
+                <div class="card-item card-3">
+                    <p class="tip">حلول صديقة للبيئة</p>
+                    <p class="second-text">نستخدم منتجات تنظيف آمنة بيئيًا وطرقًا مستدامة لحماية صحتك وكوكبنا مع تقديم نتائج استثنائية وخالية من الخطوط.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>خدمات التنظيف لدينا</h2>
+                <p>اكتشف مجموعة شاملة من حلول التنظيف الاحترافية مع بطاقات متحركة جميلة</p>
+            </div>
+            
+            <div class="services-detailed-grid">
+                <!-- تنظيف المنازل -->
+                <div class="e-card playing card-1">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/cleaning-house-icon.png" alt="تنظيف المنازل" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة شاملة</div>
+                        <div class="service-name">تنظيف المنازل</div>
+                        <div class="service-features-list">
+                            • جميع الغرف والمساحات<br>
+                            • منتجات صديقة للبيئة<br>
+                            • معدات احترافية
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('home-cleaning')">احجز الخدمة</button>
+                </div>
+                
+                <!-- تنظيف السلالم -->
+                <div class="e-card playing card-2">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/stairs-icon.png" alt="تنظيف السلالم" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة احترافية</div>
+                        <div class="service-name">تنظيف السلالم</div>
+                        <div class="service-features-list">
+                            • تنظيف المناطق المشتركة<br>
+                            • تعقيم درابزين السلالم<br>
+                            • تنظيف الجدران والزوايا
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('stairwell-cleaning')">احجز الخدمة</button>
+                </div>
+                
+                <!-- تنظيف الكنب -->
+                <div class="e-card playing card-3">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/couch-cleaning-icon.png" alt="تنظيف الكنب" class="service-icon-img">
+                        </div>
+                        <div class="service-type">تنظيف عميق</div>
+                        <div class="service-name">تنظيف الكنب</div>
+                        <div class="service-features-list">
+                            • الحفاظ على الأقمشة<br>
+                            • إزالة البقع<br>
+                            • تقنيات حديثة
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('sofa-cleaning')">احجز الخدمة</button>
+                </div>
+                
+                <!-- تنظيف النوافذ -->
+                <div class="e-card playing card-4">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/window-cleaner-icon.png" alt="تنظيف النوافذ" class="service-icon-img">
+                        </div>
+                        <div class="service-type">داخلي/خارجي</div>
+                        <div class="service-name">تنظيف النوافذ</div>
+                        <div class="service-features-list">
+                            • تنظيف خالي من الخطوط<br>
+                            • مسح الإطارات<br>
+                            • الوصول للمناطق الصعبة
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('window-cleaning')">احجز الخدمة</button>
+                </div>
+                
+                <!-- تنظيف الحدائق -->
+                <div class="e-card playing card-5">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/garden-icon.png" alt="تنظيف الحدائق" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة خارجية</div>
+                        <div class="service-name">تنظيف الحدائق</div>
+                        <div class="service-features-list">
+                            • تقليم وترتيب<br>
+                            • إزالة الحطام<br>
+                            • تنظيف بالضغط
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('garden-cleaning')">احجز الخدمة</button>
+                </div>
+                
+                <!-- تنظيف خزانات المياه -->
+                <div class="e-card playing card-6">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/water-filter-icon.png" alt="تنظيف خزانات المياه" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة متخصصة</div>
+                        <div class="service-name">تنظيف خزانات المياه</div>
+                        <div class="service-features-list">
+                            • تصريف الخزان<br>
+                            • تعقيم<br>
+                            • استبدال الفلتر
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('watertank-cleaning')">احجز الخدمة</button>
+                </div>
+                
+                <!-- مكافحة الحشرات -->
+                <div class="e-card playing card-1">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    
+                    <div class="infotop">
+                        <div class="e-card-icon">
+                            <img src="../../assets/images/control-arrows-icon.png" alt="مكافحة الحشرات" class="service-icon-img">
+                        </div>
+                        <div class="service-type">خدمة وقائية</div>
+                        <div class="service-name">مكافحة الحشرات</div>
+                        <div class="service-features-list">
+                            • مكافحة القوارض<br>
+                            • مواد آمنة<br>
+                            • طرق معتمدة
+                        </div>
+                    </div>
+                    <button class="e-card-book-btn" onclick="bookService('pest-control')">احجز الخدمة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="join-team-section">
+        <div class="container">
+
+            <div class="color-dots">
+            <div class="color-dot"></div>
+            <div class="color-dot"></div>
+            <div class="color-dot"></div>
+            <div class="color-dot"></div>
+            <div class="color-dot"></div>
+            </div>
+
+            <h2>انضم إلى فريق التنظيف المحترف لدينا</h2>
+            <p>كن جزءًا من عائلتنا المتنامية من محترفي التنظيف. نقدم أسعارًا تنافسية وجداول مرنة وتدريبًا مستمرًا لمساعدتك على النجاح في حياتك المهنية في التنظيف.</p>
+            
+            <button class="custom-button shake-bottom">
+                <div class="bg"></div>
+                <div class="wrap">
+                    <div class="content">
+                        <span class="char">
+                            <span>ا</span>
+                            <span>ن</span>
+                            <span>ض</span>
+                            <span>م</span>
+                            <span> </span>
+                            <span>إ</span>
+                            <span>ل</span>
+                            <span>ي</span>
+                            <span>ن</span>
+                            <span>ا</span>
+                            <span>!</span>
+                        </span>
+                    </div>
+                </div>
+            </button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 فيكس إت. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // Language switcher
+    function switchLanguage() {
+        window.location.href = 'cleaning-services.html';
+    }
+
+    // Dark mode toggle functionality
+    document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        const icon = this.querySelector('i');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    });
+
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        const icon = document.querySelector('#dark-mode-toggle i');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+
+    // Book service function - opens booking page
+    function bookService(serviceType) {
+        // Store the selected service type
+        localStorage.setItem('selectedService', serviceType);
+        
+        // Redirect to Arabic booking page
+        window.location.href = 'booking-form-ar.html';
+    }
+
+    // E-Card click events
+    const eCards = document.querySelectorAll('.e-card');
+    eCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const serviceName = this.querySelector('.service-name').textContent;
+            console.log(`عرض تفاصيل: ${serviceName}`);
+        });
+        
+        // Add hover animation
+        card.addEventListener('mouseenter', function() {
+            this.classList.add('playing');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.classList.remove('playing');
+        });
+    });
+    
+    // Join team button
+    document.querySelector('.custom-button').addEventListener('click', function() {
+        window.location.href = '../auth/role-selection-ar.html';
+    });
+    
+    // About cards hover effect
+    const cards = document.querySelectorAll('.card-item');
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-15px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // Initialize all e-cards with playing class on load
+    window.addEventListener('load', function() {
+        eCards.forEach(card => {
+            card.classList.add('playing');
+            // Remove playing class after 3 seconds to save resources
+            setTimeout(() => {
+                card.classList.remove('playing');
+            }, 3000);
+        });
+        
+        // Add floating animation to colorful dots
+        const dots = document.querySelectorAll('.color-dot');
+        dots.forEach((dot, index) => {
+            dot.style.animationDelay = `${index * 0.5}s`;
+        });
+    });
+    </script>
+</body>
+</html>

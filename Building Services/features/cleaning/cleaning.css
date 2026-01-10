@@ -1194,3 +1194,86 @@ body.rtl .chat-bubble {
         justify-content: center;
     }
 }
+
+
+/* Service icon images */
+.service-icon-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Dark mode adjustments */
+body.dark-mode .e-card {
+    background: rgba(30, 30, 30, 0.9);
+}
+
+body.dark-mode .infotop {
+    color: var(--dark-text);
+}
+
+body.dark-mode .service-name {
+    color: var(--accent-light);
+}
+
+body.dark-mode .e-card-book-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--dark-text);
+}
+
+body.dark-mode .e-card-book-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Logo Styles - Match index.html */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 40px !important;
+    width: auto;
+    transition: var(--transition);
+}
+
+.logo-text {
+    font-size: 1.5rem !important;
+    font-weight: 700;
+    color: var(--accent-light);
+}
+
+.header-container {
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Dark mode logo adjustment */
+body.dark-mode .logo-text {
+    color: var(--accent-light);
+}
+
+/* Make the logo responsive */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 35px !important;
+    }
+    
+    .logo-text {
+        font-size: 1.3rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .logo-img {
+        height: 30px !important;
+    }
+    
+    .logo-text {
+        font-size: 1.2rem !important;
+    }
+}

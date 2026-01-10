@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>احجز خدمة صيانة - فيكس إت</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/base.css">
+    <link rel="stylesheet" href="maintenance.css">
+    <style>
+        .booking-container {
+            padding: 140px 0 60px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        
+        .service-hero-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .booking-form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(4, 69, 80, 0.1);
+        }
+        
+        .booking-form-title {
+            font-size: 2.5rem;
+            color: #044550;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .service-description {
+            font-size: 1.1rem;
+            color: #086e77;
+            margin-bottom: 40px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #044550;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .form-select, .form-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: white;
+            text-align: right;
+        }
+        
+        .form-select:focus, .form-input:focus {
+            outline: none;
+            border-color: #086e77;
+            box-shadow: 0 0 0 3px rgba(4, 69, 80, 0.1);
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 10px 20px;
+            background: #e9ecef;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            flex-direction: row-reverse;
+        }
+        
+        .radio-label:hover {
+            background: #9fd3cd;
+        }
+        
+        .radio-label input[type="radio"]:checked + span {
+            color: #044550;
+            font-weight: 600;
+        }
+        
+        .features-list {
+            background: #daf1de;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: right;
+        }
+        
+        .features-list li {
+            margin-bottom: 10px;
+            padding-right: 20px;
+            position: relative;
+        }
+        
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: #086e77;
+            font-weight: bold;
+        }
+        
+        .price-display {
+            font-size: 2.5rem;
+            color: #044550;
+            text-align: center;
+            margin: 30px 0;
+            font-weight: 700;
+        }
+        
+        .price-note {
+            text-align: center;
+            color: #adb5bd;
+            font-size: 0.9rem;
+            margin-top: -20px;
+            margin-bottom: 30px;
+        }
+        
+        .book-now-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #044550, #086e77);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .book-now-btn:hover {
+            background: linear-gradient(135deg, #086e77, #4fb3ae);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(4, 69, 80, 0.2);
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: #086e77;
+            text-decoration: none;
+            font-weight: 500;
+            text-align: right;
+            display: block;
+        }
+        
+        .back-btn:hover {
+            color: #044550;
+            text-decoration: underline;
+        }
+        
+        /* Service-specific colors */
+        .electrical-repair .price-display {
+            color: #044550;
+        }
+        
+        .home-electrical .price-display {
+            color: #086e77;
+        }
+        
+        .plumbing-service .price-display {
+            color: #19396c;
+        }
+    </style>
+</head>
+<body class="rtl">
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="../../assets/images/logo2.png" alt="شعار فيكس إت" class="logo-img">
+                <span class="logo-text">فيكس إت</span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="../index-ar.html">الرئيسية</a></li>
+                    <li><a href="../cleaning/cleaning-services-ar.html">خدمات التنظيف</a></li>
+                    <li><a href="maintenance-services-ar.html">خدمات الصيانة</a></li>
+                    <li><a href="../gallery/gallery-ar.html">المعرض</a></li>
+                    <li><a href="../about/about-ar.html">من نحن</a></li>
+                    <li><a href="../faq/faq-ar.html">الأسئلة الشائعة</a></li>
+                    <li><a href="../auth/login-ar.html" class="login-nav-btn">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <button class="lang-toggle" id="lang-toggle" onclick="switchLanguage()">EN</button>
+                <button class="dark-mode-toggle" id="dark-mode-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="booking-container">
+        <div class="container">
+            <div class="booking-form-wrapper" id="bookingForm">
+                <!-- Service image will be inserted here by JavaScript -->
+                <img id="serviceImage" class="service-hero-image" alt="صورة الخدمة">
+                
+                <h1 id="serviceTitle" class="booking-form-title"></h1>
+                <p id="serviceDescription" class="service-description"></p>
+                
+                <form id="bookingFormElement">
+                    <div class="form-group">
+                        <label class="form-label">أين؟ اختر مدينتك</label>
+                        <select class="form-select" id="citySelect" required>
+                            <option value="">اختر مدينتك</option>
+                            <option value="ramallah">رام الله</option>
+                            <option value="nablus">نابلس</option>
+                            <option value="jerusalem">القدس</option>
+                            <option value="bethlehem">بيت لحم</option>
+                            <option value="hebron">الخليل</option>
+                            <option value="jenin">جنين</option>
+                            <option value="tulkarem">طولكرم</option>
+                            <option value="qalqilya">قلقيلية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">تكرار الخدمة</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="one-time" required>
+                                <span>مرة واحدة</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="weekly">
+                                <span>أسبوعي</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="bi-weekly">
+                                <span>كل أسبوعين</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="frequency" value="monthly">
+                                <span>شهري</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">ما المدرج في الخدمة</label>
+                        <ul id="serviceFeatures" class="features-list">
+                            <!-- Features will be inserted by JavaScript -->
+                        </ul>
+                    </div>
+                    
+                    <div class="price-display" id="servicePrice">
+                        <!-- Price will be inserted by JavaScript -->
+                    </div>
+                    <p class="price-note">* قد يختلف السعر حسب التعقيد والمتطلبات الإضافية</p>
+                    
+                    <button type="submit" class="book-now-btn">
+                        <i class="fas fa-calendar-check"></i> احجز الآن
+                    </button>
+                    
+                    <a href="maintenance-services-ar.html" class="back-btn">
+                        <i class="fas fa-arrow-right"></i> العودة إلى الخدمات
+                    </a>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Maintenance service data in Arabic
+    const serviceData = {
+        'electrical-repair': {
+            title: 'إصلاح كهربائي',
+            description: 'إصلاح وصيانة الأعطال الكهربائية بكفاءة وأمان بواسطة كهربائيين معتمدين.',
+            image: '../../assets/images/electrical-repair-icon.png',
+            features: [
+                'تشخيص الأعطال الكهربائية',
+                'إجراءات إصلاح آمنة',
+                'فحص واستكشاف أخطاء الدوائر',
+                'فحص الأسلاك',
+                'فحص الامتثال للسلامة',
+                'استبدال قطع الغيار عالية الجودة',
+                'الفحص بعد الإصلاح'
+            ],
+            price: '₪200'
+        },
+        'home-electrical': {
+            title: 'كهرباء المنازل',
+            description: 'خدمات كهربائية منزلية شاملة تشمل التركيب والصيانة.',
+            image: '../../assets/images/home-electrical-icon.png',
+            features: [
+                'تركيب كهربائي كامل',
+                'صيانة نظام الأسلاك',
+                'ترقيات نظام الإضاءة',
+                'فحص قواطع الدائرة',
+                'تركيب منافذ الطاقة',
+                'مراجعة السلامة الكهربائية',
+                'استشارة كفاءة الطاقة'
+            ],
+            price: '₪350'
+        },
+        'plumbing-service': {
+            title: 'خدمات السباكة',
+            description: 'خدمات سباكة احترافية لحل جميع مشكلات المياه والصرف الصحي.',
+            image: '../../assets/images/plumbing-icon.png',
+            features: [
+                'كشف وإصلاح التسريبات',
+                'تركيب واستبدال الأنابيب',
+                'تنظيف وتسليك المصارف',
+                'تركيب سخانات المياه',
+                'تركيب التركيبات',
+                'ضبط ضغط المياه',
+                'خدمات سباكة طارئة'
+            ],
+            price: '₪250'
+        },
+        'gas-maintenance': {
+            title: 'صيانة الغاز',
+            description: 'صيانة أنظمة الغاز والتكييف للحفاظ على الأداء الأمثل.',
+            image: '../../assets/images/gas-maintenance-icon.png',
+            features: [
+                'فحص خطوط الغاز',
+                'كشف وإصلاح التسريبات',
+                'صيانة أنظمة التكييف',
+                'تحسين الأداء',
+                'فحص الامتثال للسلامة',
+                'استبدال الفلاتر',
+                'فحص كفاءة النظام'
+            ],
+            price: '₪300'
+        },
+        'elevator-maintenance': {
+            title: 'صيانة المصاعد',
+            description: 'صيانة دورية ومتخصصة للمصاعد لضمان السلامة والكفاءة.',
+            image: '../../assets/images/elevator-icon.png',
+            features: [
+                'فحوصات السلامة المنتظمة',
+                'خدمات الإصلاح الطارئة',
+                'استبدال القطع',
+                'فحص الأداء',
+                'الامتثال لمعايير السلامة',
+                'صيانة وقائية',
+                'دعم طارئ على مدار الساعة'
+            ],
+            price: '₪500'
+        },
+        'aluminum-work': {
+            title: 'أعمال الألمنيوم',
+            description: 'تركيب وصيانة الأعمال المعدنية والألمنيوم.',
+            image: '../../assets/images/aluminum-work-icon.png',
+            features: [
+                'تركيب الألمنيوم',
+                'تصنيع الأعمال المعدنية',
+                'تركيب النوافذ والأبواب',
+                'صيانة الهياكل',
+                'إتقان في الصنعة',
+                'أعمال التصميم المخصصة',
+                'التشطيب والتلميع'
+            ],
+            price: '₪400'
+        },
+        'hvac-maintenance': {
+            title: 'صيانة التكييف',
+            description: 'صيانة أجهزة تكييف الهواء لضمان الأداء الأمثل والراحة على مدار العام.',
+            image: '../../assets/images/hvac-icon.png',
+            features: [
+                'تنظيف أنظمة التكييف',
+                'استبدال الفلاتر',
+                'تحسين الأداء',
+                'فحص مستوى المبرد',
+                'تنظيف القنوات',
+                'تقييم كفاءة الطاقة',
+                'صيانة موسمية'
+            ],
+            price: '₪280'
+        }
+    };
+
+    // Get selected service from localStorage
+    const selectedService = localStorage.getItem('selectedService') || 'electrical-repair';
+    const service = serviceData[selectedService];
+
+    // Populate booking form with service data
+    document.addEventListener('DOMContentLoaded', function() {
+        if (service) {
+            // Set service title and description
+            document.getElementById('serviceTitle').textContent = service.title;
+            document.getElementById('serviceDescription').textContent = service.description;
+            document.getElementById('serviceImage').src = service.image;
+            document.getElementById('serviceImage').alt = service.title + ' الخدمة';
+            
+            // Set service price
+            document.getElementById('servicePrice').textContent = service.price;
+            
+            // Add service class for styling
+            document.getElementById('bookingForm').classList.add(selectedService);
+            
+            // Populate features list
+            const featuresList = document.getElementById('serviceFeatures');
+            featuresList.innerHTML = '';
+            service.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+        }
+        
+        // Add form submission handler
+        document.getElementById('bookingFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const city = document.getElementById('citySelect').value;
+            const frequency = document.querySelector('input[name="frequency"]:checked')?.value;
+            
+            if (!city || !frequency) {
+                alert('الرجاء اختيار مدينتك وتكرار الخدمة');
+                return;
+            }
+            
+            // Here you would normally send this data to a server
+            const bookingData = {
+                service: service.title,
+                category: 'maintenance',
+                city: city,
+                frequency: frequency,
+                price: service.price,
+                date: new Date().toISOString()
+            };
+            
+            // Store booking in localStorage (for demo purposes)
+            localStorage.setItem('lastBooking', JSON.stringify(bookingData));
+            
+            // Show success message
+            alert(`تم تأكيد الحجز لـ ${service.title} في ${city} (${frequency})!\nالمجموع: ${service.price}\n\nشكرًا لاختيارك فيكس إت!`);
+            
+            // Redirect to confirmation page or home
+            window.location.href = '../index-ar.html';
+        });
+        
+        // Dark mode toggle
+        document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+        
+        // Check for saved dark mode preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            const icon = document.querySelector('#dark-mode-toggle i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    });
+    
+    function switchLanguage() {
+        // Redirect to English version
+        window.location.href = 'booking-form.html';
+    }
+    </script>
+</body>
+</html>
