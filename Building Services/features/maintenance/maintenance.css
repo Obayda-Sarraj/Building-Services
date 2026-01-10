@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -19,12 +20,15 @@ body {
     padding: 0 20px;
 }
 
+/* HEADER AND NAVIGATION FIXES */
 header {
-    background-color: #044550; /* Updated to new dark color */
+    background-color: #044550;
     color: var(--text-light);
-    padding: 25px 0;
-    box-shadow: var(--shadow);
-    position: relative;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
     z-index: 1000;
 }
 
@@ -32,55 +36,175 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
+    height: 80px;
 }
 
+/* Logo Styles */
 .logo {
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: var(--transition);
+    text-decoration: none;
 }
 
-.logo:hover {
-    transform: translateY(-2px);
-}
-
-.logo i {
-    font-size: 2.2rem;
-    color: #9fd3cd; /* Updated to new light color */
-    transition: var(--transition);
-}
-
-.logo:hover i {
-    transform: rotate(-5deg);
+.logo-img {
+    height: 50px;
+    width: auto;
 }
 
 .logo-text {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: #9fd3cd; /* Updated to new light color */
-    letter-spacing: -0.5px;
+    color: #9fd3cd;
 }
 
-.back-btn {
-    color: var(--text-light);
+/* Navigation Styles */
+#main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+#main-nav a {
+    color: #9fd3cd;
     text-decoration: none;
     font-weight: 500;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 10px;
-    transition: var(--transition);
-    padding: 10px 20px;
-    border-radius: 50px;
-    background: rgba(159, 211, 205, 0.1); /* Updated to new light color with opacity */
-    border: 1px solid rgba(159, 211, 205, 0.2);
+    gap: 8px;
 }
 
-.back-btn:hover {
-    color: #4fb3ae; /* Updated to new accent color */
-    background: rgba(79, 179, 174, 0.2);
-    transform: translateX(-5px);
-    border-color: #4fb3ae;
+#main-nav a:hover {
+    color: white;
+    background-color: rgba(159, 211, 205, 0.1);
+}
+
+#main-nav a.login-nav-btn {
+    background-color: #086e77;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+#main-nav a.login-nav-btn:hover {
+    background-color: #4fb3ae;
+    transform: translateY(-2px);
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lang-toggle, 
+.dark-mode-toggle,
+.mobile-menu-btn {
+    background: transparent;
+    border: 1px solid #9fd3cd;
+    color: #9fd3cd;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+}
+
+.lang-toggle:hover,
+.dark-mode-toggle:hover {
+    background-color: #086e77;
+    color: white;
+}
+
+.mobile-menu-btn {
+    display: none;
+}
+
+/* Mobile Menu Styles */
+@media (max-width: 992px) {
+    .mobile-menu-btn {
+        display: flex;
+    }
+    
+    #main-nav {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #044550;
+        padding: 20px;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+    
+    #main-nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    #main-nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #main-nav a {
+        padding: 12px 20px;
+        justify-content: flex-start;
+    }
+    
+    .header-container {
+        padding: 0 15px;
+        height: 70px;
+    }
+    
+    .logo-img {
+        height: 45px;
+    }
+    
+    .logo-text {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .header-container {
+        height: 65px;
+        padding: 0 10px;
+    }
+    
+    .logo-img {
+        height: 40px;
+    }
+    
+    .logo-text {
+        font-size: 1.4rem;
+    }
+    
+    .lang-toggle,
+    .dark-mode-toggle,
+    .mobile-menu-btn {
+        min-width: 35px;
+        height: 35px;
+        padding: 6px;
+    }
 }
 
 /* About Our Maintenance Service Cards */
@@ -98,7 +222,7 @@ header {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #044550, #086e77, #19396c); /* Updated to new colors */
+    background: linear-gradient(90deg, #044550, #086e77, #19396c);
 }
 
 /* Text Animation */
@@ -117,7 +241,7 @@ header {
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: linear-gradient(90deg, #044550, #086e77); /* Updated to new colors */
+    background: linear-gradient(90deg, #044550, #086e77);
     border-radius: 2px;
 }
 
@@ -213,15 +337,15 @@ header {
 
 /* Card Colors with NEW gradients for Maintenance */
 .card-item.card-1 {
-    background: linear-gradient(135deg, #044550 0%, #086e77 100%); /* Updated colors */
+    background: linear-gradient(135deg, #044550 0%, #086e77 100%);
 }
 
 .card-item.card-2 {
-    background: linear-gradient(135deg, #086e77 0%, #4fb3ae 100%); /* Updated colors */
+    background: linear-gradient(135deg, #086e77 0%, #4fb3ae 100%);
 }
 
 .card-item.card-3 {
-    background: linear-gradient(135deg, #19396c 0%, #4fb3ae 100%); /* Updated colors */
+    background: linear-gradient(135deg, #19396c 0%, #4fb3ae 100%);
 }
 
 /* E-Card Design for Maintenance Services */
@@ -237,7 +361,7 @@ header {
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, #044550, transparent); /* Updated color */
+    background: linear-gradient(90deg, transparent, #044550, transparent);
 }
 
 .section-title {
@@ -247,7 +371,7 @@ header {
 
 .section-title h2 {
     font-size: 2.5rem;
-    color: #086e77; /* Updated color */
+    color: #086e77;
     margin-bottom: 20px;
     position: relative;
     display: inline-block;
@@ -261,7 +385,7 @@ header {
     transform: translateX(-50%);
     width: 100px;
     height: 4px;
-    background: linear-gradient(90deg, #044550, #4fb3ae); /* Updated colors */
+    background: linear-gradient(90deg, #044550, #4fb3ae);
     border-radius: 2px;
 }
 
@@ -344,27 +468,27 @@ header {
 
 /* Card-specific wave colors for Maintenance - UPDATED */
 .e-card.card-1 .wave {
-    background: linear-gradient(744deg, #044550, #086e77 60%, #4fb3ae); /* Updated colors */
+    background: linear-gradient(744deg, #044550, #086e77 60%, #4fb3ae);
 }
 
 .e-card.card-2 .wave {
-    background: linear-gradient(744deg, #086e77, #4fb3ae 60%, #9fd3cd); /* Updated colors */
+    background: linear-gradient(744deg, #086e77, #4fb3ae 60%, #9fd3cd);
 }
 
 .e-card.card-3 .wave {
-    background: linear-gradient(744deg, #19396c, #4fb3ae 60%, #9fd3cd); /* Updated colors */
+    background: linear-gradient(744deg, #19396c, #4fb3ae 60%, #9fd3cd);
 }
 
 .e-card.card-4 .wave {
-    background: linear-gradient(744deg, #044550, #086e77 60%, #4fb3ae); /* Updated colors */
+    background: linear-gradient(744deg, #044550, #086e77 60%, #4fb3ae);
 }
 
 .e-card.card-5 .wave {
-    background: linear-gradient(744deg, #086e77, #4fb3ae 60%, #9fd3cd); /* Updated colors */
+    background: linear-gradient(744deg, #086e77, #4fb3ae 60%, #9fd3cd);
 }
 
 .e-card.card-6 .wave {
-    background: linear-gradient(744deg, #19396c, #4fb3ae 60%, #9fd3cd); /* Updated colors */
+    background: linear-gradient(744deg, #19396c, #4fb3ae 60%, #9fd3cd);
 }
 
 .infotop {
@@ -470,7 +594,7 @@ header {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #044550, #086e77, #19396c); /* Updated colors */
+    background: linear-gradient(90deg, #044550, #086e77, #19396c);
 }
 
 .join-team-section .container {
@@ -480,7 +604,7 @@ header {
 
 .join-team-section h2 {
     font-size: 2.8rem;
-    color: #086e77; /* Updated color */
+    color: #086e77;
     margin-bottom: 30px;
     font-weight: 700;
     position: relative;
@@ -495,7 +619,7 @@ header {
     transform: translateX(-50%);
     width: 150px;
     height: 4px;
-    background: linear-gradient(90deg, #044550, #4fb3ae); /* Updated colors */
+    background: linear-gradient(90deg, #044550, #4fb3ae);
     border-radius: 2px;
 }
 
@@ -699,7 +823,7 @@ header {
     left: -50px;
     width: 200px;
     height: 200px;
-    background: rgba(4, 69, 80, 0.05); /* Updated color */
+    background: rgba(4, 69, 80, 0.05);
     border-radius: 50%;
     z-index: -1;
 }
@@ -711,7 +835,7 @@ header {
     right: -50px;
     width: 200px;
     height: 200px;
-    background: rgba(79, 179, 174, 0.05); /* Updated color */
+    background: rgba(79, 179, 174, 0.05);
     border-radius: 50%;
     z-index: -1;
 }
@@ -736,35 +860,35 @@ header {
 }
 
 .color-dot:nth-child(1) {
-    background: #044550; /* Updated color */
+    background: #044550;
     top: 20%;
     left: 10%;
     animation-delay: 0s;
 }
 
 .color-dot:nth-child(2) {
-    background: #086e77; /* Updated color */
+    background: #086e77;
     top: 60%;
     left: 15%;
     animation-delay: 1s;
 }
 
 .color-dot:nth-child(3) {
-    background: #19396c; /* Updated color */
+    background: #19396c;
     top: 30%;
     right: 10%;
     animation-delay: 2s;
 }
 
 .color-dot:nth-child(4) {
-    background: #4fb3ae; /* Updated color */
+    background: #4fb3ae;
     bottom: 20%;
     right: 15%;
     animation-delay: 3s;
 }
 
 .color-dot:nth-child(5) {
-    background: #9fd3cd; /* Updated color */
+    background: #9fd3cd;
     top: 40%;
     left: 20%;
     animation-delay: 4s;
@@ -781,7 +905,7 @@ header {
 }
 
 footer {
-    background-color: #044550; /* Updated to new dark color */
+    background-color: #044550;
     color: var(--text-light);
     padding: 50px 0 25px;
     text-align: center;
@@ -795,13 +919,13 @@ footer::before {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #044550, #086e77, #19396c); /* Updated colors */
+    background: linear-gradient(90deg, #044550, #086e77, #19396c);
 }
 
 .footer-bottom {
     padding-top: 25px;
-    border-top: 1px solid rgba(159, 211, 205, 0.2); /* Updated color */
-    color: #9fd3cd; /* Updated color */
+    border-top: 1px solid rgba(159, 211, 205, 0.2);
+    color: #9fd3cd;
     font-size: 0.95rem;
     opacity: 0.8;
 }
@@ -856,25 +980,6 @@ footer::before {
         height: 70px;
         font-size: 1.2rem;
     }
-    
-    .header-container {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
-    
-    .back-btn {
-        margin-top: 10px;
-    }
-    
-    .service-name {
-        font-size: 22px;
-    }
-    
-    .join-team-section .container::before,
-    .join-team-section .container::after {
-        display: none;
-    }
 }
 
 @media (max-width: 480px) {
@@ -919,7 +1024,6 @@ footer::before {
     }
 }
 
-
 /* Logo Styles - Match index.html */
 .logo {
     display: flex;
@@ -945,51 +1049,6 @@ footer::before {
     display: flex;
     align-items: center;
     padding: 20px 0;
-}
-
-/* Dark mode toggle button */
-.dark-mode-toggle {
-    background: transparent;
-    border: 1px solid #9fd3cd;
-    color: var(--text-light);
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    height: 40px;
-}
-
-.dark-mode-toggle:hover {
-    background-color: #086e77;
-}
-
-.lang-toggle {
-    background: transparent;
-    border: 1px solid #9fd3cd;
-    color: var(--text-light);
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: var(--transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    height: 40px;
-}
-
-.lang-toggle:hover {
-    background-color: #086e77;
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 15px;
 }
 
 /* Service icon images */
@@ -1077,5 +1136,34 @@ body.dark-mode .e-card-book-btn:hover {
     .header-container {
         min-height: 65px;
         padding: 10px 0;
+    }
+}
+
+/* RTL Support */
+body.rtl #main-nav ul {
+    gap: 15px;
+}
+
+body.rtl .logo {
+    flex-direction: row;
+}
+
+body.rtl .header-actions {
+    flex-direction: row;
+}
+
+body.rtl .lang-toggle,
+body.rtl .dark-mode-toggle,
+body.rtl .mobile-menu-btn {
+    font-family: 'Tajawal', sans-serif;
+}
+
+@media (max-width: 992px) {
+    body.rtl #main-nav {
+        text-align: right;
+    }
+    
+    body.rtl #main-nav a {
+        justify-content: flex-end;
     }
 }
